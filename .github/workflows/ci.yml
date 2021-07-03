@@ -13,7 +13,7 @@ jobs:
 
     steps:
 
-      - name: Checkout
+      - name: Git Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -23,7 +23,7 @@ jobs:
         with:
           languages: 'javascript'
 
-      - name: Setup Node.js environment
+      - name: Setup Node.js
         uses: actions/setup-node@v2.2.0
         with:
           # Used to specify a package manager for caching in the default directory. Supported values: npm, yarn
@@ -48,15 +48,13 @@ jobs:
         with:
           targets: build
 
-      - name: Codecov
+      - name: Code Coverage
         uses: codecov/codecov-action@v1.5.2
         with:
-          directory: /coverage
           name: Rat.App Code Coverage
-          verbose: true
 
 
-      - name: Perform CodeQL Analysis
+      - name: CodeQL Analysis
         uses: github/codeql-action/analyze@v1
 
 
