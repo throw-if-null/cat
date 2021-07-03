@@ -9,7 +9,6 @@ module.exports = {
         }
     },
     coverageDirectory: "../../coverage/apps/client",
-    coverageReporters: ["json", "text-summary"],
     transform: {
         "^.+\\.(ts|js|html)$": "jest-preset-angular"
     },
