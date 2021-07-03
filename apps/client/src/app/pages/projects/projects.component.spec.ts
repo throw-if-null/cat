@@ -1,5 +1,7 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { DialogService } from '@ngneat/dialog';
 
 import { ProjectsComponent } from './projects.component';
@@ -12,7 +14,8 @@ describe('ProjectsComponent', () => {
 		await TestBed.configureTestingModule({
 			declarations: [ProjectsComponent],
 			providers: [{ provide: DialogService, useValue: {} }],
-			imports: [ReactiveFormsModule]
+			imports: [RouterTestingModule, ReactiveFormsModule],
+			schemas: [NO_ERRORS_SCHEMA]
 		}).compileComponents();
 	});
 
