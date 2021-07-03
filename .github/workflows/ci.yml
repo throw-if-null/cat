@@ -49,10 +49,10 @@ jobs:
         with:
           targets: build
 
-      - name: Code Coverage - Client
+      - name: Code Coverage
         uses: codecov/codecov-action@v1.5.2
         with:
-          file: /coverage/apps/client/coverage-final.json
+          directory: /coverage
           name: Rat.App Code Coverage
 
 
