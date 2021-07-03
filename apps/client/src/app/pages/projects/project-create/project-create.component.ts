@@ -1,5 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+enum ProjectTypes {
+	Angular = 'angular',
+	React = 'react',
+	DotNET = 'dotnet',
+	JSON = 'json',
+}
 
 @Component({
 	selector: 'rat-project-create',
@@ -7,22 +14,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 	styleUrls: ['./project-create.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProjectCreateComponent implements OnInit {
+export class ProjectCreateComponent {
 
-	platforms: any = ['Angular', 'React', 'JSON']
+	platforms: ProjectTypes[] = [ProjectTypes.Angular, ProjectTypes.React, ProjectTypes.JSON];
 
 	projectForm = new FormGroup({
 		name: new FormControl('', Validators.required),
 		platform: new FormControl(0, Validators.required)
 	});
 
-	constructor() { }
-
-	ngOnInit(): void {
-	}
-
 	onSubmit() {
 		console.warn(this.projectForm.value);
-
 	}
 }

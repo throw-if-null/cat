@@ -3,6 +3,12 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+interface Project {
+	id: string;
+	name: string;
+	type: string;
+}
+
 @Component({
 	selector: 'rat-project-details',
 	templateUrl: './project-details.component.html',
@@ -10,7 +16,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ProjectDetailsComponent implements OnInit {
 
-	project$: Observable<any> | undefined;
+	project$: Observable<Project> | undefined;
 
 	constructor(private route: ActivatedRoute) {
 
@@ -19,7 +25,7 @@ export class ProjectDetailsComponent implements OnInit {
 	ngOnInit() {
 		this.project$ = this.route.paramMap.pipe(
 			switchMap((params: ParamMap) => {
-				const projectId = params.get('projectId');
+				const projectId = params.get('projectId') || '';
 				return of({ id: projectId, name: 'Rate APP', type: 'angular' });
 			})
 		);

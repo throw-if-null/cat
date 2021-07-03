@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
 import { of, Observable } from 'rxjs';
 import { ProjectCreateComponent } from './project-create/project-create.component';
@@ -15,7 +15,7 @@ interface Project {
 	styleUrls: ['./projects.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent {
 
 
 	projects$: Observable<Project[]>;
@@ -45,12 +45,8 @@ export class ProjectsComponent implements OnInit {
 		]);
 	}
 
-	ngOnInit(): void {
-
-	}
-
 	openCreateDialog() {
-		const dialogRef = this.dialog.open(ProjectCreateComponent, { closeButton: false, size: 'lg' });
+		this.dialog.open(ProjectCreateComponent, { closeButton: false, size: 'lg' });
 	}
 
 }
