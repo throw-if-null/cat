@@ -36,7 +36,6 @@ jobs:
         uses: MansaGroup/nrwl-nx-action@v2.0.4
         with:
           targets: lint
-          args: --code-coverage
 
       - name: NX Test
         uses: MansaGroup/nrwl-nx-action@v2.0.4
