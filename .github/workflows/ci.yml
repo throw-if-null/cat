@@ -41,6 +41,7 @@ jobs:
         uses: MansaGroup/nrwl-nx-action@v2.0.4
         with:
           targets: test
+          affected: false
           args: --code-coverage
 
       - name: NX Build
