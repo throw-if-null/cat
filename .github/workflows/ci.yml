@@ -52,7 +52,7 @@ jobs:
       - name: Code Coverage - Client
         uses: codecov/codecov-action@v1.5.2
         with:
-          file: /coverage/apps/client/coverage-final.json
+          directory: /coverage/apps/client
           name: Rat.App Code Coverage
 
 
