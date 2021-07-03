@@ -23,6 +23,15 @@ jobs:
         with:
           languages: 'javascript'
 
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.2.0
+        with:
+          # Used to specify a package manager for caching in the default directory. Supported values: npm, yarn
+          cache: npm
+    
+      - name: NPM install
+        run: npm ci
+      
       - name: Nrwl Nx
         uses: MansaGroup/nrwl-nx-action@v2.0.4
         with:
