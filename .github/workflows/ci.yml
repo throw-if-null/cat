@@ -48,9 +48,10 @@ jobs:
         with:
           targets: build
 
-      - name: Code Coverage
+      - name: Code Coverage - Client
         uses: codecov/codecov-action@v1.5.2
         with:
+          directory: /coverage/apps/client
           name: Rat.App Code Coverage
 
 
