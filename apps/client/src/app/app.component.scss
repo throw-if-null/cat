@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1rem;
+
+  &__title {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 230px 1.5fr;
+  grid-template-rows: 1fr;
+  gap: 1rem;
+  grid-template-areas:
+    ". .";
+
+  padding: 1rem;
+
+  .navbar {
+    display: flex;
+    border-radius: 5px;
+    padding: .5rem .7rem;
+    height: calc(100vh - 100px);
+
+    background: linear-gradient(0deg, #ec250d 0, #FF521B 100%);
+    box-shadow: 0 0 45px 0 rgb(0 0 0 / 60%);
+
+
+    &__item {
+      color: white;
+    }
+  }
+}

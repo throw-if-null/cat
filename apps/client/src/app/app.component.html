@@ -1,0 +1,17 @@
+<section class="header">
+    <div class="header__title title">{{title}}</div>
+    <div class="header__items">User</div>
+</section>
+<section class="body">
+    <nav class="navbar">
+        <ul>
+            <li class="navbar__item"><a routerLink="dashboard" routerLinkActive="active" >Dashboard</a></li>
+            <li class="navbar__item"><a routerLink="projects" routerLinkActive="active" >Projects</a></li>
+            <li class="navbar__item"><a routerLink="profile" routerLinkActive="active" >Profile</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-container">
+        <router-outlet></router-outlet>
+    </section>
+</section>
