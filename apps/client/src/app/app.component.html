@@ -1,17 +1,38 @@
-<section class="header">
-    <div class="header__title title">{{title}}</div>
-    <div class="header__items">User</div>
+<section class='header'>
+  <div class='header__title title'>{{title}}</div>
+  <div class='header__items'>User</div>
 </section>
-<section class="body">
-    <nav class="navbar">
-        <ul>
-            <li class="navbar__item"><a routerLink="dashboard" routerLinkActive="active" >Dashboard</a></li>
-            <li class="navbar__item"><a routerLink="projects" routerLinkActive="active" >Projects</a></li>
-            <li class="navbar__item"><a routerLink="profile" routerLinkActive="active" >Profile</a></li>
-        </ul>
-    </nav>
+<section class='body'>
+  <nav class='navbar'>
 
-    <section class="page-container">
-        <router-outlet></router-outlet>
-    </section>
+    <div class='navbar__title'>
+      <img class='icon' src='assets/images/rat.png' />
+      <h1>RAT</h1>
+    </div>
+
+
+    <ul class='navbar__list'>
+      <li class='navbar__item' routerLink='dashboard' routerLinkActive='active'>
+        <img class='icon' src='assets/images/dashboard.svg' />
+        <a routerLink='dashboard'>Dashboard</a>
+      </li>
+      <li class='navbar__item' routerLink='projects' routerLinkActive='active'>
+        <img class='icon' src='assets/images/projects.svg' />
+        <a routerLink='projects'>Projects</a>
+      </li>
+      <li class='navbar__item' routerLink='profile' routerLinkActive='active'>
+        <img class='icon' src='assets/images/profile.svg' />
+        <a routerLink='profile'>Profile</a>
+      </li>
+
+      <li class='navbar__item settings' routerLink='settings' routerLinkActive='active'>
+        <img class='icon' src='assets/images/settings.svg' />
+        <a routerLink='settings'>Settings</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section class='page-container'>
+    <router-outlet></router-outlet>
+  </section>
 </section>
