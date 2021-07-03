@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+}
+
+.project-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &.angular {
+    background-image: url('/assets/images/projects/angular.svg');
+  }
+
+  &.react {
+    background-image: url('/assets/images/projects/react.svg');
+  }
+
+
+  &.json {
+    background-image: url('/assets/images/projects/json.svg');
+  }
+
+  &.dotnet {
+    background-image: url('/assets/images/projects/dotnet.svg');
+  }
+}

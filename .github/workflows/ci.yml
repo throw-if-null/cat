@@ -28,15 +28,15 @@ jobs:
         with:
           # Used to specify a package manager for caching in the default directory. Supported values: npm, yarn
           cache: npm
-    
+
       - name: NPM install
         run: npm ci
-      
+
       - name: Nrwl Nx
         uses: MansaGroup/nrwl-nx-action@v2.0.4
         with:
           targets: lint,test,build
-          args: --codeCoverage
+          args: --code-coverage
 
       - name: Codecov
         uses: codecov/codecov-action@v1.5.2

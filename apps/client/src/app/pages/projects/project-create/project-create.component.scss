@@ -1,0 +1,26 @@
+@import "variables";
+
+:host {
+  display: block;
+  padding: $spacing-primary;
+}
+
+.form {
+  &-input {
+    display: flex;
+    flex-direction: column;
+
+    margin: $spacing-primary 0;
+
+  }
+}
+
+.title {
+  margin-bottom: $spacing-primary;
+  font-weight: bold;
+}
+
+.description {
+  color: $text-lighter;
+  margin-bottom: $spacing-primary;
+}

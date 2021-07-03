@@ -1,0 +1,26 @@
+<h2 class="title">Create a new Project</h2><p class="description">
+    Projects allow you to scope configurations to a specific application in your organization.
+    For example, you might have separate projects for your API server and frontend client. </p>
+
+<p class="description">
+    The projects' platform lets us know, what the desired output format will be. </p>
+
+<p class="description">
+    You will still be able to create multiple configurations for different environments, modules, etc... </p>
+
+<form class="form" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+
+    <h2 class="title">Choose your platform</h2>
+    <select class="form-input input" formControlName="platform">
+        <option value="" disabled>Platform</option>
+        <option *ngFor="let platform of platforms" [ngValue]="platform">{{platform}}</option>
+    </select>
+
+    <h2 class="title">Project Name</h2>
+
+    <input class="form-input input" type="text" formControlName="name">
+
+
+    <button class="button invert" type="submit" [disabled]="!projectForm.valid">Create Project</button>
+
+</form>

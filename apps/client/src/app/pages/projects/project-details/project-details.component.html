@@ -1,0 +1,23 @@
+<ng-container *ngIf="project$ | async as project">
+    <div class="project__header">
+        <div class="project__name">
+            <rat-project-icon [type]="project.type"></rat-project-icon>
+            {{project.name}}
+        </div>
+        <div class="project__configs-list">
+            <select>
+                <option>All</option>
+                <option>Dev</option>
+                <option>Sandbox</option>
+                <option>Secrets</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="project__details">
+        ID: {{project.id}}
+        Type: {{project.type}}
+    </div>
+
+</ng-container>
+

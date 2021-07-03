@@ -1,13 +1,15 @@
+@import "variables";
+
 .header {
     display: flex;
     justify-content: space-between;
 
-    padding: 1rem 2rem 0;
+    padding: $spacing-primary 2rem 0;
 
     &__title {
         font-size: 18px;
         line-height: 20px;
-        padding: 1rem;
+        padding: $spacing-primary;
     }
 
 }
@@ -20,18 +22,18 @@
     grid-template-areas:
     ". .";
 
-    padding: 1rem;
+    padding: $spacing-primary;
 
     .navbar {
         position: relative;
         display: flex;
         flex-direction: column;
 
-        border-radius: 5px;
-        padding: 0 1rem 2rem;
+        border-radius: $border-radius;
+        padding: 0 $spacing-primary 2rem;
         height: calc(100vh - 200px);
 
-        background: linear-gradient(0deg, #ec250d 0, #FF521B 100%);
+        background: linear-gradient(0deg, $blood-orange 0, $orange 100%);
         box-shadow: 0 0 45px 0 rgb(0 0 0 / 60%);
 
 
@@ -40,14 +42,14 @@
             align-items: center;
             font-size: 14px;
             font-weight: bold;
-            padding: 0.5rem 0;
+            padding: $spacing-primary / 2 0;
 
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid $white;
 
             .icon {
                 width: 40px;
                 height: 40px;
-                margin: 1rem;
+                margin: $spacing-primary;
             }
         }
 
@@ -60,8 +62,8 @@
             display: flex;
             align-items: center;
 
-            padding: 1rem;
-            color: darken(white, 7%);
+            padding: $spacing-primary;
+            color: darken($white, 15%);
             font-size: 10px;
             text-transform: uppercase;
             cursor: pointer;
@@ -69,15 +71,15 @@
             transition: color .3s ease 0s;
 
             &:first-child {
-                margin-top: 1rem;
+                margin-top: $spacing-primary;
             }
 
             .icon {
-                margin-right: 1rem;
+                margin-right: $spacing-primary;
             }
 
             &:hover, &.active {
-                color: white;
+                color: $white;
             }
         }
     }

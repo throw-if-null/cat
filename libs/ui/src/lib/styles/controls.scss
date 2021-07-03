@@ -1,0 +1,54 @@
+@import 'variables';
+
+@mixin input-base {
+  border-radius: $border-radius;
+  box-shadow: rgb(37 11 54 / 4%) 0 2px 0 inset;
+  transition: border 0.1s linear 0s;
+
+  display: flex;
+  align-items: center;
+
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.input {
+  @include input-base;
+
+  border: 1px solid #c6becf;
+  padding: 5px 10px;
+
+
+  &:focus {
+    outline-color: $color-primary;
+  }
+}
+
+.button {
+
+  @include input-base;
+
+  padding: 9px 12px;
+
+  cursor: pointer;
+
+  border: 1px solid #c6becf;
+  background-color: $color-primary;
+  color: #dadada;
+
+  &:hover {
+    color: white;
+    border-color: white;
+  }
+
+  &.invert {
+    border: 1px solid #c6becf;
+    background-color: desaturate(lighten(#020122, 20%), 50%);
+    color: white;
+  }
+
+  &.small {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}

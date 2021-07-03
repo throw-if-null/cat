@@ -1,0 +1,22 @@
+@import "variables";
+
+.project__header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: $spacing-primary;
+
+  box-shadow: $orange 0 5px 3px -5px;
+
+  .project__name {
+    display: flex;
+    align-items: center;
+
+    rat-project-icon {
+      margin-right: $spacing-primary;
+    }
+  }
+}
+
+.project__details {
+  padding: $spacing-primary;
+}
