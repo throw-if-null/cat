@@ -9,6 +9,7 @@ module.exports = {
         }
     },
     coverageDirectory: "../../coverage/apps/client",
+    coverageReporters: ['lcov', 'text-summary'],
     transform: {
         "^.+\\.(ts|js|html)$": "jest-preset-angular"
     },
