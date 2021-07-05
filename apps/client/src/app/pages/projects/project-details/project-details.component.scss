@@ -1,5 +1,16 @@
 @import "variables";
 
+:host {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.project__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .project__header {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -19,4 +30,13 @@
 
 .project__details {
   padding: $spacing-primary;
+}
+
+
+.no-configs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

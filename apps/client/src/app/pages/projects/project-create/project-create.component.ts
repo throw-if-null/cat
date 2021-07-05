@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-enum ProjectTypes {
+enum ProjectType {
 	Angular = 'angular',
 	React = 'react',
 	DotNET = 'dotnet',
@@ -16,7 +16,7 @@ enum ProjectTypes {
 })
 export class ProjectCreateComponent {
 
-	platforms: ProjectTypes[] = [ProjectTypes.Angular, ProjectTypes.React, ProjectTypes.JSON];
+	platforms: ProjectType[] = [ProjectType.Angular, ProjectType.React, ProjectType.JSON];
 
 	projectForm = new FormGroup({
 		name: new FormControl('', Validators.required),

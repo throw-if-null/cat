@@ -6,9 +6,10 @@ import { ProjectCreateComponent } from './project-create/project-create.componen
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects.component';
+import { ConfigCreateComponent } from './config-create/config-create.component';
 
 @NgModule({
-	declarations: [ProjectsComponent, ProjectCreateComponent, ProjectDetailsComponent],
+	declarations: [ProjectsComponent, ProjectCreateComponent, ProjectDetailsComponent, ConfigCreateComponent],
 	imports: [CommonModule, ProjectsRoutingModule, ReactiveFormsModule, UiModule],
 	providers: []
 })

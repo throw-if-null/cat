@@ -1,0 +1,26 @@
+<h2 class="title">Create a new configuration</h2>
+
+<p class="description">
+    Configurations will contain a key - value pair that can be overwritten by a defined relationship. </p>
+<p class="description">
+    You might have multiple configurations for your application, docker, environment, etc...</p>
+<p class="description">
+    Defining the type of the project will make the consumer of the configuration understand in which output format it
+    should be transpiled.</p>
+
+<form class="form" [formGroup]="configurationForm" (ngSubmit)="onSubmit()">
+
+    <h2 class="title">Choose the type</h2>
+    <select class="form-input input" formControlName="type">
+        <option value="" disabled>Type</option>
+        <option *ngFor="let configType of configTypes" [ngValue]="configType">{{configType}}</option>
+    </select>
+
+    <h2 class="title">Configuration Name</h2>
+
+    <input class="form-input input" type="text" formControlName="name">
+
+
+    <button class="button invert" type="submit" [disabled]="!configurationForm.valid">Create Configuration</button>
+
+</form>

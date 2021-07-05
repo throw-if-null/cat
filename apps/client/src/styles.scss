@@ -13,10 +13,15 @@ body {
 
 .title {
   font-family: 'Spartan', sans-serif;
+  font-weight: bold;
+}
+
+.description {
+  color: $text-lighter;
+  margin-bottom: $spacing-primary;
 }
 
 .icon {
   width: 20px;
   height: 20px;
 }
-
