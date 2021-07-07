@@ -1,9 +1,9 @@
 {
 	"version": 2,
 	"projects": {
-		"client": "apps\\client",
-		"client-e2e": "apps\\client-e2e",
-		"ui": "libs\\ui"
+		"client": "apps/client",
+		"client-e2e": "apps/client-e2e",
+		"ui": "libs/ui"
 	},
 	"cli": {
 		"analytics": false,
