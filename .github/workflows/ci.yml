@@ -2,14 +2,16 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      DEFAULT_BRANCH: master
+      DEFAULT_DOCKER_IMAGE_TAG: latest
+      DOCKER_REPOSITORY: cat
 
     steps:
 
@@ -47,18 +49,35 @@ jobs:
           files: ./coverage/*/lcov.info
           name: Rat.App Code Coverage
 
-
       - name: CodeQL Analysis
         uses: github/codeql-action/analyze@v1
 
+      - name: Get branch Name
+        id: get-branch-name
+        run: echo "BRANCH=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
 
-  docker:
-    needs: build
-    runs-on: ubuntu-latest
-    env:
-      TYPE: 'all' # 'all', 'docker', 'github'
+      - name: Set default docker image tag
+        id: set-default-docker-image-tag
+        if: env.BRANCH != env.DEFAULT_BRANCH
+        run: echo "DEFAULT_DOCKER_IMAGE_TAG=$(echo $BRANCH)" >> $GITHUB_ENV
 
-    steps:
-      - name: Print info
+      - name: Set unique docker image tag
+        id: set-unique-docker-image-tag
+        run: echo "DOCKER_TAG=$(echo $GITHUB_RUN_ID)" >> $GITHUB_ENV
+
+      - name: Build Docker image
+        id: docker-build-publish
+        uses: elgohr/Publish-Docker-Github-Action@3.04
+        with:
+          name: throwifnull/${{ env.DOCKER_REPOSITORY }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          context: .
+          tags: "${{ env.DOCKER_TAG }},${{env.DEFAULT_DOCKER_IMAGE_TAG}}"
+
+      - name: Print published docker image tags
+        id: print-docker-image-tags
         run: |
-          echo ${{ env.TYPE }}
+          echo "Published Docker tags:"
+          echo $DEFAULT_DOCKER_IMAGE_TAG
+          echo $DOCKER_TAG
