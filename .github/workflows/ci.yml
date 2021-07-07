@@ -41,7 +41,7 @@ jobs:
           targets: lint
 
       - name: NX Test
-        if: ${{ env.SKIP_TESTS }} == true
+        if: ${{ env.SKIP_TESTS == true }}
         uses: MansaGroup/nrwl-nx-action@v2.0.4
         with:
           targets: test
