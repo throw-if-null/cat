@@ -12,7 +12,6 @@ jobs:
       DEFAULT_BRANCH: master
       DEFAULT_DOCKER_IMAGE_TAG: latest
       DOCKER_REPOSITORY: cat
-      SKIP_TESTS: true
 
     steps:
 
@@ -41,7 +40,6 @@ jobs:
           targets: lint
 
       - name: NX Test
-        if: ${{ env.SKIP_TESTS == true }}
         uses: MansaGroup/nrwl-nx-action@v2.0.4
         with:
           targets: test
