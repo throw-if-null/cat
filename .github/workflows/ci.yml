@@ -32,22 +32,14 @@ jobs:
       - name: NPM install
         run: npm ci
 
-      - name: NX Lint
-        uses: MansaGroup/nrwl-nx-action@v2.0.4
-        with:
-          targets: lint
+      - name: Lint
+        run: npm run lint
 
-      - name: NX Test
-        uses: MansaGroup/nrwl-nx-action@v2.0.4
-        with:
-          targets: test
-          affected: false
-          args: --code-coverage
+      - name: Test
+        run: npm run test
 
-      - name: NX Build
-        uses: MansaGroup/nrwl-nx-action@v2.0.4
-        with:
-          targets: build
+      - name: Build
+        run: npm run build
 
       - name: Code Coverage - Client
         uses: codecov/codecov-action@v1.5.2
