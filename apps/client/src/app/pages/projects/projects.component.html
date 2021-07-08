@@ -1,26 +1,23 @@
 <div class="projects-actions">
-	<button class="button small" (click)="openCreateDialog()">
-		Create Project
-	</button>
+    <button class="button small" (click)="openCreateDialog()">
+        Create Project
+    </button>
 </div>
 
 <ng-container *ngIf="{ projects: projects$ | async } as data">
-	<div
-		class="projects-list"
-		*ngIf="data.projects && data.projects.length > 0; else noProjects"
-	>
-		<div class="project" *ngFor="let project of data.projects">
-			<div class="project__header" [routerLink]="[project.id]">
-				<div class="project__name">{{ project.name }}</div>
-				<div class="project__header__sub">
-					<cat-project-icon [type]="project.type"></cat-project-icon>
-					<div class="project__entries">6 configs | 123 entries</div>
-				</div>
-			</div>
+    <div class="projects-list" *ngIf="data.projects && data.projects.length > 0; else noProjects">
+        <div class="project" *ngFor="let project of data.projects">
+            <div class="project__header" [routerLink]="[project.id]">
+                <div class="project__name">{{ project.name }}</div>
+                <div class="project__header__sub">
+                    <cat-project-icon [type]="project.type"></cat-project-icon>
+                    <div class="project__entries">{{project.configs}} configs | {{project.entries}} entries</div>
+                </div>
+            </div>
 
-			<img class="project__graph" src="assets/images/chart.png" />
-		</div>
-	</div>
+            <img class="project__graph" src="assets/images/chart.png"/>
+        </div>
+    </div>
 
-	<ng-template #noProjects>No Projects yet!</ng-template>
+    <ng-template #noProjects>No Projects yet!</ng-template>
 </ng-container>

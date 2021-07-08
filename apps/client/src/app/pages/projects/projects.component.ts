@@ -3,10 +3,13 @@ import { DialogService } from '@ngneat/dialog';
 import { of, Observable } from 'rxjs';
 import { ProjectCreateComponent } from './project-create/project-create.component';
 
-interface Project {
+
+interface ProjectOverview {
 	id: number;
 	name: string;
 	type: string;
+	entries: number;
+	configs: number;
 }
 
 @Component({
@@ -18,29 +21,37 @@ interface Project {
 export class ProjectsComponent {
 
 
-	projects$: Observable<Project[]>;
+	projects$: Observable<ProjectOverview[]>;
 
 	constructor(private dialog: DialogService) {
-		this.projects$ = of([
+		this.projects$ = of<ProjectOverview[]>([
 			{
 				id: 1,
 				name: 'Rat App',
-				type: 'angular'
+				type: 'angular',
+				"entries": 35,
+				"configs": 3
 			},
 			{
 				id: 2,
 				name: 'Rat API',
-				type: 'dotnet'
+				type: 'dotnet',
+				"entries": 35,
+				"configs": 3
 			},
 			{
 				id: 3,
 				name: 'Discord Bot',
-				type: 'json'
+				type: 'json',
+				"entries": 35,
+				"configs": 3
 			},
 			{
 				id: 4,
 				name: 'React App',
-				type: 'react'
+				type: 'react',
+				"entries": 35,
+				"configs": 3
 			}
 		]);
 	}
