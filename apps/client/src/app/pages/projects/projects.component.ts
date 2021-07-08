@@ -10,7 +10,7 @@ interface Project {
 }
 
 @Component({
-	selector: 'rat-projects',
+	selector: 'cat-projects',
 	templateUrl: './projects.component.html',
 	styleUrls: ['./projects.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush

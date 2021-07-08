@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'rat-profile',
+	selector: 'cat-profile',
 	templateUrl: './profile.component.html',
 	styleUrls: ['./profile.component.scss']
 })

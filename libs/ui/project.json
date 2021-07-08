@@ -2,7 +2,7 @@
 	"projectType": "library",
 	"root": "libs/ui",
 	"sourceRoot": "libs/ui/src",
-	"prefix": "rat",
+	"prefix": "cat",
 	"targets": {
 		"test": {
 			"executor": "@nrwl/jest:jest",

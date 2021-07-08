@@ -1,18 +1,20 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	Input,
+	ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
-	selector: 'rat-project-icon',
+	selector: 'cat-project-icon',
 	templateUrl: './project-icon.component.html',
 	styleUrls: ['./project-icon.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectIconComponent implements OnInit {
-
 	@Input() type: string = '';
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void {
-	}
-
+	ngOnInit(): void {}
 }

@@ -2,7 +2,7 @@
 	"projectType": "application",
 	"root": "apps/client",
 	"sourceRoot": "apps/client/src",
-	"prefix": "rat",
+	"prefix": "cat",
 	"targets": {
 		"build": {
 			"executor": "@angular-devkit/build-angular:browser",

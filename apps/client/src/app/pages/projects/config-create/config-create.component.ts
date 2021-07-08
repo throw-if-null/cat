@@ -9,7 +9,7 @@ enum ConfigurationType {
 }
 
 @Component({
-	selector: 'rat-config-create',
+	selector: 'cat-config-create',
 	templateUrl: './config-create.component.html',
 	styleUrls: ['./config-create.component.scss']
 })

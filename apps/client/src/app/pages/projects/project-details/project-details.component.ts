@@ -13,7 +13,7 @@ interface Project {
 }
 
 @Component({
-	selector: 'rat-project-details',
+	selector: 'cat-project-details',
 	templateUrl: './project-details.component.html',
 	styleUrls: ['./project-details.component.scss']
 })

@@ -1,86 +1,93 @@
-@import "variables";
+@import 'variables';
 
 .header {
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 
-    padding: $spacing-primary 2rem 0;
+	padding: $spacing-primary 2rem 0;
 
-    &__title {
-        font-size: 18px;
-        line-height: 20px;
-        padding: $spacing-primary;
-    }
+	&__title {
+		font-size: 18px;
+		line-height: 20px;
+		padding: $spacing-primary;
+	}
 
+	&__items {
+		&__user {
+			&__icon {
+				height: 50px;
+				border-radius: 1000px;
+			}
+		}
+	}
 }
 
 .body {
-    display: grid;
-    grid-template-columns: 230px 1.5fr;
-    grid-template-rows: 1fr;
-    gap: 1rem;
-    grid-template-areas:
-    ". .";
+	display: grid;
+	grid-template-columns: 230px 1.5fr;
+	grid-template-rows: 1fr;
+	gap: 1rem;
+	grid-template-areas: '. .';
 
-    padding: $spacing-primary;
+	padding: $spacing-primary $spacing-primary $spacing-primary 0;
 
-    .navbar {
-        position: relative;
-        display: flex;
-        flex-direction: column;
+	.navbar {
+		position: relative;
+		display: flex;
+		flex-direction: column;
 
-        border-radius: $border-radius;
-        padding: 0 $spacing-primary 2rem;
-        height: calc(100vh - 200px);
+		padding: 0 $spacing-primary 2rem;
+		border-radius: 0 $border-radius $border-radius 0;
+		height: calc(100vh - 200px);
 
-        background: linear-gradient(0deg, $blood-orange 0, $orange 100%);
-        box-shadow: 0 0 45px 0 rgb(0 0 0 / 60%);
+		background: linear-gradient(0deg, $blood-orange 0, $orange 100%);
+		box-shadow: 0 0 45px 0 rgb(0 0 0 / 60%);
 
+		&__logo {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
-        &__title {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            font-weight: bold;
-            padding: $spacing-primary / 2 0;
+			padding: $spacing-primary / 2 0;
 
-            border-bottom: 1px solid $white;
+			border-bottom: 1px solid $white;
 
-            .icon {
-                width: 40px;
-                height: 40px;
-                margin: $spacing-primary;
-            }
-        }
+			.icon {
+				width: 80px;
+				height: 80px;
+				margin: $spacing-primary $spacing-primary $spacing-primary
+					$spacing-primary / 2;
+			}
+		}
 
-        &__list {
-            width: 100%;
-        }
+		&__list {
+			width: 100%;
+		}
 
-        &__item {
+		&__item {
+			display: flex;
+			align-items: center;
 
-            display: flex;
-            align-items: center;
+			padding: $spacing-primary;
+			color: darken($white, 15%);
+			font-size: 10px;
+			text-transform: uppercase;
+			cursor: pointer;
 
-            padding: $spacing-primary;
-            color: darken($white, 15%);
-            font-size: 10px;
-            text-transform: uppercase;
-            cursor: pointer;
+			transition: color 0.3s ease 0s;
 
-            transition: color .3s ease 0s;
+			&:first-child {
+				margin-top: $spacing-primary;
+			}
 
-            &:first-child {
-                margin-top: $spacing-primary;
-            }
+			.icon {
+				margin-right: $spacing-primary;
+			}
 
-            .icon {
-                margin-right: $spacing-primary;
-            }
-
-            &:hover, &.active {
-                color: $white;
-            }
-        }
-    }
+			&:hover,
+			&.active {
+				color: $white;
+			}
+		}
+	}
 }

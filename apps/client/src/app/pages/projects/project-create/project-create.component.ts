@@ -9,7 +9,7 @@ enum ProjectType {
 }
 
 @Component({
-	selector: 'rat-project-create',
+	selector: 'cat-project-create',
 	templateUrl: './project-create.component.html',
 	styleUrls: ['./project-create.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
