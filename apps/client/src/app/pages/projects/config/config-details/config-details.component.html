@@ -1,0 +1,56 @@
+<div class="config">
+
+
+    <h1>Config Entries</h1>
+    <table *ngIf="config$ | async as config; else loadingConfig" class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th style="width: 30%;">KEY</th>
+            <th style="width: 30%;">VALUE</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let entry of config.entries">
+            <td></td>
+            <td class="editable">
+                <cat-editable (edit)="entryEdited($event, entry , 'key')">
+                    <ng-template viewMode>
+                        <div class="edit-value">
+                            {{entry.key}}
+                        </div>
+                    </ng-template>
+                    <ng-template editMode>
+                        <input #editInput
+                               class="edit-input input invert small edgey"
+                               [value]="entry.key"
+                               (change)="entry.key"/>
+                    </ng-template>
+                </cat-editable>
+            </td>
+
+            <td class="editable">
+                <cat-editable (edit)="entryEdited($event, entry, 'value')">
+                    <ng-template viewMode>
+                        <div class="edit-value">
+                            {{entry.value}}
+                        </div>
+                    </ng-template>
+                    <ng-template editMode>
+                        <input #editInput
+                               class="edit-input input invert small edgey"
+                               [value]="entry.value"
+                               (change)="entry.value"/>
+                    </ng-template>
+                </cat-editable>
+            </td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ng-template #loadingConfig>
+        <div>Loading Configuration entries...</div>
+    </ng-template>
+</div>

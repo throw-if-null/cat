@@ -1,45 +1,51 @@
 <div class="project__actions">
-	<button class="button small" (click)="openCreateConfigDialog()">
-		Create Config
-	</button>
+    <button class="button small" (click)="openCreateConfigDialog()">
+        Create Config
+    </button>
 </div>
 
 <ng-container *ngIf="project$ | async as project">
-	<div class="project__header">
-		<div class="project__name">
-			<cat-project-icon [type]="project.type"></cat-project-icon>
-			{{ project.name }}
-		</div>
-		<div class="project__relations-list">
-			<select class="form-input input invert">
-				<option>All</option>
-				<option>Dev</option>
-				<option>Sandbox</option>
-				<option>Secrets</option>
-			</select>
-		</div>
-	</div>
+    <div class="project__header">
+        <div class="project__name">
+            <cat-project-icon [type]="project.type"></cat-project-icon>
+            {{ project.name }}
+        </div>
+        <div class="project__relations-list">
+            <select class="form-input input invert">
+                <option>All</option>
+                <option>Dev</option>
+                <option>Sandbox</option>
+                <option>Secrets</option>
+            </select>
+        </div>
+    </div>
 
-	<div class="project__details">
-		ID: {{ project.id }} Type: {{ project.type }}
-	</div>
+    <div class="project__details">
+        ID: {{ project.id }} Type: {{ project.type }}
+    </div>
 
-	<div
-		class="project__configs"
-		*ngIf="project.configurations.length > 0; else noConfigs"
-	>
-		configs
-	</div>
+    <div class="project__configs" *ngIf="project.configurations.length > 0; else noConfigs">
 
-	<ng-template #noConfigs>
-		<div class="no-configs">
-			<p class="description">
-				It seems that you do not have any configurations yet. Let's add your
-				first.
-			</p>
-			<button class="button primary" (click)="openCreateConfigDialog()">
-				Add Config
-			</button>
-		</div>
-	</ng-template>
+        <div class="project__configs__entry" *ngFor="let config of project.configurations">
+            <div class="project__configs__entry-header" [routerLink]="['config', config.id]">
+                <div class="config__name">{{ config.name }}</div>
+                <div class="config__header__sub">
+                    <cat-project-icon [type]="config.type"></cat-project-icon>
+                    <div class="config__entries">{{config.entries}} entries</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <ng-template #noConfigs>
+        <div class="no-configs">
+            <p class="description">
+                It seems that you do not have any configurations yet. Let's add your
+                first. </p>
+            <button class="button primary" (click)="openCreateConfigDialog()">
+                Add Config
+            </button>
+        </div>
+    </ng-template>
 </ng-container>

@@ -25,6 +25,7 @@
     "format:write": "nx format:write",
     "format:check": "nx format:check",
     "update": "nx migrate latest",
+    "g:comp": "nx generate @nrwl/angular:component",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help"

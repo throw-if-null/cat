@@ -1,16 +1,9 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProjectCreateComponent } from './project-create/project-create.component';
+import { ProjectService, ProjectOverview } from './project.service';
 
-
-interface ProjectOverview {
-	id: number;
-	name: string;
-	type: string;
-	entries: number;
-	configs: number;
-}
 
 @Component({
 	selector: 'cat-projects',
@@ -23,37 +16,8 @@ export class ProjectsComponent {
 
 	projects$: Observable<ProjectOverview[]>;
 
-	constructor(private dialog: DialogService) {
-		this.projects$ = of<ProjectOverview[]>([
-			{
-				id: 1,
-				name: 'Rat App',
-				type: 'angular',
-				"entries": 35,
-				"configs": 3
-			},
-			{
-				id: 2,
-				name: 'Rat API',
-				type: 'dotnet',
-				"entries": 35,
-				"configs": 3
-			},
-			{
-				id: 3,
-				name: 'Discord Bot',
-				type: 'json',
-				"entries": 35,
-				"configs": 3
-			},
-			{
-				id: 4,
-				name: 'React App',
-				type: 'react',
-				"entries": 35,
-				"configs": 3
-			}
-		]);
+	constructor(private projectService: ProjectService, private dialog: DialogService) {
+		this.projects$ = this.projectService.getProjects();
 	}
 
 	openCreateDialog() {
