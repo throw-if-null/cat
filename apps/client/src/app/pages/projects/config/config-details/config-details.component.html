@@ -1,7 +1,11 @@
-<div class="config">
-
+<div class="config" *subscribe="searchControl.value$; let searchText;">
 
     <h1>Config Entries</h1>
+    <div class="list-controls">
+        <input class="input invert" [formControl]="searchControl" placeholder="Type to search..."
+               autofocus>
+    </div>
+
     <table *ngIf="config$ | async as config; else loadingConfig" class="table">
         <thead>
         <tr>
@@ -12,12 +16,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let entry of config.entries">
+        <tr *ngFor="let entry of config.entries | catFilter: searchText :  ['key', 'value']">
             <td></td>
             <td class="editable">
                 <cat-editable (edit)="entryEdited($event, entry , 'key')">
                     <ng-template viewMode>
-                        <div class="edit-value">
+                        <div class="edit-value" catHighlight [searchedWord]="searchText" [content]="entry.key"
+                             [classToApply]="'search-highlight'" [setTitle]="true">
                             {{entry.key}}
                         </div>
                     </ng-template>
@@ -33,7 +38,8 @@
             <td class="editable">
                 <cat-editable (edit)="entryEdited($event, entry, 'value')">
                     <ng-template viewMode>
-                        <div class="edit-value">
+                        <div class="edit-value" catHighlight [searchedWord]="searchText" [content]="entry.value"
+                             [classToApply]="'search-highlight'" [setTitle]="true">
                             {{entry.value}}
                         </div>
                     </ng-template>
@@ -45,7 +51,9 @@
                     </ng-template>
                 </cat-editable>
             </td>
-            <td></td>
+            <td>
+
+            </td>
         </tr>
         </tbody>
     </table>

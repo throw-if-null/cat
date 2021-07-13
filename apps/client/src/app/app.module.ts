@@ -6,19 +6,22 @@ import {
 	AuthHttpInterceptor,
 	AuthModule as Auth0Module,
 } from '@auth0/auth0-angular';
+import { COPY_TO_CLIPBOARD_HANDLER, CopyToClipboardModule } from '@ngneat/copy-to-clipboard';
 import { DialogModule } from '@ngneat/dialog';
 import {
 	TippyModule,
 	tooltipVariation,
 	popperVariation,
 } from '@ngneat/helipopper';
+import { HotToastModule, HotToastService } from '@ngneat/hot-toast';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, FilterPipe],
 	imports: [
 		BrowserModule,
 		RouterModule,
@@ -28,6 +31,7 @@ import { AppComponent } from './app.component';
 			domain: environment.auth0.domain,
 			clientId: environment.auth0.clientId,
 		}),
+		HotToastModule.forRoot(),
 		DialogModule.forRoot(),
 		TippyModule.forRoot({
 			defaultVariation: 'tooltip',
@@ -39,7 +43,7 @@ import { AppComponent } from './app.component';
 					appendTo: 'parent',
 				},
 			},
-		}),
+		})
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },

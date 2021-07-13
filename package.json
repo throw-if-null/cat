@@ -45,6 +45,8 @@
     "@ngneat/helipopper": "^3.7.0",
     "@ngneat/hot-toast": "^3.1.0",
     "@ngneat/overview": "^2.0.2",
+    "@ngneat/reactive-forms": "^1.7.3",
+    "@ngneat/subscribe": "^1.0.0",
     "@nrwl/angular": "12.5.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
