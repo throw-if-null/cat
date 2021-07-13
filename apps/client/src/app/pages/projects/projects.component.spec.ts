@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +15,7 @@ describe('ProjectsComponent', () => {
 		await TestBed.configureTestingModule({
 			declarations: [ProjectsComponent],
 			providers: [{ provide: DialogService, useValue: {} }],
-			imports: [RouterTestingModule, ReactiveFormsModule],
+			imports: [RouterTestingModule, ReactiveFormsModule, HttpClientTestingModule],
 			schemas: [NO_ERRORS_SCHEMA]
 		}).compileComponents();
 	});
