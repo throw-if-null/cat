@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { DialogService } from '@ngneat/dialog';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { ConfigCreateComponent } from '../config-create/config-create.component';
-
-interface Project {
-	id: string;
-	name: string;
-	type: string;
-	configurations: any[];
-}
+import { ConfigCreateComponent } from '../config/config-create/config-create.component';
+import { ProjectDetails, ProjectService } from '../project.service';
 
 @Component({
 	selector: 'cat-project-details',
@@ -19,17 +13,21 @@ interface Project {
 })
 export class ProjectDetailsComponent implements OnInit {
 
-	project$: Observable<Project> | undefined;
+	project$: Observable<ProjectDetails> | undefined;
 
-	constructor(private route: ActivatedRoute, private dialog: DialogService) {
+	constructor(private route: ActivatedRoute, private projectService: ProjectService, private dialog: DialogService) {
 
 	}
 
 	ngOnInit() {
 		this.project$ = this.route.paramMap.pipe(
 			switchMap((params: ParamMap) => {
-				const projectId = params.get('projectId') || '';
-				return of({ id: projectId, name: 'Rate APP', type: 'angular', configurations: [] });
+				const projectId = params.get('projectId');
+				if (!projectId) {
+					throw new Error('Missing project id parameter!');
+				}
+
+				return this.projectService.getProjectById(+projectId);
 			})
 		);
 	}

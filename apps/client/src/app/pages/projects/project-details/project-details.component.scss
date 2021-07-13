@@ -1,41 +1,53 @@
 @import 'variables';
 
 :host {
-	display: flex;
-	height: 100%;
-	flex-direction: column;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 }
 
 .project__actions {
-	display: flex;
-	justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .project__header {
-	display: grid;
-	grid-template-columns: 1fr 2fr;
-	padding: $spacing-primary;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: $spacing-primary;
 
-	box-shadow: $orange 0 5px 3px -5px;
+  box-shadow: $orange 0 5px 3px -5px;
 
-	.project__name {
-		display: flex;
-		align-items: center;
+  .project__name {
+    display: flex;
+    align-items: center;
 
-		cat-project-icon {
-			margin-right: $spacing-primary;
-		}
-	}
+    cat-project-icon {
+      margin-right: $spacing-primary;
+    }
+  }
 }
 
 .project__details {
-	padding: $spacing-primary;
+  padding: $spacing-primary;
+}
+
+.project__configs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: $spacing-primary;
+
+  &__entry {
+    padding: $spacing-primary;
+    border: 1px solid $white;
+    cursor: pointer;
+  }
 }
 
 .no-configs {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

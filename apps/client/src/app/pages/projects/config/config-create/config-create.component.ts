@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ConfigurationType } from '../../project.service';
 
-enum ConfigurationType {
-	JSON = 'json',
-	Angular = 'angular',
-	DotNET = 'dotnet',
-	ENV = 'env',
-}
 
 @Component({
 	selector: 'cat-config-create',

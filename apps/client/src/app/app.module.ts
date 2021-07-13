@@ -2,23 +2,18 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import {
-	AuthHttpInterceptor,
-	AuthModule as Auth0Module,
-} from '@auth0/auth0-angular';
+import { AuthHttpInterceptor, AuthModule as Auth0Module } from '@auth0/auth0-angular';
 import { DialogModule } from '@ngneat/dialog';
-import {
-	TippyModule,
-	tooltipVariation,
-	popperVariation,
-} from '@ngneat/helipopper';
+import { TippyModule, tooltipVariation, popperVariation } from '@ngneat/helipopper';
+import { HotToastModule } from '@ngneat/hot-toast';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, FilterPipe],
 	imports: [
 		BrowserModule,
 		RouterModule,
@@ -26,8 +21,9 @@ import { AppComponent } from './app.component';
 		HttpClientModule,
 		Auth0Module.forRoot({
 			domain: environment.auth0.domain,
-			clientId: environment.auth0.clientId,
+			clientId: environment.auth0.clientId
 		}),
+		HotToastModule.forRoot(),
 		DialogModule.forRoot(),
 		TippyModule.forRoot({
 			defaultVariation: 'tooltip',
@@ -36,14 +32,14 @@ import { AppComponent } from './app.component';
 				popper: popperVariation,
 				menu: {
 					...popperVariation,
-					appendTo: 'parent',
-				},
-			},
-		}),
+					appendTo: 'parent'
+				}
+			}
+		})
 	],
 	providers: [
-		{ provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }
 	],
-	bootstrap: [AppComponent],
+	bootstrap: [AppComponent]
 })
 export class AppModule {}
