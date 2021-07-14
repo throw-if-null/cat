@@ -12,33 +12,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap');
 
 body {
-	background-color: $color-primary;
-	color: $white;
-	font-family: Poppins, sans-serif;
+  background-color: $color-primary;
+  color: $white;
+  font-family: Poppins, sans-serif;
 }
 
 .title {
-	font-family: 'Spartan', sans-serif;
-	font-weight: bold;
+  font-family: 'Spartan', sans-serif;
+  font-weight: bold;
 }
 
 .description {
-	color: $text-lighter;
-	margin-bottom: $spacing-primary;
+  color: $text-lighter;
+  margin-bottom: $spacing-primary;
 }
 
 .icon {
-	width: 20px;
-	height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .link {
-	color: $orange;
-	cursor: pointer;
+  color: $orange;
+  cursor: pointer;
 }
 
 
 .search-highlight {
-	font-weight: bold;
-	color: $orange !important;
+  font-weight: bold;
+  color: $orange !important;
+}
+
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

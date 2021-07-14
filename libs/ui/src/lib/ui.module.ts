@@ -6,6 +6,7 @@ import { ViewModeDirective } from './editable/view-mode.directive';
 import { ProjectIconComponent } from './project-icon/project-icon.component';
 import { FilterPipe } from './filter.pipe';
 import { HighlightDirective } from './highlight.directive';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -15,7 +16,8 @@ import { HighlightDirective } from './highlight.directive';
     EditModeDirective,
     ViewModeDirective,
     FilterPipe,
-    HighlightDirective
+    HighlightDirective,
+    LoaderComponent
   ],
   exports: [
     ProjectIconComponent,
@@ -23,7 +25,8 @@ import { HighlightDirective } from './highlight.directive';
     EditModeDirective,
     ViewModeDirective,
     FilterPipe,
-    HighlightDirective
+    HighlightDirective,
+    LoaderComponent
   ]
 })
 export class UiModule {}
