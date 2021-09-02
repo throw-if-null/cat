@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 
-// const API_URL = 'https://d6d03ebf-d5bc-46cf-ab03-69205269a55e.mock.pstmn.io';
-const API_URL = 'http://localhost:8485/api';
+const API_URL = environment.rat.apiUri;
 
 export interface ProjectOverview {
   id: number;

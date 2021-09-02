@@ -4,17 +4,17 @@ export const environment = {
 		domain: 'throwifnull.eu.auth0.com',
 		clientId: 'qJdHl8g2FXY4spCxXVM2hZlk3SOBJnY2',
 		audience: '{API_IDENTIFIER}',
-		apiUri: 'http://rat:3001',
+		apiUri: 'https://rattus.azurewebsites.net/api',
 		appUri: 'https://catus.azurewebsites.net',
 		errorPath: '/error',
 		httpInterceptor: {
 			allowedList: [
 				{
 					// Match any request that starts 'https://YOUR_DOMAIN/api/v2/' (note the asterisk)
-					uri: 'https://rat/api/*',
+					uri: 'https://rattus.azurewebsites.net/api*',
 					tokenOptions: {
 						// The attached token should target this audience
-						audience: 'https://rat/api',
+						audience: 'https://rattus.azurewebsites.net/api',
 
 						// The attached token should have these scopes
 						scope: 'read:current_user'
@@ -23,4 +23,7 @@ export const environment = {
 			]
 		}
 	},
+	rat: {
+		apiUri: 'https://rattus.azurewebsites.net/api'
+	}
 };
