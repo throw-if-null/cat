@@ -7,10 +7,25 @@ export const environment = {
 	auth0: {
 		domain: 'throwifnull.eu.auth0.com',
 		clientId: 'qJdHl8g2FXY4spCxXVM2hZlk3SOBJnY2',
-		audience: '{API_IDENTIFIER}',
-		apiUri: 'http://localhost:3001',
+		audience: 'http://localhost:8485/api',
+		apiUri: 'http://localhost:8485/api',
 		appUri: 'http://localhost:4200',
 		errorPath: '/error',
+		httpInterceptor: {
+			allowedList: [
+				{
+					// Match any request that starts 'https://YOUR_DOMAIN/api/v2/' (note the asterisk)
+					uri: 'http://localhost:8485/api/*',
+					tokenOptions: {
+						// The attached token should target this audience
+						audience: 'http://localhost:8485/api',
+
+						// The attached token should have these scopes
+						scope: 'read:current_user'
+					}
+				}
+			]
+		}
 	},
 };
 

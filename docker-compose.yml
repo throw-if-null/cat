@@ -1,0 +1,69 @@
+version: "2.4"
+
+# Templates:
+x-base: &base-service-template
+  init: true
+  networks:
+    local:
+
+services:
+
+  #sqlserver:
+  #  <<: *base-service-template
+  #  container_name: sqlserver
+  #  image: mcr.microsoft.com/mssql/server:2019-latest
+  #  environment:
+  #    - ACCEPT_EULA=Y
+  #    - SA_PASSWORD=${SQLSERVER_SA_PASSWORD:-Password1!}
+  #  ports:
+  #    - "1433:1433"
+  #  healthcheck:
+  #    test: ./opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P Password1! -Q "SELECT 1" || exit 1
+  #    interval: 2s
+  #    timeout: 2s
+  #    retries: 3
+  #    start_period: 3s
+
+  postgresql:
+    <<: *base-service-template
+    container_name: postgresql
+    image: postgres
+    environment:
+      - POSTGRES_USER=sa
+      - POSTGRES_PASSWORD=Password1!
+      - POSTGRES_DB=RatDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+
+  rat-api:
+    <<: *base-service-template
+    container_name: rat-api
+    image: throwifnull/rat:latest
+    #build:
+    #  context: .
+    #  dockerfile: Rat.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # SQL Connection string:
+      #- ConnectionStrings__RatDb=Data Source=localhost;Initial Catalog=RatDb;User ID=sa;Password=Password1!;Connect Timeout=30;
+      # Postgres connection string:
+      - ConnectionStrings__RatDb=Host=postgresql;Database=RatDb;Username=sa;Password=Password1!
+    healthcheck:
+      test: curl --max-time "5" --no-buffer --fail http://rat-api/health/ready || exit 1
+      interval: 2s
+      timeout: 2s
+      retries: 3
+      start_period: 1s
+    depends_on:
+      - "postgresql"
+    ports:
+      - "8485:80"
+
+volumes:
+  database-data:
+
+networks:
+  local:
+    name: local

@@ -21,7 +21,11 @@ import { FilterPipe } from './filter.pipe';
 		HttpClientModule,
 		Auth0Module.forRoot({
 			domain: environment.auth0.domain,
-			clientId: environment.auth0.clientId
+			clientId: environment.auth0.clientId,
+			audience: environment.auth0.audience,
+			scope: 'read:current_user',
+			httpInterceptor: environment.auth0.httpInterceptor,
+			errorPath: environment.auth0.errorPath
 		}),
 		HotToastModule.forRoot(),
 		DialogModule.forRoot(),

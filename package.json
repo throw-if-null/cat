@@ -28,7 +28,9 @@
     "g:comp": "nx generate @nrwl/angular:component",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down --remove-orphans"
   },
   "private": true,
   "dependencies": {
