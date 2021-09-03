@@ -10,10 +10,10 @@
 
 <form class="form" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
 
-    <h2 class="title">Choose your platform</h2>
-    <select class="form-input input" formControlName="platform">
-        <option value="" disabled>Platform</option>
-        <option *ngFor="let platform of platforms" [ngValue]="platform">{{platform}}</option>
+    <h2 class="title">Choose the project type</h2>
+    <select class="form-input input" formControlName="type">
+        <option value="" disabled>Types</option>
+        <option *ngFor="let type of types" [ngValue]="type">{{type | projectTypeToName}}</option>
     </select>
 
     <h2 class="title">Project Name</h2>

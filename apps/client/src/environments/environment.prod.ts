@@ -3,10 +3,8 @@ export const environment = {
 	auth0: {
 		domain: 'throwifnull.eu.auth0.com',
 		clientId: 'qJdHl8g2FXY4spCxXVM2hZlk3SOBJnY2',
-		audience: '{API_IDENTIFIER}',
-		apiUri: 'https://rattus.azurewebsites.net/api',
-		appUri: 'https://catus.azurewebsites.net',
 		errorPath: '/error',
+		scope: 'read:current_user',
 		httpInterceptor: {
 			allowedList: [
 				{

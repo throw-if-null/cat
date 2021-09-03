@@ -3,33 +3,32 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-	production: false,
-	auth0: {
-		domain: 'throwifnull.eu.auth0.com',
-		clientId: 'qJdHl8g2FXY4spCxXVM2hZlk3SOBJnY2',
-		audience: 'http://localhost:8485/api',
-		apiUri: 'http://localhost:8485/api',
-		appUri: 'http://localhost:4200',
-		errorPath: '/error',
-		httpInterceptor: {
-			allowedList: [
-				{
-					// Match any request that starts 'https://YOUR_DOMAIN/api/v2/' (note the asterisk)
-					uri: 'http://localhost:8485/api/*',
-					tokenOptions: {
-						// The attached token should target this audience
-						audience: 'http://localhost:8485/api',
+  production: false,
+  auth0: {
+    domain: 'throwifnull.eu.auth0.com',
+    clientId: 'qJdHl8g2FXY4spCxXVM2hZlk3SOBJnY2',
+    audience: 'https://rattus.azurewebsites.net/',
+    errorPath: '/error',
+    scope: 'read:current_user',
+    httpInterceptor: {
+      allowedList: [
+        {
+          // Match any request that starts 'https://YOUR_DOMAIN/api/v2/' (note the asterisk)
+          uri: '/api/*',
+          tokenOptions: {
+            // The attached token should target this audience
+            audience: 'https://rattus.azurewebsites.net/',
 
-						// The attached token should have these scopes
-						scope: 'read:current_user'
-					}
-				}
-			]
-		}
-	},
-	rat: {
-		apiUri: 'localhost:8485/api'  // 'https://d6d03ebf-d5bc-46cf-ab03-69205269a55e.mock.pstmn.io',
-	}
+            // The attached token should have these scopes
+            scope: 'read:current_user'
+          }
+        }
+      ]
+    }
+  },
+  rat: {
+    apiUri: '/api'  // 'https://d6d03ebf-d5bc-46cf-ab03-69205269a55e.mock.pstmn.io',
+  }
 };
 
 /*

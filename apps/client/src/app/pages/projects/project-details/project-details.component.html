@@ -7,7 +7,7 @@
 <ng-container *ngIf="project$ | async as project">
     <div class="project__header">
         <div class="project__name">
-            <cat-project-icon [type]="project.type"></cat-project-icon>
+            <cat-project-icon [type]="project.typeId | projectTypeToName"></cat-project-icon>
             {{ project.name }}
         </div>
         <div class="project__relations-list">
@@ -21,7 +21,7 @@
     </div>
 
     <div class="project__details">
-        ID: {{ project.id }} Type: {{ project.type }}
+        ID: {{ project.id }} Type: {{ project.typeId | projectTypeToName }}
     </div>
 
     <div class="project__configs" *ngIf="project.configurations.length > 0; else noConfigs">

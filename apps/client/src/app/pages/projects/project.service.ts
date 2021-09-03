@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { ProjectType } from './project-create/project-create.component';
 
 
 const API_URL = environment.rat.apiUri;
@@ -9,18 +11,22 @@ const API_URL = environment.rat.apiUri;
 export interface ProjectOverview {
   id: number;
   name: string;
-  type: string;
+  typeId: number;
   entries: number;
   configs: number;
 }
 
+interface ProjectCreationDetails {
+  name: string;
+  typeId: number;
+}
 
 export interface ProjectDetails {
   id: number;
   name: string;
-  type: string;
+  typeId: number;
   entries: number;
-  configurations: ConfigurationOverview[]
+  configurations: ConfigurationOverview[];
 }
 
 export enum ConfigurationType {
@@ -53,13 +59,16 @@ export interface ConfigurationDetails {
   entries: ConfigurationEntry[];
 }
 
+interface ProjectCreateResponse {
+  id: 2;
+  name: string;
+  typeId: number;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
 
-
   constructor(private http: HttpClient) {}
-
 
   getProjects(): Observable<ProjectOverview[]> {
     console.log('getProjects');
@@ -71,6 +80,22 @@ export class ProjectService {
     return this.http.get<ProjectDetails>(`${ API_URL }/projects/${ projectId }`);
   }
 
+  createProject(projectName: string, type: ProjectType): Promise<ProjectCreateResponse> {
+    console.log('createProject ', projectName);
+
+    const projectdata: ProjectCreationDetails = {
+      name: projectName,
+      typeId: type
+    };
+    return this.http.post<ProjectCreateResponse>(`${ API_URL }/projects/`, projectdata).toPromise();
+  }
+
+
+  /**
+   *
+   * CONFIGURATIONS
+   */
+
   getConfigurationById(projectId: number, configId: number): Observable<ConfigurationDetails> {
     console.log('getConfigurationById');
     return this.http.get<ConfigurationDetails>(`${ API_URL }/projects/${ projectId }/configuration/${ configId }`);
@@ -80,4 +105,6 @@ export class ProjectService {
     console.log('updateConfigurationEntry ', entry.id);
     return this.http.patch<any>(`${ API_URL }/projects/${ projectId }/configurations/${ configId }/entry/${ entry.id }`, entry).toPromise();
   }
+
+
 }
