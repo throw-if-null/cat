@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
 	selector: 'cat-profile',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
 
+	constructor(public auth: AuthService) {}
 }
