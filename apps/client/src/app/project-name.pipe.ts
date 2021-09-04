@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ProjectType } from './pages/projects/project-create/project-create.component';
+import { ProjectType } from './pages/projects/project-create/project.type';
 
 @Pipe({
   name: 'projectTypeToName'

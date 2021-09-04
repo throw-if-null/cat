@@ -3,7 +3,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { FormControl } from '@ngneat/reactive-forms';
 import { Subject, Observable, combineLatest } from 'rxjs';
 import { switchMap, map, takeUntil, startWith, debounceTime } from 'rxjs/operators';
-import { ProjectService, ConfigurationDetails, ConfigurationEntry } from '../../project.service';
+import { ProjectService } from '../../project.service';
+import { ConfigurationDetails, ConfigurationEntry } from '../config.type';
 
 // interface EditableConfigurationEntry extends ConfigurationEntry {
 // 	editing?: boolean;

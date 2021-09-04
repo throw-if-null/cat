@@ -1,5 +1,6 @@
 import { Observable, of } from 'rxjs';
-import { ProjectOverview, ProjectDetails, ConfigurationDetails, ConfigurationType } from './project.service';
+import { ConfigurationDetails, ConfigurationType } from './config/config.type';
+import { ProjectDetails, ProjectOverview } from './project.type';
 
 export class MockProjectService {
 

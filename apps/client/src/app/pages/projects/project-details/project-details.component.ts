@@ -4,7 +4,8 @@ import { DialogService } from '@ngneat/dialog';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ConfigCreateComponent } from '../config/config-create/config-create.component';
-import { ProjectDetails, ProjectService } from '../project.service';
+import { ProjectService } from '../project.service';
+import { ProjectDetails } from '../project.type';
 
 @Component({
 	selector: 'cat-project-details',
