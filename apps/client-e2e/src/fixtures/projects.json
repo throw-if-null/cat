@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Rat App",
+    "entries": 2,
+    "configs": 1
+  },
+  {
+    "id": 2,
+    "name": "Cat",
+    "entries": 123,
+    "configs": 6
+  },
+  {
+    "id": 3,
+    "name": "Discord Bot",
+    "entries": 35,
+    "configs": 2
+  }
+]

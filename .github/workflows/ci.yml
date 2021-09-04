@@ -37,8 +37,12 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Test
+      - name: Unit Test
         run: npm run test
+
+      - name: E2E Test
+        continue-on-error: true
+        run: npm run e2e
 
       - name: Build
         run: npm run build

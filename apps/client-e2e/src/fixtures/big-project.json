@@ -1,0 +1,31 @@
+{
+  "id": 2,
+  "name": "Catus",
+  "typeId": 1,
+  "configurations": [
+    {
+      "id": 1,
+      "name": "Base",
+      "type": "angular",
+      "entries": 12
+    },
+    {
+      "id": 2,
+      "name": "Sandbox",
+      "type": "angular",
+      "entries": 2
+    },
+    {
+      "id": 3,
+      "name": "Production",
+      "type": "angular",
+      "entries": 7
+    },
+    {
+      "id": 4,
+      "name": "Base.Env",
+      "type": ".env",
+      "entries": 12
+    }
+  ]
+}

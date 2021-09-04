@@ -1,0 +1,34 @@
+{
+  "id": 1,
+  "name": "base",
+  "typeId": 1,
+  "entries": [
+    {
+      "id": 1,
+      "key": "environment",
+      "value": "dev"
+    },
+    {
+      "id": 2,
+      "key": "AUTH_REQUIRED",
+      "value": true,
+      "disabled": true,
+      "expire": 6901232123
+    },
+    {
+      "id": 3,
+      "key": "sentry.secret",
+      "value": "secretsecret"
+    },
+    {
+      "id": 4,
+      "key": "sentry.clientId",
+      "value": "asdas12132asdasd123"
+    },
+    {
+      "id": 5,
+      "key": "auth0.callbackURL",
+      "value": "http://localhost:3000"
+    }
+  ]
+}

@@ -1,57 +1,45 @@
 <section class="header">
-	<div class="header__title title">{{ title }}</div>
-	<div class="header__items">
-		<div
-			class="header__items__user"
-			*ngIf="auth.user$ | async as user"
-			[tippy]="userMenu"
-			variation="menu"
-		>
-			<img
-				class="header__items__user__icon dropdown-toggle"
-				[src]="user.picture"
-			/>
-			<ng-template #userMenu>
-				<div>
-					<div>{{ user.name }}</div>
-					<div class="link" (click)="logout()">Log out</div>
-				</div>
-			</ng-template>
-		</div>
-	</div>
+    <div class="header__title title">{{ title }}</div>
+    <div class="header__items">
+        <div *ngIf="auth.user$ | async as user" class="header__items__user" variation="menu" [tippy]="userMenu">
+            <img class="header__items__user__icon dropdown-toggle" [src]="user.picture"/>
+            <ng-template #userMenu>
+                <div>
+                    <div>{{ user.name }}</div>
+                    <div class="link" (click)="logout()">Log out</div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
 </section>
 <section class="body">
-	<nav class="navbar">
-		<div class="navbar__logo">
-			<img class="icon" src="assets/images/catrat.png" />
-		</div>
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <img class="icon" src="assets/images/catrat.png"/>
+        </div>
 
-		<ul class="navbar__list">
-			<li class="navbar__item" routerLink="dashboard" routerLinkActive="active">
-				<img class="icon" src="assets/images/dashboard.svg" />
-				<a routerLink="dashboard">Dashboard</a>
-			</li>
-			<li class="navbar__item" routerLink="projects" routerLinkActive="active">
-				<img class="icon" src="assets/images/projects.svg" />
-				<a routerLink="projects">Projects</a>
-			</li>
-			<li class="navbar__item" routerLink="profile" routerLinkActive="active">
-				<img class="icon" src="assets/images/profile.svg" />
-				<a routerLink="profile">Profile</a>
-			</li>
+        <ul class="navbar__list">
+            <li class="navbar__item" routerLink="dashboard" routerLinkActive="active">
+                <img class="icon" src="assets/images/dashboard.svg"/>
+                <a routerLink="dashboard">Dashboard</a>
+            </li>
+            <li class="navbar__item" routerLink="projects" routerLinkActive="active">
+                <img class="icon" src="assets/images/projects.svg"/>
+                <a routerLink="projects">Projects</a>
+            </li>
+            <li class="navbar__item" routerLink="profile" routerLinkActive="active">
+                <img class="icon" src="assets/images/profile.svg"/>
+                <a routerLink="profile">Profile</a>
+            </li>
 
-			<li
-				class="navbar__item settings"
-				routerLink="settings"
-				routerLinkActive="active"
-			>
-				<img class="icon" src="assets/images/settings.svg" />
-				<a routerLink="settings">Settings</a>
-			</li>
-		</ul>
-	</nav>
+            <li class="navbar__item settings" routerLink="settings" routerLinkActive="active">
+                <img class="icon" src="assets/images/settings.svg"/>
+                <a routerLink="settings">Settings</a>
+            </li>
+        </ul>
+    </nav>
 
-	<section class="page-container">
-		<router-outlet></router-outlet>
-	</section>
+    <section class="page-container">
+        <router-outlet></router-outlet>
+    </section>
 </section>
