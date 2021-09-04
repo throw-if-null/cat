@@ -4,12 +4,18 @@
 
 [![CI](https://github.com/throw-if-null/rat.app/actions/workflows/ci.yml/badge.svg)](https://github.com/throw-if-null/rat.app/actions/workflows/ci.yml)
 
+Hosted at [Azure](https://catus.azurewebsites.net/)
+
+
+The cat from RatCat
+<p style="text-align: center;"><img src="https://i.imgur.com/WLl7yCn.png" width="250"></p>
+
+
+Rat API at: https://github.com/throw-if-null/rat-api
+
 This project was generated using [Nx](https://nx.dev).
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="150"></p>
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
-
-# Rat
-The API consumed https://github.com/throw-if-null/rat-api
 
 ## Run
 
