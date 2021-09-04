@@ -8,7 +8,7 @@ export class MockProjectService {
   }
 
   getProjectById(projectId: number): Observable<ProjectDetails> {
-    return of({ id: projectId, name: 'test project', type: 'angular', entries: 1, configurations: [] });
+    return of({ id: projectId, name: 'test project', typeId: 0, entries: 1, configurations: [] });
   }
 
   getConfigurationById(projectId: number, configId: number): Observable<ConfigurationDetails> {
