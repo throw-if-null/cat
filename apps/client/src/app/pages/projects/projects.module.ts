@@ -12,8 +12,8 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects.component';
 
 @NgModule({
-  declarations: [ProjectsComponent, ProjectCreateComponent, ProjectDetailsComponent, ConfigCreateComponent, ConfigDetailsComponent, ProjectTypeNamePipe],
-  imports: [CommonModule, ProjectsRoutingModule, ReactiveFormsModule, UiModule, SubscribeModule],
-  providers: []
+	declarations: [ProjectsComponent, ProjectCreateComponent, ProjectDetailsComponent, ConfigCreateComponent, ConfigDetailsComponent, ProjectTypeNamePipe],
+	imports: [CommonModule, ProjectsRoutingModule, ReactiveFormsModule, UiModule, SubscribeModule],
+	providers: []
 })
 export class ProjectsModule {}

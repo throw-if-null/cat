@@ -24,4 +24,8 @@
     border-bottom: 1px solid var(--border-color);
   }
 
+  &__content {
+    padding: $spacing-primary;
+  }
+
 }

@@ -1,5 +1,10 @@
 @import 'variables';
 
-.account-details {
-  padding: $spacing-primary;
+.description {
+  margin: 0;
+}
+
+.input__label {
+  display: flex;
+  flex-direction: column;
 }

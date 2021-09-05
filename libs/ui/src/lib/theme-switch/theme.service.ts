@@ -29,14 +29,18 @@ export class ColorThemeService {
 		this.setTheme(newTheme);
 	}
 
-	private setDefaultTheme() {
-		if (localStorage.getItem(THEME_STORAGE_ID)) {
-			this.setTheme(localStorage.getItem(THEME_STORAGE_ID)! as ColorTheme);
+	setTheme(theme: ColorTheme) {
+		if (theme !== this.theme) {
+			this._theme$.next(theme);
+			localStorage.setItem(THEME_STORAGE_ID, theme);
 		}
 	}
 
-	private setTheme(theme: ColorTheme) {
-		this._theme$.next(theme);
-		localStorage.setItem(THEME_STORAGE_ID, theme);
+	private setDefaultTheme() {
+		if (localStorage.getItem(THEME_STORAGE_ID)) {
+			this.setTheme(localStorage.getItem(THEME_STORAGE_ID)! as ColorTheme);
+		} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+			this.setTheme(ColorTheme.LIGHT);
+		}
 	}
 }

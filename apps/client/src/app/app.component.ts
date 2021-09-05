@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.themeService.theme$
 			.pipe(takeUntil(this.unsubscribe$))
 			.subscribe(theme => {
+				console.log('theme changed to: ' + theme);
 				this.renderer.setAttribute(document.body, THEME_ATTRIBUTE, theme);
 			});
 	}

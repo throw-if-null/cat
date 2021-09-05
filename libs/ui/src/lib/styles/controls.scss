@@ -15,6 +15,7 @@
 
   font-family: inherit;
   font-size: 14px;
+  color: var(--text-color);
 }
 
 .input {
@@ -22,7 +23,12 @@
 
   &.invert {
     background-color: transparent;
-    color: var(--text-color-lighter);
+    color: var(--text-color-invert);
+  }
+
+  &.light {
+    background-color: $white;
+    color: $black;
   }
 
   &.small {
@@ -32,6 +38,28 @@
 
   &.edgey {
     border-radius: 0;
+  }
+}
+
+select {
+
+  &.invert {
+    option {
+      color: var(--text-color-invert);
+      background: var(--select-background-color-invert);
+    }
+  }
+
+  &.light {
+    option {
+      background-color: $white;
+      color: $black;
+    }
+  }
+
+  option {
+    color: var(--text-color);
+    background: var(--select-background-color);
   }
 }
 
@@ -77,3 +105,4 @@
     opacity: 0.33;
   }
 }
+

@@ -27,7 +27,8 @@ body {
 }
 
 .description {
-  color: var(--text-color-lighter);
+  color: var(--text-color-light);
+  font-size: 14px;
   margin-bottom: $spacing-primary;
 }
 
