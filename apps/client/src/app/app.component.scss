@@ -41,7 +41,7 @@
 		height: calc(100vh - 200px);
 
 		background: linear-gradient(0deg, $blood-orange 0, $orange 100%);
-		box-shadow: 0 0 45px 0 rgb(0 0 0 / 60%);
+		box-shadow: -5px 5px 20px 3px rgb(0 0 0 / 30%);
 
 		&__logo {
 			display: flex;

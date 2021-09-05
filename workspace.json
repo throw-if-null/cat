@@ -5,11 +5,13 @@
 			"projectType": "application",
 			"root": "apps/client",
 			"sourceRoot": "apps/client/src",
-			"prefix": "rat",
+			"prefix": "cat",
 			"targets": {
 				"build": {
 					"executor": "@angular-devkit/build-angular:browser",
-					"outputs": ["{options.outputPath}"],
+					"outputs": [
+						"{options.outputPath}"
+					],
 					"options": {
 						"outputPath": "dist/apps/client",
 						"index": "apps/client/src/index.html",
@@ -17,8 +19,13 @@
 						"polyfills": "apps/client/src/polyfills.ts",
 						"tsConfig": "apps/client/tsconfig.app.json",
 						"inlineStyleLanguage": "scss",
-						"assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
-						"styles": ["apps/client/src/styles.scss"],
+						"assets": [
+							"apps/client/src/favicon.ico",
+							"apps/client/src/assets"
+						],
+						"styles": [
+							"apps/client/src/styles.scss"
+						],
 						"scripts": [],
 						"stylePreprocessorOptions": {
 							"includePaths": ["libs/ui/src/lib/styles"]
@@ -130,11 +137,13 @@
 			"projectType": "library",
 			"root": "libs/ui",
 			"sourceRoot": "libs/ui/src",
-			"prefix": "rat",
+			"prefix": "cat",
 			"targets": {
 				"test": {
 					"executor": "@nrwl/jest:jest",
-					"outputs": ["coverage/libs/ui"],
+					"outputs": [
+						"coverage/libs/ui"
+					],
 					"options": {
 						"jestConfig": "libs/ui/jest.config.js",
 						"passWithNoTests": true

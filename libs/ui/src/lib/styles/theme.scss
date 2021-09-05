@@ -1,0 +1,50 @@
+@import "variables";
+
+:root {
+  --primary-color: #{$color-primary};
+  --primary-color-invert: #dadada;
+  --primary-background-color: #{$color-primary};
+  --text-color: #{$white};
+  --text-color-lighter: #{lighten($white, 10%)};
+  --text-color-light: #{lighten($black, 50%)};
+  --text-color-invert: #{$black};
+  --text-color-invert-lighter: #{lighten($black, 50%)};
+  --border-color: #c6becf;
+
+  --button-background-color-invert: #{desaturate(lighten($color-primary, 20%), 50%)};
+  --button-color-invert: #{$white};
+
+  --card-background-color: transparent;
+
+  --table-border-color: #{transparentize($white, 0.65)};
+
+  --select-background-color: var(--primary-color);
+  --select-background-color-invert: var(--primary-color-invert);
+}
+
+[data-theme="light"] {
+  --primary-color: #{$light};
+  --primary-color-invert: #{$deep-blue};
+  --primary-background-color: #{#faf9fb};
+  --text-color: #{$black};
+  --text-color-lighter: #{lighten($black, 10%)};
+  --text-color-light: #{lighten($black, 50%)};
+  --text-color-invert: #{$white};
+  --text-color-invert-lighter: #{darken($white, 50%)};
+  --border-color: #7c7670;
+
+  --button-background-color-invert: #{desaturate(lighten($color-primary, 20%), 50%)};
+  --button-color-invert: #{$white};
+
+  --card-background-color: #{$white};
+
+  --table-border-color: #{transparentize($black, 0.65)};
+
+  --select-background-color: var(--primary-background-color);
+  --select-background-color-invert: var(--primary-color-invert);
+}
+
+
+[data-theme="my-eyes"] {
+
+}

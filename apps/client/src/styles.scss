@@ -3,19 +3,22 @@
 @import '~tippy.js/themes/light-border.css';
 @import '~tippy.js/animations/scale.css';
 
-@import 'variables';
-@import 'controls';
-@import 'reset';
-@import 'utils';
+@import 'libs/ui/src/lib/styles/variables';
+@import 'libs/ui/src/lib/styles/controls';
+@import 'libs/ui/src/lib/styles/reset';
+@import 'libs/ui/src/lib/styles/utils';
+@import 'libs/ui/src/lib/styles/theme';
 
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap');
 
 body {
-  background-color: $color-primary;
-  color: $white;
+  background-color: var(--primary-background-color);
+  color: var(--text-color);
   font-family: Poppins, sans-serif;
+
+  transition: color, background-color 1s ease;
 }
 
 .title {
@@ -24,7 +27,8 @@ body {
 }
 
 .description {
-  color: $text-lighter;
+  color: var(--text-color-light);
+  font-size: 14px;
   margin-bottom: $spacing-primary;
 }
 
@@ -38,8 +42,11 @@ body {
   cursor: pointer;
 }
 
-
 .search-highlight {
   font-weight: bold;
   color: $orange !important;
+}
+
+.clickable {
+  cursor: pointer;
 }

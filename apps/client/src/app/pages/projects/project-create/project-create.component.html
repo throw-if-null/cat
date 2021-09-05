@@ -11,14 +11,14 @@
 <form class="form" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
 
     <h2 class="title">Choose the project type</h2>
-    <select class="form-input input" formControlName="type">
+    <select class="form-input input light" formControlName="type">
         <option value="" disabled>Types</option>
         <option *ngFor="let type of types" [ngValue]="type">{{type | projectTypeToName}}</option>
     </select>
 
     <h2 class="title">Project Name</h2>
 
-    <input class="form-input input" type="text" formControlName="name">
+    <input class="form-input input light" formControlName="name" type="text">
 
 
     <button class="button invert" type="submit" [disabled]="!projectForm.valid">Create Project</button>

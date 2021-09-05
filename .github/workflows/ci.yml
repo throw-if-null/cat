@@ -51,7 +51,7 @@ jobs:
         uses: codecov/codecov-action@v1.5.2
         with:
           files: ./coverage/*/lcov.info
-          name: Rat.App Code Coverage
+          name: Cat Code Coverage
 
       - name: CodeQL Analysis
         uses: github/codeql-action/analyze@v1

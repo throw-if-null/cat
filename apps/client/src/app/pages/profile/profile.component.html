@@ -2,8 +2,31 @@
 
     <div class="account-details">
         <div class="row">
-            <label class="input__label col" for="name">Name</label>
-            <input id="name" class="input invert col" name="name" placeholder="e.g. John Doe" [value]="user.name">
+            <div class="input__label col">
+                <label for="name">Name</label>
+                <span class="description">Your full name</span>
+            </div>
+            <input id="name" class="input col" name="name" placeholder="e.g. John Doe" [value]="user.name">
+        </div>
+    </div>
+
+
+</cat-card>
+
+<cat-card *ngIf="auth.user$ | async as user" title="Preferences">
+
+    <div class="preferences">
+        <div class="row">
+            <div class="input__label col half">
+                <label for="theme">Theme</label>
+                <span class="description">Select your theme preference. It can be set to your system's default, dark mode, or some adventures looks.</span>
+            </div>
+
+            <select id="theme" class="input col" name="theme" [formControl]="themeControl">
+                <option *ngFor="let theme of ColorThemes" [value]="theme">
+                    {{theme}}
+                </option>
+            </select>
         </div>
     </div>
 
