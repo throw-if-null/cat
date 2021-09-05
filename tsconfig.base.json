@@ -15,7 +15,9 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@rat/ui": ["libs/ui/src/index.ts"]
+			"@cat/ui": [
+				"libs/ui/src/index.ts"
+			]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

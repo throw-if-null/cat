@@ -10,7 +10,7 @@
             <div class="project__header" [routerLink]="[project.id]">
                 <div class="project__name">{{ project.name }}</div>
                 <div class="project__header__sub">
-                    <cat-project-icon [type]="project.typeId | projectTypeToName"></cat-project-icon>
+                    <cat-project-icon [type]="project.typeId | projectTypeToIcon"></cat-project-icon>
                     <div class="project__entries">{{project.configs}} configs | {{project.entries}} entries</div>
                 </div>
             </div>

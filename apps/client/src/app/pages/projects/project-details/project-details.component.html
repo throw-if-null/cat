@@ -7,7 +7,7 @@
 <ng-container *ngIf="project$ | async as project">
     <div class="project__header">
         <div class="project__name">
-            <cat-project-icon [type]="project.typeId | projectTypeToName"></cat-project-icon>
+            <cat-project-icon [type]="project.typeId | projectTypeToIcon"></cat-project-icon>
             {{ project.name }}
         </div>
         <div class="project__relations-list">
@@ -30,7 +30,7 @@
             <div class="project__configs__entry-header" [routerLink]="['config', config.id]">
                 <div class="config__name">{{ config.name }}</div>
                 <div class="config__header__sub">
-                    <cat-project-icon [type]="config.type"></cat-project-icon>
+                    <!--                    <cat-project-icon [type]="config.type | projectTypeToIcon"></cat-project-icon>-->
                     <div class="config__entries">{{config.entries}} entries</div>
                 </div>
             </div>

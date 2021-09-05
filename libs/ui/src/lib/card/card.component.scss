@@ -6,9 +6,8 @@
   position: relative;
   margin-bottom: 20px;
 
-  background: transparent;
   border-radius: $border-radius;
-  border: 1px solid transparentize($light, 0.5);
+  border: 1px solid var(--border-color);
 
   box-shadow: transparentize($white, 0.92) 0 2px 0 inset;
   transition: all 0.1s linear 0s;
@@ -16,13 +15,13 @@
   &__header {
     display: flex;
     justify-content: space-between;
-    color: $color-primary-invert;
+    color: var(--primary-color-invert);
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
     padding: $spacing-primary;
 
-    border-bottom: 1px solid transparentize($light, 0.5);
+    border-bottom: 1px solid var(--border-color);
   }
 
 }

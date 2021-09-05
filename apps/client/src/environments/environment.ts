@@ -27,7 +27,7 @@ export const environment = {
     }
   },
   rat: {
-    apiUri: '/api'  // 'https://d6d03ebf-d5bc-46cf-ab03-69205269a55e.mock.pstmn.io',
+    apiUri: '/api'
   }
 };
 

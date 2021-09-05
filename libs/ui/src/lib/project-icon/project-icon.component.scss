@@ -8,6 +8,11 @@
   height: 20px;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
+
+  &.unknown {
+    background-image: url('/assets/images/projects/unknown.svg');
+  }
 
   &.angular {
     background-image: url('/assets/images/projects/angular.svg');

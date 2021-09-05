@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AuthHttpInterceptor, AuthModule as Auth0Module } from '@auth0/auth0-angular';
+import { UiModule } from '@cat/ui';
 import { DialogModule } from '@ngneat/dialog';
 import { TippyModule, tooltipVariation, popperVariation } from '@ngneat/helipopper';
 import { HotToastModule } from '@ngneat/hot-toast';
@@ -35,7 +36,8 @@ import { HttpErrorInterceptor } from './http-error';
 					appendTo: 'parent'
 				}
 			}
-		})
+		}),
+		UiModule
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },

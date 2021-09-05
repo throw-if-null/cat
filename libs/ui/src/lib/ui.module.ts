@@ -8,28 +8,34 @@ import { FilterPipe } from './filter.pipe';
 import { HighlightDirective } from './highlight.directive';
 import { LoaderComponent } from './loader/loader.component';
 import { ProjectIconComponent } from './project-icon/project-icon.component';
+import { ProjectTypeIconPipe } from './project-icon/project-icon.pipe';
+import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [
-    ProjectIconComponent,
-    EditableComponent,
-    EditModeDirective,
-    ViewModeDirective,
-    FilterPipe,
-    HighlightDirective,
-    LoaderComponent,
-    CardComponent
-  ],
-  exports: [
-    ProjectIconComponent,
-    EditableComponent,
-    EditModeDirective,
-    ViewModeDirective,
-    FilterPipe,
-    HighlightDirective,
-    LoaderComponent,
-    CardComponent
-  ]
+	imports: [CommonModule],
+	declarations: [
+		ProjectIconComponent,
+		EditableComponent,
+		EditModeDirective,
+		ViewModeDirective,
+		FilterPipe,
+		HighlightDirective,
+		LoaderComponent,
+		CardComponent,
+		ThemeSwitchComponent,
+		ProjectTypeIconPipe
+	],
+	exports: [
+		ProjectIconComponent,
+		EditableComponent,
+		EditModeDirective,
+		ViewModeDirective,
+		FilterPipe,
+		HighlightDirective,
+		LoaderComponent,
+		CardComponent,
+		ThemeSwitchComponent,
+		ProjectTypeIconPipe
+	]
 })
 export class UiModule {}

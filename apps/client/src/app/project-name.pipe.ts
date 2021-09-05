@@ -16,7 +16,6 @@ export class ProjectTypeNamePipe implements PipeTransform {
 				return 'JSON';
 			case ProjectType.Angular:
 				return 'Angular';
-
 			case ProjectType.DotNET:
 				return 'DotNET';
 			case ProjectType.React:
