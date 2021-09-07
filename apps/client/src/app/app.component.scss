@@ -24,7 +24,7 @@
 
 .body {
 	display: grid;
-	grid-template-columns: 230px 1.5fr;
+	grid-template-columns: 200px 1.5fr;
 	grid-template-rows: 1fr;
 	gap: 1rem;
 	grid-template-areas: '. .';
@@ -40,7 +40,9 @@
 		border-radius: 0 $border-radius $border-radius 0;
 		height: calc(100vh - 200px);
 
-		background: linear-gradient(0deg, $blood-orange 0, $orange 100%);
+		border: var(--navbar-border);
+		border-left: var(--navbar-border-left);
+		background: var(--navbar-background);
 		box-shadow: -5px 5px 20px 3px rgb(0 0 0 / 30%);
 
 		&__logo {

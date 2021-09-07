@@ -4,6 +4,8 @@ $black: #000000;
 $deep-blue: #020122;
 $orange: #FF521B;
 $blood-orange: #ed2d18;
+$lime: #00ff4c;
+$green: #32CD32;
 
 $spacing-primary: 1rem;
 $spacing-small: $spacing-primary / 3;
@@ -13,3 +15,13 @@ $color-primary-invert: #dadada;
 
 
 $border-radius: 5px;
+
+:root {
+  --color-white: #{$white};
+  --color-light: #{$light};
+  --color-black: #{$black};
+  --color-deep-blue: #{$deep-blue};
+  --color-orange: #{$orange};
+  --color-blood-orange: #{$blood-orange};
+  --color-lime: #{$lime};
+}

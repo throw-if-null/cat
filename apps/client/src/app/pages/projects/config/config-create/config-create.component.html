@@ -11,14 +11,14 @@
 <form class="form" [formGroup]="configurationForm" (ngSubmit)="onSubmit()">
 
     <h2 class="title">Choose the type</h2>
-    <select class="form-input input" formControlName="type">
+    <select class="form-input input light" formControlName="type">
         <option value="" disabled>Type</option>
         <option *ngFor="let configType of configTypes" [ngValue]="configType">{{configType}}</option>
     </select>
 
     <h2 class="title">Configuration Name</h2>
 
-    <input class="form-input input" type="text" formControlName="name">
+    <input class="form-input input light" formControlName="name" type="text">
 
 
     <button class="button invert" type="submit" [disabled]="!configurationForm.valid">Create Configuration</button>

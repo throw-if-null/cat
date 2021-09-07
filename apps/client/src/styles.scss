@@ -18,7 +18,7 @@ body {
   color: var(--text-color);
   font-family: Poppins, sans-serif;
 
-  transition: color, background-color 1s ease;
+  transition: color 0.3s ease-out, background-color 1s ease, border 1s ease;
 }
 
 .title {
