@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 import { ConfigurationDetails, ConfigurationEntry } from './config/config.type';
 import { ProjectDetails, ProjectOverview, ProjectCreateResponse, ProjectCreateData, ProjectDeleteResponse } from './project.type';
 
-// const API_URL = environment.rat.apiUri;
-const API_URL = 'https://d6d03ebf-d5bc-46cf-ab03-69205269a55e.mock.pstmn.io';
+const API_URL = environment.rat.mock ? 'https://d6d03ebf-d5bc-46cf-ab03-69205269a55e.mock.pstmn.io' : environment.rat.apiUri;
+
+// const API_URL = ;
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
