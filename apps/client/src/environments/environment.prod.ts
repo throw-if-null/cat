@@ -22,6 +22,7 @@ export const environment = {
 		}
 	},
 	rat: {
+		mock: false,
 		apiUri: 'https://rattus.azurewebsites.net/api'
 	}
 };
