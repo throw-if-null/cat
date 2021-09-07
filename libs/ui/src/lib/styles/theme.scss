@@ -1,9 +1,11 @@
 @import "variables";
 
 :root {
-  --primary-color: #{$color-primary};
+
+  --primary-color: #{$orange};
+  --primary-color-darker: #{$blood-orange};
   --primary-color-invert: #dadada;
-  --primary-background-color: #{$color-primary};
+  --primary-background-color: #{$deep-blue};
   --text-color: #{$white};
   --text-color-lighter: #{lighten($white, 10%)};
   --text-color-light: #{lighten($black, 50%)};
@@ -18,12 +20,16 @@
 
   --table-border-color: #{transparentize($white, 0.65)};
 
-  --select-background-color: var(--primary-color);
+  --select-background-color: var(--primary-background-color);
   --select-background-color-invert: var(--primary-color-invert);
+
+  --navbar-background: linear-gradient(0deg, #{$blood-orange} 0, #{$orange} 100%);
 }
 
 [data-theme="light"] {
-  --primary-color: #{$light};
+  --primary-color: #{$orange};
+  --primary-color-darker: #{$blood-orange};
+
   --primary-color-invert: #{$deep-blue};
   --primary-background-color: #{#faf9fb};
   --text-color: #{$black};
@@ -42,9 +48,37 @@
 
   --select-background-color: var(--primary-background-color);
   --select-background-color-invert: var(--primary-color-invert);
+
+  --navbar-background: linear-gradient(0deg, #{$blood-orange} 0, #{$orange} 100%);
 }
 
 
 [data-theme="my-eyes"] {
 
+  --primary-color: #{$lime};
+  --primary-color-darker: #{$green};
+
+  --primary-color-invert: #dadada;
+  --primary-background-color: #140c1d;
+  --text-color: #{$lime};
+  --text-color-lighter: #{darken($green, 5%)};
+  --text-color-light: #{darken($white, 35%)};
+  --text-color-invert: #{$black};
+  --text-color-invert-lighter: #{lighten($black, 50%)};
+  --border-color: #{$lime};
+
+  --button-background-color-invert: #{$lime};
+  --button-color-invert: #{$white};
+
+  --card-background-color: transparent;
+
+  --table-border-color: #{transparentize($white, 0.65)};
+
+  --select-background-color: var(--primary-background-color);
+  --select-background-color-invert: var(--primary-color-invert);
+
+
+  --navbar-background: transparent;
+  --navbar-border: 1px solid #{$lime};
+  --navbar-border-left: none;
 }
