@@ -15,10 +15,25 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@cat/ui": [
-				"libs/ui/src/index.ts"
-			]
-		}
+          "@cat/cat/dashboard": [
+            "libs/cat/dashboard/src/index.ts"
+          ],
+          "@cat/cat/profile": [
+            "libs/cat/profile/src/index.ts"
+          ],
+          "@cat/cat/project-details": [
+            "libs/cat/project-details/src/index.ts"
+          ],
+          "@cat/cat/project-list": [
+            "libs/cat/project-list/src/index.ts"
+          ],
+          "@cat/cat/ui-utils": [
+            "libs/cat/ui-utils/src/index.ts"
+          ],
+          "@cat/ui": [
+            "libs/ui/src/index.ts"
+          ]
+        }
 	},
 	"exclude": ["node_modules", "tmp"]
 }

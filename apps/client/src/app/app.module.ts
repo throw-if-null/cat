@@ -7,12 +7,15 @@ import { UiModule } from '@cat/ui';
 import { DialogModule } from '@ngneat/dialog';
 import { TippyModule, tooltipVariation, popperVariation } from '@ngneat/helipopper';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HttpErrorInterceptor } from './http-error';
-
 
 @NgModule({
 	declarations: [AppComponent],
@@ -37,7 +40,20 @@ import { HttpErrorInterceptor } from './http-error';
 				}
 			}
 		}),
-		UiModule
+		UiModule,
+		StoreModule.forRoot(
+			{},
+			{
+				metaReducers: !environment.production ? [] : [],
+				runtimeChecks: {
+					strictActionImmutability: true,
+					strictStateImmutability: true
+				}
+			}
+		),
+		EffectsModule.forRoot([]),
+		!environment.production ? StoreDevtoolsModule.instrument() : [],
+		StoreRouterConnectingModule.forRoot()
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },

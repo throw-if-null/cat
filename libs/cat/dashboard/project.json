@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/cat/dashboard",
+  "sourceRoot": "libs/cat/dashboard/src",
+  "prefix": "cat",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/cat/dashboard"
+      ],
+      "options": {
+        "jestConfig": "libs/cat/dashboard/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/cat/dashboard/src/**/*.ts",
+          "libs/cat/dashboard/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -30,10 +30,10 @@
 							"maximumError": "1mb"
 						},
 						{
-							"type": "anyComponentStyle",
-							"maximumWarning": "2kb",
-							"maximumError": "4kb"
-						}
+                          "type": "anyComponentStyle",
+                          "maximumWarning": "5kb",
+                          "maximumError": "10kb"
+                        }
 					],
 					"fileReplacements": [
 						{
@@ -61,8 +61,9 @@
 					"browserTarget": "client:build:production"
 				},
 				"development": {
-					"browserTarget": "client:build:development"
-				}
+                  "browserTarget": "client:build:development",
+                  "proxyConfig": "apps/client/src/proxy.conf.json"
+                }
 			},
 			"defaultConfiguration": "development"
 		},
