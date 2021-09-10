@@ -1,6 +1,6 @@
 module.exports = {
-    displayName: "cat-project-details",
-    preset: "../../../../jest.preset.js",
+    displayName: "cat-project",
+    preset: "../../../jest.preset.js",
     setupFilesAfterEnv: ["<rootDir>/src/test-setup.ts"],
     globals: {
         "ts-jest": {
@@ -8,7 +8,7 @@ module.exports = {
             stringifyContentPathRegex: "\\.(html|svg)$"
         }
     },
-    coverageDirectory: "../../../../coverage/libs/cat/project/project-details",
+    coverageDirectory: "../../../coverage/libs/cat/project",
     transform: {
         "^.+\\.(ts|js|html)$": "jest-preset-angular"
     },

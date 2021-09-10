@@ -21,3 +21,10 @@
 
     <ng-template #noProjects>No Projects yet!</ng-template>
 </ng-container>
+
+<ng-container *subscribe="loaded$; let loaded">
+    <div *ngIf="!loaded">
+        Loading all projects.
+    </div>
+</ng-container>
+

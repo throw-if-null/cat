@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ConfigCreateModule } from '@cat/config-create';
 import { UiModule } from '@cat/ui';
 import { UiUtilsModule } from '@cat/ui-utils';
+import { SubscribeModule } from '@ngneat/subscribe';
 import { ProjectDetailsComponent } from './project-details.component';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { ProjectDetailsComponent } from './project-details.component';
 		RouterModule.forChild([
 			{ path: '', pathMatch: 'full', component: ProjectDetailsComponent }
 		]),
+		SubscribeModule,
 		ConfigCreateModule,
 		UiModule,
 		UiUtilsModule

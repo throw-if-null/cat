@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ProjectType } from '@cat/project-data';
+import { ProjectType } from '@cat/project';
 
 @Pipe({
 	name: 'projectTypeToName'

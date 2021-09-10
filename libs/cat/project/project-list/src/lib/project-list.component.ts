@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ProjectCreateData, ProjectOverview, ProjectsFacade } from '@cat/project';
 import { ProjectCreateComponent } from '@cat/project-create';
-import { ProjectService, ProjectCreateData, ProjectOverview } from '@cat/project-data';
 import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Observable } from 'rxjs';
@@ -16,9 +16,12 @@ import { take } from 'rxjs/operators';
 export class ProjectListComponent {
 
 	projects$: Observable<ProjectOverview[]>;
+	loaded$: Observable<boolean>;
 
-	constructor(private projectService: ProjectService, private toast: HotToastService, private dialog: DialogService) {
-		this.projects$ = this.projectService.getProjects();
+	constructor(private projectFacade: ProjectsFacade, private toast: HotToastService, private dialog: DialogService) {
+		this.projectFacade.init();
+		this.projects$ = this.projectFacade.allProjects$;
+		this.loaded$ = this.projectFacade.loaded$;
 	}
 
 	openCreateDialog() {
@@ -28,10 +31,7 @@ export class ProjectListComponent {
 				 .pipe(take(1))
 				 .subscribe((data?: ProjectCreateData) => {
 					 if (data) {
-						 this.projectService.createProject(data)
-							 .then(res => {
-								 this.toast.success(`Yeah! Project - ${ res.name } - created successfully.`);
-							 });
+						 this.projectFacade.createProject(data);
 					 }
 				 });
 	}

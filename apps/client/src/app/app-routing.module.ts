@@ -19,7 +19,7 @@ const routes: Routes = [
 		path: 'projects',
 		data: { title: 'Projects' },
 		canActivate: [AuthGuard],
-		loadChildren: () => import('@cat/project-list').then(m => m.ProjectsModule)
+		loadChildren: () => import('@cat/project').then(m => m.ProjectsModule)
 	},
 	{
 		path: 'error',

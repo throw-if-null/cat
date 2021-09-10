@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ConfigurationDetails, ConfigurationEntry } from '@cat/config-data';
-import { ProjectService } from '@cat/project-data';
+import { ProjectService } from '@cat/project';
 import { parseStringValue } from '@cat/utils';
 import { FormControl } from '@ngneat/reactive-forms';
 import { Subject, Observable, combineLatest } from 'rxjs';

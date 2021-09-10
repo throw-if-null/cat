@@ -20,10 +20,10 @@ export class ProjectService {
 		return this.http.get<ProjectDetails>(`${ this.apiURL }/projects/${ projectId }`);
 	}
 
-	createProject(data: ProjectCreateData): Promise<ProjectCreateResponse> {
+	createProject(data: ProjectCreateData): Observable<ProjectCreateResponse> {
 		console.log('createProject ', data.name);
 
-		return this.http.post<ProjectCreateResponse>(`${ this.apiURL }/projects/`, data).toPromise();
+		return this.http.post<ProjectCreateResponse>(`${ this.apiURL }/projects/`, data);
 	}
 
 	deleteProject(projectId: number): Promise<ProjectDeleteResponse> {

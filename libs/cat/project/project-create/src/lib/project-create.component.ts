@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ProjectCreateData, ProjectType } from '@cat/project-data';
+import { ProjectCreateData, ProjectType } from '@cat/project';
 import { DialogRef } from '@ngneat/dialog';
 
 @Component({
