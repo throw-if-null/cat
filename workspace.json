@@ -11,6 +11,7 @@
     "cat-project-project-create": "libs/cat/project/project-create",
     "cat-project-project-data": "libs/cat/project/project-data",
     "cat-ui-utils": "libs/cat/ui-utils",
+    "cat-utils": "libs\\cat\\utils",
     "client": "apps/client",
     "client-e2e": "apps/client-e2e",
     "ui": "libs/ui"

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ConfigurationDetails, ConfigurationEntry } from '@cat/config-data';
 import { ProjectService } from '@cat/project-data';
+import { parseStringValue } from '@cat/utils';
 import { FormControl } from '@ngneat/reactive-forms';
 import { Subject, Observable, combineLatest } from 'rxjs';
 import { switchMap, map, takeUntil, startWith, debounceTime } from 'rxjs/operators';
@@ -84,7 +85,7 @@ export class ConfigDetailsComponent implements OnInit, OnDestroy {
 	}
 
 	entryEdited(editedValue: any, entry: ConfigurationEntry, property: 'key' | 'value') {
-		const parsedValue = parseValue(editedValue);
+		const parsedValue = parseStringValue(editedValue);
 		const changed = entry[property] !== parsedValue;
 		if (changed) {
 			console.log(`Entry[${ entry.id }] edited ${ property } - new[${ parsedValue }] old[${ entry[property] }]`);
@@ -93,44 +94,5 @@ export class ConfigDetailsComponent implements OnInit, OnDestroy {
 
 			this.editEntry$.next(entry);
 		}
-	}
-}
-
-function parseValue(value: any): any {
-	if (isBoolean(value)) {
-		return getBoolean(value);
-	}
-
-	if (isNumeric(value)) {
-		return +value;
-	}
-
-	return value;
-}
-
-
-function isNumeric(value: any): boolean {
-	return !isNaN(parseFloat(value)) && isFinite(value);
-}
-
-function isBoolean(value: any): boolean {
-	if (typeof value === 'boolean') {
-		return true;
-	}
-
-	return value === 'true' || value === 'false';
-}
-
-function getBoolean(value: any) {
-	switch (value) {
-		case true:
-		case 'true':
-		case 1:
-		case '1':
-		case 'on':
-		case 'yes':
-			return true;
-		default:
-			return false;
 	}
 }

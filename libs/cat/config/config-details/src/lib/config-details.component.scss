@@ -42,3 +42,20 @@
 .no-configs, .loading-section {
   height: 100%;
 }
+
+
+.boolean {
+  color: var(--type-boolean-color);
+}
+
+.numeric {
+  color: var(--type-numeric-color);
+}
+
+.string {
+  color: var(--type-string-color);
+}
+
+.url {
+  color: var(--type-url-color);
+}

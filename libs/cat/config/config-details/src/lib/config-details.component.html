@@ -46,12 +46,11 @@
                             <ng-template viewMode>
                                 <div class="edit-value"
                                      catHighlight
+                                     [setTitle]="true"
                                      [searchedWord]="searchText"
                                      [content]="entry.value"
                                      [classToApply]="'search-highlight'"
-                                     [setTitle]="true">
-                                    {{entry.value}}
-                                </div>
+                                     [valueType]="entry.value">{{entry.value}}</div>
                             </ng-template>
                             <ng-template editMode>
                                 <input #editInput
