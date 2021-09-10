@@ -48,11 +48,12 @@ export class EditableComponent implements OnInit {
 
 	private viewModeHandler() {
 		fromEvent(this.element, 'dblclick')
-			.pipe(
-				takeUntil(this.unsubscribe$)
-			)
+			.pipe(takeUntil(this.unsubscribe$))
 			.subscribe(() => {
 				this.mode = 'edit';
+				setTimeout(() => {
+					this.editInput?.nativeElement.focus();
+				}, 20);
 				this.editMode.next(true);
 			});
 	}

@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HttpErrorInterceptor } from './http-error';
+import { HttpErrorInterceptor } from './error/http-error';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -57,7 +57,11 @@ import { HttpErrorInterceptor } from './http-error';
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
-		{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+		{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+		{
+			provide: 'RAT_API_URL',
+			useValue: environment.rat.mock ? 'https://d6d03ebf-d5bc-46cf-ab03-69205269a55e.mock.pstmn.io' : environment.rat.apiUri
+		}
 	],
 	bootstrap: [AppComponent]
 })

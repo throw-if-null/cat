@@ -5,15 +5,15 @@
 	"prefix": "cat",
 	"targets": {
 		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": [
-				"coverage/libs/cat/ui-utils"
-			],
-			"options": {
-				"jestConfig": "libs/cat/ui-utils/jest.config.js",
-				"passWithNoTests": true
-			}
-		},
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/cat/ui-utils"
+          ],
+          "options": {
+            "jestConfig": "libs/cat/ui-utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
 			"options": {

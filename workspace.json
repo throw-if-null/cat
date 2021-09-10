@@ -1,45 +1,50 @@
 {
-	"version": 2,
-	"projects": {
-      "cat-dashboard": "libs/cat/dashboard",
-      "cat-profile": "libs/cat/profile",
-      "cat-project-details": "libs/cat/project-details",
-      "cat-project-list": "libs/cat/project-list",
-      "cat-ui-utils": "libs\\cat\\ui-utils",
-      "client": "apps/client",
-      "client-e2e": "apps/client-e2e",
-      "ui": "libs/ui"
+  "version": 2,
+  "projects": {
+    "cat-config-config-create": "libs/cat/config/config-create",
+    "cat-config-config-data": "libs/cat/config/config-data",
+    "cat-config-config-details": "libs/cat/config/config-details",
+    "cat-dashboard": "libs/cat/dashboard",
+    "cat-profile": "libs/cat/profile",
+    "cat-project-details": "libs/cat/project/project-details",
+    "cat-project-list": "libs/cat/project/project-list",
+    "cat-project-project-create": "libs/cat/project/project-create",
+    "cat-project-project-data": "libs/cat/project/project-data",
+    "cat-ui-utils": "libs/cat/ui-utils",
+    "client": "apps/client",
+    "client-e2e": "apps/client-e2e",
+    "ui": "libs/ui"
+  },
+  "cli": {
+    "analytics": false,
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
     },
-	"cli": {
-		"analytics": false,
-		"defaultCollection": "@nrwl/angular"
-	},
-	"generators": {
-		"@nrwl/angular": {
-			"application": {
-				"linter": "eslint"
-			},
-			"library": {
-				"linter": "eslint"
-			},
-			"storybook-configuration": {
-				"linter": "eslint"
-			}
-		},
-		"@nrwl/angular:application": {
-			"style": "scss",
-			"linter": "eslint",
-			"unitTestRunner": "jest",
-			"e2eTestRunner": "cypress"
-		},
-		"@nrwl/angular:library": {
-			"style": "scss",
-			"linter": "eslint",
-			"unitTestRunner": "jest"
-		},
-		"@nrwl/angular:component": {
-			"style": "scss"
-		}
-	},
-	"defaultProject": "client"
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "client"
 }

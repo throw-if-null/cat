@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UiModule } from '@cat/ui';
+import { ProfileRoutingModule } from './profile-routing.module';
+import { ProfileComponent } from './profile.component';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		RouterModule.forChild([
-			/* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
-		])
-	]
+	declarations: [ProfileComponent],
+	imports: [CommonModule, ProfileRoutingModule, UiModule, ReactiveFormsModule],
+	providers: []
 })
 export class ProfileModule {}
