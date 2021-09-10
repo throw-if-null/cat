@@ -1,0 +1,30 @@
+<div class="projects-actions">
+    <button class="button small" (click)="openCreateDialog()">
+        Create Project
+    </button>
+</div>
+
+<ng-container *subscribe="projects$; let projects;">
+    <div *ngIf="projects && projects.length > 0; else noProjects" class="projects-list">
+        <div *ngFor="let project of projects" class="project">
+            <div class="project__header" [routerLink]="[project.id]">
+                <div class="project__name">{{ project.name }}</div>
+                <div class="project__header__sub">
+                    <cat-project-icon [type]="project.typeId | projectTypeToIcon"></cat-project-icon>
+                    <div class="project__entries">{{project.configs}} configs | {{project.entries}} entries</div>
+                </div>
+            </div>
+
+            <img class="project__graph" src="assets/images/chart.png"/>
+        </div>
+    </div>
+
+    <ng-template #noProjects>No Projects yet!</ng-template>
+</ng-container>
+
+<ng-container *subscribe="loaded$; let loaded">
+    <div *ngIf="!loaded">
+        Loading all projects.
+    </div>
+</ng-container>
+

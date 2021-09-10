@@ -1,0 +1,61 @@
+@import 'variables';
+
+.config-details-container {
+  height: 100%;
+}
+
+
+.table {
+
+  width: 100%;
+  font-size: 12px;
+  text-align: left;
+
+  th {
+    font-weight: bold;
+  }
+
+  th, td {
+    padding: $spacing-primary;
+    border: 1px solid var(--table-border-color);
+    vertical-align: middle;
+  }
+
+  tr {
+    height: 45px;
+
+    .editable {
+      padding: 0 0 0 $spacing-primary;
+
+      .edit-value, .edit-input {
+        padding: $spacing-small;
+      }
+
+      .edit-input {
+        font-family: 'Inconsolata', monospace;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.no-configs, .loading-section {
+  height: 100%;
+}
+
+
+.boolean {
+  color: var(--type-boolean-color);
+}
+
+.numeric {
+  color: var(--type-numeric-color);
+}
+
+.string {
+  color: var(--type-string-color);
+}
+
+.url {
+  color: var(--type-url-color);
+}

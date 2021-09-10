@@ -24,6 +24,12 @@
   --select-background-color-invert: var(--primary-color-invert);
 
   --navbar-background: linear-gradient(0deg, #{$blood-orange} 0, #{$orange} 100%);
+
+
+  --type-boolean-color: #CD853F;
+  --type-numeric-color: #37adff;
+  --type-url-color: #ff4bda;
+
 }
 
 [data-theme="light"] {

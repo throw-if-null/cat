@@ -7,28 +7,24 @@ const routes: Routes = [
 		path: 'dashboard',
 		data: { title: 'Dashboard' },
 		canActivate: [AuthGuard],
-		loadChildren: () =>
-			import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+		loadChildren: () => import('@cat/dashboard').then(m => m.DashboardModule)
 	},
 	{
 		path: 'profile',
 		data: { title: 'Profile' },
 		canActivate: [AuthGuard],
-		loadChildren: () =>
-			import('./pages/profile/profile.module').then(m => m.ProfileModule)
+		loadChildren: () => import('@cat/profile').then(m => m.ProfileModule)
 	},
 	{
 		path: 'projects',
 		data: { title: 'Projects' },
 		canActivate: [AuthGuard],
-		loadChildren: () =>
-			import('./pages/projects/projects.module').then(m => m.ProjectsModule)
+		loadChildren: () => import('@cat/project').then(m => m.ProjectsModule)
 	},
 	{
 		path: 'error',
 		data: { title: 'Error' },
-		loadChildren: () =>
-			import('./pages/error/error.module').then(m => m.ErrorModule)
+		loadChildren: () => import('./error/error.module').then(m => m.ErrorModule)
 	},
 	{
 		path: '',
