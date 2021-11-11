@@ -21,7 +21,10 @@
           "libs/cat/config/config-data/src/**/*.ts",
           "libs/cat/config/config-data/src/**/*.html"
         ]
-      }
+      },
+      "outputs": [
+        "{options.outputFile}"
+      ]
     }
   },
   "tags": []

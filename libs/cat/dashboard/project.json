@@ -21,7 +21,10 @@
           "libs/cat/dashboard/src/**/*.ts",
           "libs/cat/dashboard/src/**/*.html"
         ]
-      }
+      },
+      "outputs": [
+        "{options.outputFile}"
+      ]
     }
   },
   "tags": []

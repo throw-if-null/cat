@@ -74,14 +74,17 @@
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
-			"options": {
-				"lintFilePatterns": [
-					"apps/client/src/**/*.ts",
-					"apps/client/src/**/*.html"
-				]
-			}
-		},
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/client/src/**/*.ts",
+              "apps/client/src/**/*.html"
+            ]
+          },
+          "outputs": [
+            "{options.outputFile}"
+          ]
+        },
 		"test": {
 			"executor": "@nrwl/jest:jest",
 			"outputs": ["coverage/apps/client"],

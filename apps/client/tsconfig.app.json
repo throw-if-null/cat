@@ -1,18 +1,22 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "types": []
-  },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts",
-    "../../libs/cat/project-list/src/index.ts",
-    "../../libs/cat/project-details/src/index.ts",
-    "../../libs/cat/dashboard/src/index.ts",
-    "../../libs/cat/profile/src/index.ts"
-  ]
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc",
+		"types": []
+	},
+	"files": [
+		"src/main.ts",
+		"src/polyfills.ts"
+	],
+	"include": [
+		"src/**/*.d.ts",
+		"../../libs/cat/project-list/src/index.ts",
+		"../../libs/cat/project-details/src/index.ts",
+		"../../libs/cat/dashboard/src/index.ts",
+		"../../libs/cat/profile/src/index.ts"
+	],
+	"exclude": [
+		"**/*.spec.ts",
+		"**/*.test.ts"
+	]
 }

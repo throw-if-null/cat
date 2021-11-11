@@ -21,7 +21,10 @@
           "libs/cat/project/project-details/src/**/*.ts",
           "libs/cat/project/project-details/src/**/*.html"
         ]
-      }
+      },
+      "outputs": [
+        "{options.outputFile}"
+      ]
     }
   },
   "tags": []

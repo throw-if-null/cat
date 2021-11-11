@@ -21,7 +21,10 @@
           "libs/cat/ui-utils/src/**/*.ts",
           "libs/cat/ui-utils/src/**/*.html"
         ]
-      }
+      },
+      "outputs": [
+        "{options.outputFile}"
+      ]
     }
   },
   "tags": []

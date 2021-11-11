@@ -21,7 +21,10 @@
           "libs/cat/project/project-create/src/**/*.ts",
           "libs/cat/project/project-create/src/**/*.html"
         ]
-      }
+      },
+      "outputs": [
+        "{options.outputFile}"
+      ]
     }
   },
   "tags": []
