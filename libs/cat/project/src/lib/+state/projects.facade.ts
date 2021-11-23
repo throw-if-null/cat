@@ -16,14 +16,10 @@ export class ProjectsFacade {
 
 	constructor(private readonly store: Store) {}
 
-	/**
-	 * Use the initialization action to perform one
-	 * or more tasks in your Effects.
-	 */
+
 	init() {
 		this.store.dispatch(ProjectsActions.init());
 	}
-
 
 	loadProject(projectId: number) {
 		this.store.dispatch(ProjectsActions.loadProject({ projectId }));

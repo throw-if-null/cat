@@ -7,13 +7,12 @@ export enum ProjectType {
 	React,
 }
 
-
 export interface ProjectOverview {
 	id: number;
 	name: string;
 	typeId: number;
-	entries: number;
-	configs: number;
+	totalConfigurationCount: number;
+	totalEntryCount: number;
 }
 
 export interface ProjectDetails {

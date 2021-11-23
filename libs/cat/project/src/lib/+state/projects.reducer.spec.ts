@@ -2,19 +2,22 @@ import { Action } from '@ngrx/store';
 
 import * as ProjectsActions from './projects.actions';
 import { ProjectsEntity } from './projects.models';
-import { State, initialState, reducer } from './projects.reducer';
+import { initialState, reducer, State } from './projects.reducer';
 
 describe('Projects Reducer', () => {
-	const createProjectsEntity = (id: string, name = ''): ProjectsEntity => ({
+	const createProjectsEntity = (id: number, name = ''): ProjectsEntity => ({
 		id,
-		name: name || `name-${ id }`
+		name: name || `name-${ id }`,
+		typeId: 0,
+		totalEntryCount: 0,
+		totalConfigurationCount: 0
 	});
 
 	describe('valid Projects actions', () => {
 		it('loadProjectsSuccess should return the list of known Projects', () => {
 			const projects = [
-				createProjectsEntity('PRODUCT-AAA'),
-				createProjectsEntity('PRODUCT-zzz')
+				createProjectsEntity(1),
+				createProjectsEntity(2)
 			];
 			const action = ProjectsActions.loadProjectsSuccess({ projects });
 

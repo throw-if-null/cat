@@ -1,18 +1,29 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Inject } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ConfigurationDetails, ConfigurationEntry } from '@cat/config-data';
 import { Observable } from 'rxjs';
-import { ProjectDetails, ProjectOverview, ProjectCreateResponse, ProjectCreateData, ProjectDeleteResponse } from './project.type';
+import {
+	ProjectCreateData,
+	ProjectCreateResponse,
+	ProjectDeleteResponse,
+	ProjectDetails,
+	ProjectOverview
+} from './project.type';
 
+export interface ProjectsResponse {
+	userId: number;
+	projectStats: ProjectOverview[];
+}
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
 
-	constructor(private http: HttpClient, @Inject('RAT_API_URL') private apiURL: string) {}
+	constructor(private http: HttpClient, @Inject('RAT_API_URL') private apiURL: string) {
+	}
 
-	getProjects(): Observable<ProjectOverview[]> {
+	getProjects(): Observable<ProjectsResponse> {
 		console.log('getProjects');
-		return this.http.get<ProjectOverview[]>(`${ this.apiURL }/projects`);
+		return this.http.get<ProjectsResponse>(`${ this.apiURL }/projects`);
 	}
 
 	getProjectById(projectId: number): Observable<ProjectDetails> {
@@ -45,7 +56,7 @@ export class ProjectService {
 	updateConfigurationEntry(projectId: number, configId: number, entry: ConfigurationEntry): Promise<any> {
 		console.log('updateConfigurationEntry ', entry.id);
 		return this.http.patch<any>(`${ this.apiURL }/projects/${ projectId }/configurations/${ configId }/entry/${ entry.id }`, entry)
-				   .toPromise();
+			.toPromise();
 	}
 
 

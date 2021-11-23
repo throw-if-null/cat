@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ProjectService } from '@cat/project';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import * as ProjectsActions from './projects.actions';
+import { HotToastService } from "@ngneat/hot-toast";
 
 @Injectable()
 export class ProjectsEffects {
@@ -13,9 +14,8 @@ export class ProjectsEffects {
 			ofType(ProjectsActions.init),
 			fetch({
 				run: action => {
-					// Your custom service 'load' logic goes here. For now just return a success action...
 					return this.projectService.getProjects()
-							   .pipe(map((projects) => (ProjectsActions.loadProjectsSuccess({ projects }))));
+						.pipe(map((projectsRes) => (ProjectsActions.loadProjectsSuccess({ projects: projectsRes.projectStats }))));
 				},
 				onError: (action, error) => {
 					console.error('Error', error);
@@ -31,7 +31,7 @@ export class ProjectsEffects {
 			fetch({
 				run: action => {
 					return this.projectService.getProjectById(action.projectId)
-							   .pipe(map((project) => (ProjectsActions.loadProjectSuccess({ project }))));
+						.pipe(map((project) => (ProjectsActions.loadProjectSuccess({ project }))));
 				},
 				onError: (action, error) => {
 					console.error('Error', error);
@@ -47,20 +47,25 @@ export class ProjectsEffects {
 			fetch({
 				run: action => {
 					return this.projectService.createProject(action.project)
-							   .pipe(map((project) => (ProjectsActions.createProjectSuccess({ project }))));
+						.pipe(map((project) => (ProjectsActions.createProjectSuccess({ project }))));
 				},
 				onError: (action, error) => {
 					console.error('Error', error);
+					this.toast.error('Could not create the project');
 					return ProjectsActions.createProjectFailure({ error });
 				}
 			})
 		)
 	);
 
+	createProjectSuccess$ = createEffect(
+		() => this.actions$.pipe(
+			ofType(ProjectsActions.createProjectSuccess),
+			tap(({ project }) => this.toast.success(`Yeah! Project - ${ project.name } - created`))
+		),
+		{ dispatch: false }
+	);
 
-// .then(res => {
-// 	this.toast.success(`Yeah! Project - ${ res.name } - created successfully.`);
-// });
-
-	constructor(private readonly actions$: Actions, private projectService: ProjectService) {}
+	constructor(private readonly actions$: Actions, private toast: HotToastService, private projectService: ProjectService) {
+	}
 }

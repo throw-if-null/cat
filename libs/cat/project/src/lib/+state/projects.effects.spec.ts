@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 
 import * as ProjectsActions from './projects.actions';
 import { ProjectsEffects } from './projects.effects';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { MockProjectService, ProjectService, testProject1 } from "@cat/project";
 
 describe('ProjectsEffects', () => {
 	let actions: Observable<Action>;
@@ -15,11 +17,12 @@ describe('ProjectsEffects', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [NxModule.forRoot()],
+			imports: [ HttpClientTestingModule, NxModule.forRoot() ],
 			providers: [
 				ProjectsEffects,
 				provideMockActions(() => actions),
-				provideMockStore()
+				provideMockStore(),
+				{ provide: ProjectService, useClass: MockProjectService }
 			]
 		});
 
@@ -31,7 +34,7 @@ describe('ProjectsEffects', () => {
 			actions = hot('-a-|', { a: ProjectsActions.init() });
 
 			const expected = hot('-a-|', {
-				a: ProjectsActions.loadProjectsSuccess({ projects: [] })
+				a: ProjectsActions.loadProjectsSuccess({ projects: [ testProject1 ] })
 			});
 
 			expect(effects.init$).toBeObservable(expected);

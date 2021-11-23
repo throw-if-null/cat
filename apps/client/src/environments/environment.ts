@@ -27,7 +27,7 @@ export const environment = {
     }
   },
   rat: {
-    mock: true,
+    mock: false,
     apiUri: '/api'
   }
 };

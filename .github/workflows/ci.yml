@@ -37,8 +37,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Unit Test
-        run: npm run test
+      - name: Affected Tests
+        run: npm run affected:test
 
       - name: E2E Test
         continue-on-error: true

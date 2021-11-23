@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ProjectCreateData, ProjectDetails, ProjectCreateResponse } from '../project.type';
-import { ProjectsEntity } from './projects.models';
+import { ProjectCreateData, ProjectCreateResponse, ProjectDetails, ProjectOverview } from '../project.type';
 
 export const init = createAction('[Projects Page] Init');
 
@@ -8,7 +7,7 @@ export const init = createAction('[Projects Page] Init');
 
 export const loadProjectsSuccess = createAction(
 	'[Projects/API] Load Projects Success',
-	props<{ projects: ProjectsEntity[] }>()
+	props<{ projects: ProjectOverview[] }>()
 );
 
 export const loadProjectsFailure = createAction(

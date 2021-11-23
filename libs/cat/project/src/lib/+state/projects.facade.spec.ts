@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { NxModule } from '@nrwl/angular';
 import { readFirst } from '@nrwl/angular/testing';
 
@@ -9,7 +9,8 @@ import * as ProjectsActions from './projects.actions';
 import { ProjectsEffects } from './projects.effects';
 import { ProjectsFacade } from './projects.facade';
 import { ProjectsEntity } from './projects.models';
-import { PROJECTS_FEATURE_KEY, State, reducer } from './projects.reducer';
+import { PROJECTS_FEATURE_KEY, reducer, State } from './projects.reducer';
+import { MockProjectService, ProjectService } from "@cat/project";
 
 interface TestSchema {
 	projects: State;
@@ -18,9 +19,12 @@ interface TestSchema {
 describe('ProjectsFacade', () => {
 	let facade: ProjectsFacade;
 	let store: Store<TestSchema>;
-	const createProjectsEntity = (id: string, name = ''): ProjectsEntity => ({
+	const createProjectsEntity = (id: number, name = ''): ProjectsEntity => ({
 		id,
-		name: name || `name-${ id }`
+		name: name || `name-${ id }`,
+		typeId: 0,
+		totalEntryCount: 0,
+		totalConfigurationCount: 0
 	});
 
 	describe('used in NgModule', () => {
@@ -28,11 +32,15 @@ describe('ProjectsFacade', () => {
 			@NgModule({
 				imports: [
 					StoreModule.forFeature(PROJECTS_FEATURE_KEY, reducer),
-					EffectsModule.forFeature([ProjectsEffects])
+					EffectsModule.forFeature([ ProjectsEffects ]),
 				],
-				providers: [ProjectsFacade]
+				providers: [
+					ProjectsFacade,
+					{ provide: ProjectService, useClass: MockProjectService }
+				]
 			})
-			class CustomFeatureModule {}
+			class CustomFeatureModule {
+			}
 
 			@NgModule({
 				imports: [
@@ -42,9 +50,10 @@ describe('ProjectsFacade', () => {
 					CustomFeatureModule
 				]
 			})
-			class RootModule {}
+			class RootModule {
+			}
 
-			TestBed.configureTestingModule({ imports: [RootModule] });
+			TestBed.configureTestingModule({ imports: [ RootModule ] });
 
 			store = TestBed.inject(Store);
 			facade = TestBed.inject(ProjectsFacade);
@@ -65,7 +74,7 @@ describe('ProjectsFacade', () => {
 			list = await readFirst(facade.allProjects$);
 			isLoaded = await readFirst(facade.loaded$);
 
-			expect(list.length).toBe(0);
+			expect(list.length).toBe(1);
 			expect(isLoaded).toBe(true);
 		});
 
@@ -81,7 +90,7 @@ describe('ProjectsFacade', () => {
 
 			store.dispatch(
 				ProjectsActions.loadProjectsSuccess({
-					projects: [createProjectsEntity('AAA'), createProjectsEntity('BBB')]
+					projects: [ createProjectsEntity(1), createProjectsEntity(2) ]
 				})
 			);
 

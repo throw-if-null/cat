@@ -1,15 +1,17 @@
 import { ProjectsEntity } from './projects.models';
-import { projectsAdapter, ProjectsPartialState, initialState } from './projects.reducer';
+import { initialState, projectsAdapter, ProjectsPartialState } from './projects.reducer';
 import * as ProjectsSelectors from './projects.selectors';
 
 describe('Projects Selectors', () => {
 	const ERROR_MSG = 'No Error Available';
 	const getProjectsId = (it: ProjectsEntity) => it.id;
-	const createProjectsEntity = (id: string, name = '') =>
-		({
-			id,
-			name: name || `name-${ id }`
-		} as ProjectsEntity);
+	const createProjectsEntity = (id: number, name = ''): ProjectsEntity => ({
+		id,
+		name: name || `name-${ id }`,
+		typeId: 0,
+		totalEntryCount: 0,
+		totalConfigurationCount: 0
+	});
 
 	let state: ProjectsPartialState;
 
@@ -17,13 +19,13 @@ describe('Projects Selectors', () => {
 		state = {
 			projects: projectsAdapter.setAll(
 				[
-					createProjectsEntity('PRODUCT-AAA'),
-					createProjectsEntity('PRODUCT-BBB'),
-					createProjectsEntity('PRODUCT-CCC')
+					createProjectsEntity(1),
+					createProjectsEntity(2),
+					createProjectsEntity(3)
 				],
 				{
 					...initialState,
-					selectedId: 'PRODUCT-BBB',
+					selectedId: 2,
 					error: ERROR_MSG,
 					loaded: true
 				}
@@ -37,7 +39,7 @@ describe('Projects Selectors', () => {
 			const selId = getProjectsId(results[1]);
 
 			expect(results.length).toBe(3);
-			expect(selId).toBe('PRODUCT-BBB');
+			expect(selId).toBe(2);
 		});
 
 
