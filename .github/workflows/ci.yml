@@ -69,19 +69,19 @@ jobs:
         id: set-unique-docker-image-tag
         run: echo "DOCKER_TAG=$(echo $GITHUB_RUN_ID)" >> $GITHUB_ENV
 
-      - name: Build Docker image
-        id: docker-build-publish
-        uses: elgohr/Publish-Docker-Github-Action@3.04
-        with:
-          name: throwifnull/${{ env.DOCKER_REPOSITORY }}
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          context: .
-          tags: "${{ env.DOCKER_TAG }},${{env.DEFAULT_DOCKER_IMAGE_TAG}}"
+      #- name: Build Docker image
+      #  id: docker-build-publish
+      #  uses: elgohr/Publish-Docker-Github-Action@3.04
+      #  with:
+      #    name: throwifnull/${{ env.DOCKER_REPOSITORY }}
+      #    username: ${{ secrets.DOCKER_USERNAME }}
+      #    password: ${{ secrets.DOCKER_PASSWORD }}
+      #    context: .
+      #    tags: "${{ env.DOCKER_TAG }},${{env.DEFAULT_DOCKER_IMAGE_TAG}}"
 
-      - name: Print published docker image tags
-        id: print-docker-image-tags
-        run: |
-          echo "Published Docker tags:"
-          echo $DEFAULT_DOCKER_IMAGE_TAG
-          echo $DOCKER_TAG
+      #- name: Print published docker image tags
+      #  id: print-docker-image-tags
+      #  run: |
+      #    echo "Published Docker tags:"
+      #    echo $DEFAULT_DOCKER_IMAGE_TAG
+      #    echo $DOCKER_TAG
