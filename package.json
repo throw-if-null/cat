@@ -30,7 +30,9 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down --remove-orphans"
+    "docker:down": "docker-compose down --remove-orphans",
+    "docker:build": "docker build -t cat .",
+    "docker:cat:run": "docker run cat:latest"
   },
   "private": true,
   "dependencies": {

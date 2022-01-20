@@ -5,11 +5,9 @@ RUN mkdir -p /app
 
 WORKDIR /app
 
-COPY package.json /app
+COPY . /app
 
 RUN npm ci --include dev
-
-COPY . /app
 
 RUN npm run build
 
