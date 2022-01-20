@@ -1,17 +1,18 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ColorThemeService, THEME_ATTRIBUTE } from '@cat/ui';
 import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
+import { UserFacade } from "@cat/user";
 
 @Component({
 	selector: 'cat-root',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+	styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent implements OnInit, OnDestroy {
 	title = '';
+	user$;
 
 	private unsubscribe$ = new Subject();
 
@@ -19,9 +20,11 @@ export class AppComponent implements OnInit, OnDestroy {
 		private router: Router,
 		private route: ActivatedRoute,
 		private renderer: Renderer2,
-		public auth: AuthService,
+		private userFacade: UserFacade,
 		private themeService: ColorThemeService
 	) {
+
+		this.user$ = this.userFacade.user$;
 
 		this.themeService.theme$
 			.pipe(takeUntil(this.unsubscribe$))
@@ -55,6 +58,6 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	logout() {
-		this.auth.logout();
+		this.userFacade.logout();
 	}
 }

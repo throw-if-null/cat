@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AuthHttpInterceptor, AuthModule as Auth0Module } from '@auth0/auth0-angular';
 import { UiModule } from '@cat/ui';
 import { DialogModule } from '@ngneat/dialog';
-import { TippyModule, tooltipVariation, popperVariation } from '@ngneat/helipopper';
+import { popperVariation, TippyModule, tooltipVariation } from '@ngneat/helipopper';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HttpErrorInterceptor } from './error/http-error';
+import { UserModule } from "@cat/user";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -41,6 +42,7 @@ import { HttpErrorInterceptor } from './error/http-error';
 			}
 		}),
 		UiModule,
+		UserModule,
 		StoreModule.forRoot(
 			{},
 			{
