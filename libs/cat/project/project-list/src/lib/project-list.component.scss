@@ -1,4 +1,5 @@
-@import "variables";
+@use "sass:math";
+@import 'libs/ui/src/lib/styles/variables';
 
 .projects-actions {
   display: flex;
@@ -27,7 +28,7 @@
       justify-content: space-between;
       align-items: center;
 
-      margin: $spacing-primary / 2 0;
+      margin: math.div($spacing-primary, 2) 0;
       font-size: 12px;
     }
   }

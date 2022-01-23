@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $white: rgb(255, 255, 255);
 $light: #dadada;
 $black: #000000;
@@ -8,7 +10,8 @@ $lime: #00ff4c;
 $green: #32CD32;
 
 $spacing-primary: 1rem;
-$spacing-small: $spacing-primary / 3;
+$spacing-medium: math.div($spacing-primary, 2);
+$spacing-small: math.div($spacing-primary, 3);
 
 $color-primary: $deep-blue;
 $color-primary-invert: #dadada;
