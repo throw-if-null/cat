@@ -1,0 +1,50 @@
+:host {
+  --node-width: 200px;
+  --node-height: 75px;
+
+  --connector-radius: 15px;
+}
+
+.node {
+  width: var(--node-width);
+  height: var(--node-height);
+  background-color: #aeaeae;
+  border-radius: 5px;
+  border: 1px solid black;
+  position: relative;
+  display: flex;
+
+  cursor: move;
+
+  &:hover {
+    .node__connector {
+      display: block;
+    }
+  }
+
+  &.incoming {
+    .in {
+      display: block;
+    }
+  }
+
+  &__connector {
+    position: absolute;
+    top: 50%;
+    width: var(--connector-radius);
+    height: var(--connector-radius);
+    transform: translateY(-50%);
+
+    display: none;
+    border-radius: 50%;
+    background: blue;
+
+    &.in {
+      left: calc(var(--connector-radius) / -2);
+    }
+
+    &.out {
+      right: calc(var(--connector-radius) / -2);
+    }
+  }
+}

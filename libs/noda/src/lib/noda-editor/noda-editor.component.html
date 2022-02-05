@@ -1,0 +1,9 @@
+<!--<svg class="node-connections"></svg>-->
+
+
+<noda-node (mousedown)="nodeMouseDown($event, node.id)" *ngFor="let node of nodes"
+           [incoming]="node.hasConnectionIn"
+           [style.left.px]="node.x"
+           [style.top.px]="node.y"
+           class="node">
+</noda-node>
