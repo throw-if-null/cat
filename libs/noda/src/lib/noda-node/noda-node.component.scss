@@ -15,6 +15,7 @@
   display: flex;
 
   cursor: move;
+  user-select: none;
 
   &:hover {
     .node__connector {
@@ -28,6 +29,12 @@
     }
   }
 
+  &.outgoing {
+    .out {
+      display: block;
+    }
+  }
+
   &__connector {
     position: absolute;
     top: 50%;
@@ -37,7 +44,7 @@
 
     display: none;
     border-radius: 50%;
-    background: blue;
+    background: var(--noda-node-connector-color);
 
     &.in {
       left: calc(var(--connector-radius) / -2);

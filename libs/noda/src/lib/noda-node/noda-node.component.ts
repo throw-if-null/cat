@@ -1,21 +1,29 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'noda-node',
-  templateUrl: './noda-node.component.html',
-  styleUrls: [ './noda-node.component.scss' ]
+	selector: 'noda-node',
+	templateUrl: './noda-node.component.html',
+	styleUrls: [ './noda-node.component.scss' ]
 })
 export class NodaNodeComponent implements OnInit {
 
-  @Input() incoming: boolean = false;
-  @Input() outgoing: boolean = false;
+	@Input() incoming: boolean = false;
+	@Input() outgoing: boolean = false;
 
-  @Output() detach: EventEmitter<boolean> = new EventEmitter();
+	@Output() detach: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() {
-  }
+	constructor() {
+	}
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
 
+
+	connectInput() {
+		console.log('in');
+	}
+
+	connectOutput() {
+		console.log('out');
+	}
 }

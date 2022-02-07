@@ -1,5 +1,5 @@
-<div [class.incoming]="incoming" class="node">
-    Title
-    <div class="node__connector in"></div>
-    <div class="node__connector out"></div>
+<div [class.incoming]="incoming" [class.outgoing]="outgoing" class="node">
+    <ng-content></ng-content>
+    <div (click)="connectInput();" class="node__connector in"></div>
+    <div (click)="connectOutput();" class="node__connector out"></div>
 </div>
