@@ -3,9 +3,13 @@
 $white: rgb(255, 255, 255);
 $light: #dadada;
 $black: #000000;
+$dark: #010409;
 $deep-blue: #020122;
+$blue: #37adff;
 $orange: #FF521B;
+$gold: #CD853F;
 $blood-orange: #ed2d18;
+$pink: #ff4bda;
 $lime: #00ff4c;
 $green: #32CD32;
 
@@ -16,15 +20,18 @@ $spacing-small: math.div($spacing-primary, 3);
 $color-primary: $deep-blue;
 $color-primary-invert: #dadada;
 
+$color-numeric: $blue;
+$color-bool: $gold;
+$color-url: $pink;
 
 $border-radius: 5px;
 
 :root {
-  --color-white: #{$white};
-  --color-light: #{$light};
-  --color-black: #{$black};
-  --color-deep-blue: #{$deep-blue};
-  --color-orange: #{$orange};
-  --color-blood-orange: #{$blood-orange};
-  --color-lime: #{$lime};
+	--color-white: #{$white};
+	--color-light: #{$light};
+	--color-black: #{$black};
+	--color-deep-blue: #{$deep-blue};
+	--color-orange: #{$orange};
+	--color-blood-orange: #{$blood-orange};
+	--color-lime: #{$lime};
 }

@@ -34,7 +34,7 @@
 		"docker:up": "docker-compose up -d",
 		"docker:down": "docker-compose down --remove-orphans",
 		"docker:build": "docker build -t cat .",
-		"docker:cat:run": "docker run cat:latest"
+		"docker:cat:run": "docker run -p 4200:80 cat:latest"
 	},
 	"private": true,
 	"dependencies": {

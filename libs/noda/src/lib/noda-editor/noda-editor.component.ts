@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 
 // https://www.npmjs.com/package/leader-line
 // https://rete.js.org/#/
@@ -6,6 +6,11 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild }
 
 type SVGHTMLElement = HTMLElement & SVGElement;
 
+export interface NodaNodeData {
+	id: number;
+	name: string;
+	connections?: number[];
+}
 
 @Component({
 	selector: 'noda-editor',
@@ -13,6 +18,8 @@ type SVGHTMLElement = HTMLElement & SVGElement;
 	styleUrls: [ './noda-editor.component.scss' ]
 })
 export class NodaEditorComponent implements OnInit, AfterViewInit {
+
+	@Input() source: NodaNodeData[] = [];
 
 	@ViewChild('svg') containerSVG!: SVGHTMLElement;
 	nodes: Node[] = [];
@@ -24,15 +31,7 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 	private shiftY: number = 0;
 
 	constructor(private elRef: ElementRef) {
-		const node1 = new Node();
-		node1.setPosition(30, 30);
-		const node2 = new Node();
-		node2.setPosition(450, 150);
 
-		this.nodes.push(node1);
-		this.nodes.push(node2);
-
-		this.connections.push(new NodaNodeConnection(node1, node2));
 	}
 
 	@HostListener('mousemove', [ '$event' ])
@@ -59,7 +58,32 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 	}
 
 	ngOnInit(): void {
+		let initialX = 20;
 
+		// init all nodes
+		for (let node of this.source) {
+			const node1 = new Node(node.id);
+			node1.setPosition(initialX, 30);
+			initialX += 220;
+
+			this.nodes.push(node1);
+		}
+
+		// init all connections
+		for (let node of this.source) {
+			if (node.connections && node.connections.length > 0) {
+				node.connections.forEach(nodeId => {
+					const connectedNode = this.getNodeById(nodeId);
+					const nodaNode = this.getNodeById(node.id);
+
+					if (!connectedNode || !nodaNode) {
+						throw new Error('Could not create connection because node was not found');
+					}
+
+					this.connections.push(new NodaNodeConnection(nodaNode, connectedNode));
+				});
+			}
+		}
 	}
 
 	ngAfterViewInit(): void {
@@ -88,9 +112,11 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 			console.log('Create new connection');
 		}
 	}
-}
 
-let globalNodeId = 1;
+	private getNodeById(nodeId: number): Node | undefined {
+		return this.nodes.find(node => node.id === nodeId);
+	}
+}
 
 class Node {
 	id: number;
@@ -102,8 +128,8 @@ class Node {
 	height = 75;
 	width = 200;
 
-	constructor() {
-		this.id = globalNodeId++;
+	constructor(id: number) {
+		this.id = id;
 	}
 
 	setPosition(x: number, y: number) {

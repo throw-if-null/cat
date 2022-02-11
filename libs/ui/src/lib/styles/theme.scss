@@ -26,13 +26,14 @@
   --navbar-background: linear-gradient(0deg, #{$blood-orange} 0, #{$orange} 100%);
 
 
-  --type-boolean-color: #CD853F;
-  --type-numeric-color: #37adff;
-  --type-url-color: #ff4bda;
+  --type-boolean-color: $color-bool;
+  --type-numeric-color: $color-numeric;
+  --type-url-color: $color-url;
 
   // NODA Editor
+  --noda-node-border: var(--border-color);
   --noda-connection-color: #cfcfcf;
-  --noda-node-connector-color: blue;
+  --noda-connector-color: $blue;
 }
 
 [data-theme="light"] {

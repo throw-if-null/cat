@@ -1,57 +1,55 @@
-:host {
-  --node-width: 200px;
-  --node-height: 75px;
-
-  --connector-radius: 15px;
-}
+$connector-radius: var(--noda-connector-radius, 15px);
 
 .node {
-  width: var(--node-width);
-  height: var(--node-height);
-  background-color: #aeaeae;
-  border-radius: 5px;
-  border: 1px solid black;
-  position: relative;
-  display: flex;
+	width: var(--noda-node-width, 200px);
+	height: var(--noda-node-height, 75px);
+	background-color: var(--noda-node-background, transparentize(white, 0.9));
+	border-radius: 5px;
+	border: 1px solid var(--noda-node-border, red);
+	position: relative;
+	display: flex;
 
-  cursor: move;
-  user-select: none;
+	cursor: move;
+	user-select: none;
 
-  &:hover {
-    .node__connector {
-      display: block;
-    }
-  }
+	&:hover {
+		.node__connector {
+			display: block;
+		}
+	}
 
-  &.incoming {
-    .in {
-      display: block;
-    }
-  }
+	&.incoming {
+		.in {
+			display: block;
+		}
+	}
 
-  &.outgoing {
-    .out {
+	&.outgoing {
+		.out {
       display: block;
     }
   }
 
   &__connector {
-    position: absolute;
-    top: 50%;
-    width: var(--connector-radius);
-    height: var(--connector-radius);
-    transform: translateY(-50%);
+	  position: absolute;
+	  top: 50%;
+	  width: $connector-radius;
+	  height: $connector-radius;
+	  transform: translateY(-50%);
 
-    display: none;
-    border-radius: 50%;
-    background: var(--noda-node-connector-color);
+	  display: none;
+	  box-sizing: border-box;
+	  border-radius: 50%;
+	  background: var(--noda-connector-color, transparent);
+	  border: 1px solid var(--noda-connector-border, white);
 
-    &.in {
-      left: calc(var(--connector-radius) / -2);
-    }
+	  &.in {
+		  left: calc(#{$connector-radius} / -2);
+	  }
 
-    &.out {
-      right: calc(var(--connector-radius) / -2);
-    }
+	  &.out {
+		  cursor: pointer;
+		  right: calc(#{$connector-radius} / -2);
+	  }
   }
 }
