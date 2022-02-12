@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NodaNodeData } from "@ratcat/noda";
+import { NodaConnectionChange, NodaNodeData } from "@ratcat/noda";
 
 @Component({
 	selector: 'cat-dashboard',
@@ -11,15 +11,20 @@ export class DashboardComponent {
 		{
 			id: 1,
 			name: 'Sandbox',
+			parent: 3
 		},
 		{
 			id: 2,
-			name: 'Production'
+			name: 'Production',
+			parent: 1
 		},
 		{
 			id: 3,
 			name: 'Default',
-			connections: [ 1, 2 ]
 		}
 	];
+
+	configConnectionChanged($event: NodaConnectionChange) {
+
+	}
 }

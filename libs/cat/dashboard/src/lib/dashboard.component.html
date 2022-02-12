@@ -1,3 +1,3 @@
 <p>Dashboardos!</p>
 
-<noda-editor [source]="nodes"></noda-editor>
+<noda-editor (connectionChange)="configConnectionChanged($event)" [source]="nodes"></noda-editor>

@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import {
+	AfterViewInit,
+	Component,
+	ElementRef,
+	EventEmitter,
+	HostListener,
+	Input,
+	OnInit,
+	Output,
+	ViewChild
+} from '@angular/core';
 
 // https://www.npmjs.com/package/leader-line
 // https://rete.js.org/#/
@@ -9,7 +19,15 @@ type SVGHTMLElement = HTMLElement & SVGElement;
 export interface NodaNodeData {
 	id: number;
 	name: string;
-	connections?: number[];
+	parent?: number;
+}
+
+export interface NodaConnection {
+	nodeIds: number[];
+}
+
+export interface NodaConnectionChange {
+	connections: NodaConnection[];
 }
 
 @Component({
@@ -20,6 +38,7 @@ export interface NodaNodeData {
 export class NodaEditorComponent implements OnInit, AfterViewInit {
 
 	@Input() source: NodaNodeData[] = [];
+	@Output() connectionChange = new EventEmitter<NodaConnectionChange>();
 
 	@ViewChild('svg') containerSVG!: SVGHTMLElement;
 	nodes: Node[] = [];
@@ -71,17 +90,16 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 
 		// init all connections
 		for (let node of this.source) {
-			if (node.connections && node.connections.length > 0) {
-				node.connections.forEach(nodeId => {
-					const connectedNode = this.getNodeById(nodeId);
-					const nodaNode = this.getNodeById(node.id);
+			if (node.parent) {
+				const parentNode = this.getNodeById(node.parent);
+				const childNode = this.getNodeById(node.id);
 
-					if (!connectedNode || !nodaNode) {
-						throw new Error('Could not create connection because node was not found');
-					}
+				if (!parentNode || !childNode) {
+					throw new Error('Could not create connection because node was not found');
+				}
 
-					this.connections.push(new NodaNodeConnection(nodaNode, connectedNode));
-				});
+				this.connections.push(new NodaNodeConnection(parentNode, childNode));
+
 			}
 		}
 	}
