@@ -28,6 +28,7 @@ export interface NodaConnection {
 
 export interface NodaConnectionChange {
 	connections: NodaConnection[];
+	nodes: Node[];
 }
 
 @Component({
@@ -81,11 +82,11 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 
 		// init all nodes
 		for (let node of this.source) {
-			const node1 = new Node(node.id);
-			node1.setPosition(initialX, 30);
+			const tmpNode = new Node(node.id);
+			tmpNode.setPosition(initialX, 30);
 			initialX += 220;
 
-			this.nodes.push(node1);
+			this.nodes.push(tmpNode);
 		}
 
 		// init all connections
@@ -93,13 +94,7 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 			if (node.parent) {
 				const parentNode = this.getNodeById(node.parent);
 				const childNode = this.getNodeById(node.id);
-
-				if (!parentNode || !childNode) {
-					throw new Error('Could not create connection because node was not found');
-				}
-
 				this.connections.push(new NodaNodeConnection(parentNode, childNode));
-
 			}
 		}
 	}
@@ -114,25 +109,34 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 		this.shiftX = $event.clientX + left - target.getBoundingClientRect().left;
 		this.shiftY = $event.clientY + top - target.getBoundingClientRect().top;
 
+		const selectedNode = this.getNodeById(nodeId);
+
 		// move node or mouse connection
 		if (target.classList.contains('node')) {
 			console.log('selected node');
-			this.selectedNode = this.nodes.find(node => node.id === nodeId)!;
+			this.selectedNode = selectedNode;
 		} else if (target.classList.contains('node__connector') && target.classList.contains('out')) {
 			console.log('selected connector');
-			const selectedNode = this.nodes.find(node => node.id === nodeId)!;
 			this.mouseConnection = new NodaMouseConnection(selectedNode);
 		}
 	}
 
 	nodeMouseUp($event: MouseEvent, nodeId: number) {
 		if (this.mouseConnection && this.mouseConnection.getNodeId() !== nodeId) {
-			console.log('Create new connection');
+			console.log('Create new connection to ', nodeId);
+			// create new dropped connection
+			const targetNode = this.getNodeById(nodeId);
+			this.connections.push(new NodaNodeConnection(this.mouseConnection.getNode(), targetNode));
+			this.connectionChange.emit({ connections: this.connections, nodes: this.nodes });
 		}
 	}
 
-	private getNodeById(nodeId: number): Node | undefined {
-		return this.nodes.find(node => node.id === nodeId);
+	private getNodeById(nodeId: number): Node {
+		const node = this.nodes.find(node => node.id === nodeId);
+		if (!node) {
+			throw new Error('Could not find node ' + nodeId);
+		}
+		return node;
 	}
 }
 
@@ -174,6 +178,10 @@ class NodaMouseConnection {
 
 	getNodeId(): number {
 		return this.parent.id;
+	}
+
+	getNode(): Node {
+		return this.parent;
 	}
 
 	setPath(endPoint: DataPoint): void {

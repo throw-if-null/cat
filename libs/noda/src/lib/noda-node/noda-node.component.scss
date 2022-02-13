@@ -3,7 +3,7 @@ $connector-radius: var(--noda-connector-radius, 15px);
 .node {
 	width: var(--noda-node-width, 200px);
 	height: var(--noda-node-height, 75px);
-	background-color: var(--noda-node-background, transparentize(white, 0.9));
+	background-color: var(--noda-node-background, transparent);
 	border-radius: 5px;
 	border: 1px solid var(--noda-node-border, red);
 	position: relative;

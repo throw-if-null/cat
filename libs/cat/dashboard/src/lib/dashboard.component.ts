@@ -11,12 +11,10 @@ export class DashboardComponent {
 		{
 			id: 1,
 			name: 'Sandbox',
-			parent: 3
 		},
 		{
 			id: 2,
 			name: 'Production',
-			parent: 1
 		},
 		{
 			id: 3,
@@ -25,6 +23,6 @@ export class DashboardComponent {
 	];
 
 	configConnectionChanged($event: NodaConnectionChange) {
-
+		console.log($event);
 	}
 }
