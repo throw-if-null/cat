@@ -39,7 +39,7 @@ jobs:
         run: npm run lint
 
       - name: Affected Tests
-        run: npm run affected:test -- --base=origin/master --head=HEAD
+        run: npm run affected:test
 
       - name: E2E Test
         continue-on-error: true

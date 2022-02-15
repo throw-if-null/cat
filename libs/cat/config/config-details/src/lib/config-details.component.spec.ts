@@ -1,9 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ProjectService, MockProjectService } from '@cat/project';
+import { MockProjectService, ProjectService } from '@cat/project';
 
-import { ConfigDetailsComponent } from './config-details.component';
+import { ConfigDetailsComponent } from '@cat/config-details';
 
 describe('ConfigDetailsComponent', () => {
 	let component: ConfigDetailsComponent;
@@ -11,10 +11,10 @@ describe('ConfigDetailsComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [RouterTestingModule],
-			declarations: [ConfigDetailsComponent],
-			providers: [{ provide: ProjectService, useClass: MockProjectService }],
-			schemas: [NO_ERRORS_SCHEMA],
+			imports: [ RouterTestingModule ],
+			declarations: [ ConfigDetailsComponent ],
+			providers: [ { provide: ProjectService, useClass: MockProjectService } ],
+			schemas: [ NO_ERRORS_SCHEMA ],
 		}).compileComponents();
 	});
 
