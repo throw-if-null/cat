@@ -17,6 +17,9 @@ jobs:
 
       - name: Git Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
@@ -36,7 +39,7 @@ jobs:
         run: npm run lint
 
       - name: Affected Tests
-        run: npm run affected:test --base=origin/master --head=HEAD
+        run: npm run affected:test -- --base=origin/master --head=HEAD
 
       - name: E2E Test
         continue-on-error: true
