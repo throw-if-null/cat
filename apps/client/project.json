@@ -30,9 +30,9 @@
 							"maximumError": "1mb"
 						},
 						{
-						  "type": "anyComponentStyle",
-						  "maximumWarning": "5kb",
-						  "maximumError": "10kb"
+							"type": "anyComponentStyle",
+							"maximumWarning": "5kb",
+							"maximumError": "10kb"
 						}
 					],
 					"fileReplacements": [
@@ -61,40 +61,40 @@
 					"browserTarget": "client:build:production"
 				},
 				"development": {
-				  "browserTarget": "client:build:development",
-				  "proxyConfig": "apps/client/src/proxy.conf.json"
+					"browserTarget": "client:build:development",
+					"proxyConfig": "apps/client/src/proxy.conf.json"
 				}
 			},
-		  "defaultConfiguration": "development"
+			"defaultConfiguration": "development"
 		},
-	  "extract-i18n": {
-		"executor": "@angular-devkit/build-angular:extract-i18n",
-		"options": {
-		  "browserTarget": "client:build"
-		}
-	  },
-	  "lint": {
-		"executor": "@nrwl/linter:eslint",
-		"options": {
-		  "lintFilePatterns": [
-			"apps/client/src/**/*.ts",
-			"apps/client/src/**/*.html"
-		  ]
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"browserTarget": "client:build"
+			}
 		},
-		"outputs": [
-		  "{options.outputFile}"
-		]
-	  },
-	  "test": {
-		"executor": "@nrwl/jest:jest",
-		"outputs": [
-		  "coverage/apps/client"
-		],
-		"options": {
-		  "jestConfig": "apps/client/jest.config.js",
-		  "passWithNoTests": true
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"apps/client/src/**/*.ts",
+					"apps/client/src/**/*.html"
+				]
+			},
+			"outputs": [
+				"{options.outputFile}"
+			]
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": [
+				"coverage/apps/client"
+			],
+			"options": {
+				"jestConfig": "apps/client/jest.config.js",
+				"passWithNoTests": true
+			}
 		}
-	  }
 	},
 	"tags": []
 }

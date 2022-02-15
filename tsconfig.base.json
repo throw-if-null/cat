@@ -8,52 +8,61 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"importHelpers": true,
-		"target": "es2015",
-		"module": "esnext",
-		"lib": ["es2017", "dom"],
+		"target": "es2020",
+		"module": "es2020",
+		"lib": [
+			"es2017",
+			"dom"
+		],
 		"skipLibCheck": true,
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-		  "@cat/config-create": [
-			"libs/cat/config/config-create/src/index.ts"
-		  ],
-		  "@cat/config-data": [
-			"libs/cat/config/config-data/src/index.ts"
-		  ],
-		  "@cat/config-details": [
-			"libs/cat/config/config-details/src/index.ts"
-		  ],
-		  "@cat/dashboard": [
-			"libs/cat/dashboard/src/index.ts"
-		  ],
-		  "@cat/profile": [
-			"libs/cat/profile/src/index.ts"
-		  ],
-		  "@cat/project": [
-			"libs/cat/project/src/index.ts"
-		  ],
-		  "@cat/project-create": [
-			"libs/cat/project/project-create/src/index.ts"
-		  ],
-		  "@cat/project-details": [
-			"libs/cat/project/project-details/src/index.ts"
-		  ],
-		  "@cat/project-list": [
-			"libs/cat/project/project-list/src/index.ts"
-		  ],
-		  "@cat/ui": [
-			"libs/ui/src/index.ts"
-		  ],
-		  "@cat/ui-utils": [
-			"libs/cat/ui-utils/src/index.ts"
-		  ],
-		  "@cat/user": [
-			"libs/cat/user/src/index.ts"
-		  ],
-		  "@cat/utils": [
-			"libs/cat/utils/src/index.ts"
-		  ]
+			"@cat/cat/config-relations": [
+				"libs/cat/config/config-relations/src/index.ts"
+			],
+			"@cat/config-create": [
+				"libs/cat/config/config-create/src/index.ts"
+			],
+			"@cat/config-data": [
+				"libs/cat/config/config-data/src/index.ts"
+			],
+			"@cat/config-details": [
+				"libs/cat/config/config-details/src/index.ts"
+			],
+			"@cat/dashboard": [
+				"libs/cat/dashboard/src/index.ts"
+			],
+			"@cat/profile": [
+				"libs/cat/profile/src/index.ts"
+			],
+			"@cat/project": [
+				"libs/cat/project/src/index.ts"
+			],
+			"@cat/project-create": [
+				"libs/cat/project/project-create/src/index.ts"
+			],
+			"@cat/project-details": [
+				"libs/cat/project/project-details/src/index.ts"
+			],
+			"@cat/project-list": [
+				"libs/cat/project/project-list/src/index.ts"
+			],
+			"@cat/ui": [
+				"libs/ui/src/index.ts"
+			],
+			"@cat/ui-utils": [
+				"libs/cat/ui-utils/src/index.ts"
+			],
+			"@cat/user": [
+				"libs/cat/user/src/index.ts"
+			],
+			"@cat/utils": [
+				"libs/cat/utils/src/index.ts"
+			],
+			"@ratcat/noda": [
+				"libs/noda/src/index.ts"
+			]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

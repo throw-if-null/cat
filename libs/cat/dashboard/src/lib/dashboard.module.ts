@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
+	declarations: [ DashboardComponent ],
 	imports: [
 		CommonModule,
 		RouterModule.forChild([

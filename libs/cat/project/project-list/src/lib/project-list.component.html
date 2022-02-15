@@ -5,7 +5,7 @@
 </div>
 
 <ng-container *subscribe="projects$; let projects;">
-    <div *ngIf="projects?.length > 0; else noProjects" class="projects-list">
+    <div *ngIf="projects?.length ?? 0 > 0; else noProjects" class="projects-list">
         <div *ngFor="let project of projects" class="project">
             <div class="project__header" [routerLink]="[project.id]">
                 <div class="project__name">{{ project.name }}</div>
