@@ -17,8 +17,6 @@ jobs:
 
       - name: Git Checkout
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
