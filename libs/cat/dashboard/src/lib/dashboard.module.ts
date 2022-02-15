@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import { NodaModule } from "@ratcat/noda";
 
 @NgModule({
 	declarations: [ DashboardComponent ],
@@ -14,8 +13,7 @@ import { NodaModule } from "@ratcat/noda";
 				pathMatch: 'full',
 				component: DashboardComponent
 			}
-		]),
-		NodaModule
+		])
 	]
 })
 export class DashboardModule {}

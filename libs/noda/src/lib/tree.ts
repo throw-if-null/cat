@@ -87,6 +87,9 @@ interface TreeOptions {
 	rootID: string;
 }
 
+/**
+ * @deprecated tree should not be needed
+ */
 export function arrayToTree(data: any[], options?: Partial<TreeOptions>) {
 	const treeOptions: TreeOptions = {
 		...{
@@ -109,4 +112,4 @@ export function arrayToTree(data: any[], options?: Partial<TreeOptions>) {
 		treeOptions.customID,
 		treeOptions.childrenProperty
 	);
-};
+}

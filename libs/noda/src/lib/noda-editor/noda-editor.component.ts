@@ -31,6 +31,7 @@ export interface NodaConnectionChange {
 	nodes: Node[];
 }
 
+
 @Component({
 	selector: 'noda-editor',
 	templateUrl: './noda-editor.component.html',
@@ -78,25 +79,8 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 	}
 
 	ngOnInit(): void {
-		let initialX = 20;
-
-		// init all nodes
-		for (let node of this.source) {
-			const tmpNode = new Node(node.id);
-			tmpNode.setPosition(initialX, 30);
-			initialX += 220;
-
-			this.nodes.push(tmpNode);
-		}
-
-		// init all connections
-		for (let node of this.source) {
-			if (node.parent) {
-				const parentNode = this.getNodeById(node.parent);
-				const childNode = this.getNodeById(node.id);
-				this.connections.push(new NodaNodeConnection(parentNode, childNode));
-			}
-		}
+		this.sortNodes();
+		this.initNodes();
 	}
 
 	ngAfterViewInit(): void {
@@ -128,6 +112,44 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 			const targetNode = this.getNodeById(nodeId);
 			this.connections.push(new NodaNodeConnection(this.mouseConnection.getNode(), targetNode));
 			this.connectionChange.emit({ connections: this.connections, nodes: this.nodes });
+		}
+	}
+
+	private sortNodes() {
+		this.source.sort((a, b) => a.parent ? 1 : -1);
+	}
+
+	private initNodes() {
+		let column = 0;
+		let row = 0;
+		const padding = 15;
+		const nodeHeight = 75;
+		const nodeWidth = 200;
+		const editorWidth = 750;
+
+		// init all nodes
+		for (let node of this.source) {
+			const tmpNode = new Node(node.id);
+			tmpNode.setPosition(padding + (padding + nodeWidth) * column++, padding + row * (padding + nodeHeight));
+
+			if (nodeWidth * column > editorWidth) {
+				row++;
+				column = 0;
+			}
+
+			this.nodes.push(tmpNode);
+		}
+
+		this.initNodeConnections();
+	}
+
+	private initNodeConnections(): void {
+		for (let node of this.source) {
+			if (node.parent) {
+				const parentNode = this.getNodeById(node.parent);
+				const childNode = this.getNodeById(node.id);
+				this.connections.push(new NodaNodeConnection(parentNode, childNode));
+			}
 		}
 	}
 
