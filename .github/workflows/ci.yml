@@ -35,6 +35,9 @@ jobs:
       - name: NPM install
         run: npm ci
 
+      - name: Build Information
+        run: npm run generate:build-info
+
       - name: Lint
         run: npm run lint
 

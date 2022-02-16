@@ -1,4 +1,7 @@
+import { build } from './build';
+
 export const environment = {
+	build,
 	production: true,
 	auth0: {
 		domain: 'throwifnull.eu.auth0.com',
