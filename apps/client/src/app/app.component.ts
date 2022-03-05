@@ -4,6 +4,7 @@ import { ColorThemeService, THEME_ATTRIBUTE } from '@cat/ui';
 import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { UserFacade } from "@cat/user";
+import { Logger } from "@cat/shared/logger";
 
 @Component({
 	selector: 'cat-root',
@@ -29,7 +30,6 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.themeService.theme$
 			.pipe(takeUntil(this.unsubscribe$))
 			.subscribe(theme => {
-				console.log('theme changed to: ' + theme);
 				this.renderer.setAttribute(document.body, THEME_ATTRIBUTE, theme);
 			});
 	}
@@ -61,3 +61,6 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.userFacade.logout();
 	}
 }
+
+
+(window as any)["logger"] = Logger;
