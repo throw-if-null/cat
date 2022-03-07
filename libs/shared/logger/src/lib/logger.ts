@@ -32,33 +32,17 @@ export interface ILogger {
  */
 export class Logger implements ILogger {
 	protected static instance?: typeof Logger | ILogger = Logger;
-	private static _logLevel: LogLevel = LogLevel.ERROR; // start with the highest log level. Will be set once the app initialized.
 
 	constructor(protected context?: string) {
 	}
 
-	static get LogLevel(): LogLevel {
+	private static _logLevel: LogLevel = LogLevel.ERROR; // start with the highest log level. Will be set once the app initialized.
+
+	static get logLevel(): LogLevel {
 		return Logger._logLevel;
 	}
 
-	static getLogLevelName(): string {
-		switch (Logger._logLevel) {
-			case LogLevel.DEBUG:
-				return 'DEBUG';
-			case LogLevel.LOG:
-				return 'LOG';
-			case LogLevel.VERBOSE:
-				return 'VERBOSE';
-			case LogLevel.WARN:
-				return 'WARNING';
-			case LogLevel.ERROR:
-				return 'ERROR';
-			default:
-				return `${ Logger._logLevel } not handled`;
-		}
-	}
-
-	static setLogLevel(level: LogLevel): void {
+	static set logLevel(level: LogLevel) {
 		Logger._logLevel = level;
 	}
 

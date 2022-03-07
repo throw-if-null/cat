@@ -1,1 +1,1 @@
-export * from './lib/shared-monitoring';
+export * from './lib/tracker';

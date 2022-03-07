@@ -24,6 +24,10 @@ export const environment = {
 			]
 		}
 	},
+	applicationInsights: {
+		instrumentationKey: '7344c5e9-276b-45e3-a869-7b72dc91a5c1',
+		enabled: true
+	},
 	rat: {
 		mock: false,
 		apiUri: 'https://rattus.azurewebsites.net/api'

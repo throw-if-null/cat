@@ -1,1 +1,1 @@
-export * from './lib/shared-error';
+export * from './lib/error-reporter';
