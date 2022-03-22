@@ -1,10 +1,13 @@
+import { CatEnvironment } from "@cat/env";
 import { build } from './build';
 
-export const environment = {
+
+export const environment: CatEnvironment = {
 	build,
 	production: true,
 	auth0: {
 		domain: 'throwifnull.eu.auth0.com',
+		audience: 'https://rattus.azurewebsites.net/',
 		clientId: 'qJdHl8g2FXY4spCxXVM2hZlk3SOBJnY2',
 		errorPath: '/error',
 		scope: 'read:current_user',

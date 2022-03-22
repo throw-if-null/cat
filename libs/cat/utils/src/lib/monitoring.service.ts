@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router } from "@angular/router";
+import { CatEnvironment } from "@cat/env";
 import { ErrorReporter } from "@cat/shared/error";
 import { Logger } from "@cat/shared/logger";
 import { Tracker } from "@cat/shared/monitoring";
@@ -15,13 +16,13 @@ export class MonitoringService {
 	private errorReporter: ErrorReporter;
 	private logger = new Logger('MonitoringService');
 
-	constructor(private router: Router, @Inject('APPINSIGHTS_KEY') private appInsightsKey: string) {
+	constructor(private router: Router, @Inject('CAT_ENVIRONMENT') private environment: CatEnvironment) {
 		this.logger.debug('MonitoringService constructed');
 
 		const angularPlugin = new AngularPlugin();
 		const appInsights = new ApplicationInsights({
 			config: {
-				instrumentationKey: this.appInsightsKey,
+				instrumentationKey: this.environment.applicationInsights.instrumentationKey,
 				extensions: [ angularPlugin ],
 				extensionConfig: {
 					[angularPlugin.identifier]: { router: this.router }
@@ -29,8 +30,8 @@ export class MonitoringService {
 			}
 		});
 
-		this.tracker = new Tracker(appInsights, { enabled: true });
-		this.errorReporter = new ErrorReporter(appInsights, { enabled: true });
+		this.tracker = new Tracker(appInsights, { enabled: environment.applicationInsights.enabled });
+		this.errorReporter = new ErrorReporter(appInsights, { enabled: environment.applicationInsights.enabled });
 	}
 
 	trackEvent(name: string, data?: { [key: string]: any }) {

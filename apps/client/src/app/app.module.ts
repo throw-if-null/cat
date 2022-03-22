@@ -65,8 +65,8 @@ import { AppComponent } from './app.component';
 			useValue: environment.rat.mock ? 'https://d6d03ebf-d5bc-46cf-ab03-69205269a55e.mock.pstmn.io' : environment.rat.apiUri
 		},
 		{
-			provide: 'APPINSIGHTS_KEY',
-			useValue: environment.applicationInsights.instrumentationKey
+			provide: 'CAT_ENVIRONMENT',
+			useValue: environment
 		}
 	],
 	bootstrap: [ AppComponent ]
