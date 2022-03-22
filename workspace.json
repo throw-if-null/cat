@@ -6,6 +6,7 @@
 		"cat-config-details": "libs/cat/config/config-details",
 		"cat-config-relations": "libs/cat/config/config-relations",
 		"cat-dashboard": "libs/cat/dashboard",
+		"cat-env": "libs/cat/env",
 		"cat-profile": "libs/cat/profile",
 		"cat-project": "libs/cat/project",
 		"cat-project-details": "libs/cat/project/project-details",
@@ -17,6 +18,9 @@
 		"client": "apps/client",
 		"client-e2e": "apps/client-e2e",
 		"noda": "libs/noda",
+		"shared-error": "libs/shared/error",
+		"shared-logger": "libs/shared/logger",
+		"shared-monitoring": "libs/shared/monitoring",
 		"ui": "libs/ui"
 	}
 }

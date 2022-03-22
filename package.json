@@ -50,6 +50,8 @@
 		"@angular/platform-browser-dynamic": "13.2.2",
 		"@angular/router": "13.2.2",
 		"@auth0/auth0-angular": "^1.9.0",
+		"@microsoft/applicationinsights-angularplugin-js": "^2.8.0",
+		"@microsoft/applicationinsights-web": "^2.7.4",
 		"@ngneat/dialog": "^1.7.1",
 		"@ngneat/helipopper": "^5.1.4",
 		"@ngneat/hot-toast": "^4.1.0",

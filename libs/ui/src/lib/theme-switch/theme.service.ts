@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { tap } from "rxjs/operators";
+import { Logger } from "@cat/shared/logger";
 
 export enum ColorTheme {
 	LIGHT = 'light',
@@ -13,8 +15,10 @@ export const THEME_ATTRIBUTE = 'data-theme';
 @Injectable({ providedIn: 'root' })
 export class ColorThemeService {
 
+
 	private _theme$ = new BehaviorSubject(ColorTheme.DARK);
-	theme$ = this._theme$.asObservable();
+	private logger = new Logger('ColorThemeService');
+	theme$ = this._theme$.asObservable().pipe(tap(theme => this.logger.log('New theme set to: ' + theme)));
 
 	constructor() {
 		this.setDefaultTheme();
