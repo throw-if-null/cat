@@ -37,7 +37,7 @@ export interface NodaConnectionChange {
 	templateUrl: './noda-editor.component.html',
 	styleUrls: [ './noda-editor.component.scss' ]
 })
-export class NodaEditorComponent implements OnInit, AfterViewInit {
+export class NodaEditorComponent implements OnInit {
 
 	@Input() source: NodaNodeData[] = [];
 	@Output() connectionChange = new EventEmitter<NodaConnectionChange>();
@@ -48,8 +48,8 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 	mouseConnection: NodaMouseConnection | undefined;
 
 	private selectedNode: Node | undefined;
-	private shiftX: number = 0;
-	private shiftY: number = 0;
+	private shiftX = 0;
+	private shiftY = 0;
 
 	constructor(private elRef: ElementRef) {
 
@@ -83,25 +83,21 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 		this.initNodes();
 	}
 
-	ngAfterViewInit(): void {
-
-	}
-
 	nodeMouseDown($event: MouseEvent, nodeId: number) {
 		const target = $event.target as HTMLElement;
-		const { left, top } = this.elRef.nativeElement.getBoundingClientRect();
-		this.shiftX = $event.clientX + left - target.getBoundingClientRect().left;
-		this.shiftY = $event.clientY + top - target.getBoundingClientRect().top;
+			const { left, top } = this.elRef.nativeElement.getBoundingClientRect();
+			this.shiftX = $event.clientX + left - target.getBoundingClientRect().left;
+			this.shiftY = $event.clientY + top - target.getBoundingClientRect().top;
 
-		const selectedNode = this.getNodeById(nodeId);
+			const selectedNode = this.getNodeById(nodeId);
 
-		// move node or mouse connection
-		if (target.classList.contains('node')) {
-			console.log('selected node');
-			this.selectedNode = selectedNode;
-		} else if (target.classList.contains('node__connector') && target.classList.contains('out')) {
-			console.log('selected connector');
-			this.mouseConnection = new NodaMouseConnection(selectedNode);
+			// move node or mouse connection
+			if (target.classList.contains('node')) {
+				console.log('selected node');
+				this.selectedNode = selectedNode;
+			} else if (target.classList.contains('node__connector') && target.classList.contains('out')) {
+				console.log('selected connector');
+				this.mouseConnection = new NodaMouseConnection(selectedNode);
 		}
 	}
 
@@ -116,7 +112,7 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 	}
 
 	private sortNodes() {
-		this.source.sort((a, b) => a.parent ? 1 : -1);
+		this.source.sort((a) => a.parent ? 1 : -1);
 	}
 
 	private initNodes() {
@@ -128,7 +124,7 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 		const editorWidth = 750;
 
 		// init all nodes
-		for (let node of this.source) {
+		for (const node of this.source) {
 			const tmpNode = new Node(node.id);
 			tmpNode.setPosition(padding + (padding + nodeWidth) * column++, padding + row * (padding + nodeHeight));
 
@@ -144,7 +140,7 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 	}
 
 	private initNodeConnections(): void {
-		for (let node of this.source) {
+		for (const node of this.source) {
 			if (node.parent) {
 				const parentNode = this.getNodeById(node.parent);
 				const childNode = this.getNodeById(node.id);
@@ -164,10 +160,10 @@ export class NodaEditorComponent implements OnInit, AfterViewInit {
 
 class Node {
 	id: number;
-	x: number = 0;
-	y: number = 0;
-	hasConnectionIn: boolean = false;
-	hasConnectionOut: boolean = false;
+	x = 0;
+	y = 0;
+	hasConnectionIn = false;
+	hasConnectionOut = false;
 
 	height = 75;
 	width = 200;

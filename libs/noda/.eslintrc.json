@@ -27,7 +27,7 @@
 					"error",
 					{
 						"type": "element",
-						"prefix": "cat",
+						"prefix": "noda",
 						"style": "kebab-case"
 					}
 				]
