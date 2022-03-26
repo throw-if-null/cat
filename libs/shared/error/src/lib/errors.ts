@@ -1,5 +1,5 @@
-/** An error emitted by RAT SDKs and related utilities. */
-export class RatError extends Error {
+/** An error emitted by RATCAT SDKs and related utilities. */
+export class RatCatError extends Error {
 	public name: string;
 
 	public constructor(public message: string) {

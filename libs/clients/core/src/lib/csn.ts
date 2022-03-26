@@ -1,6 +1,6 @@
 /** The Sentry Dsn, identifying a Sentry instance and project. */
+import { RatCatError } from "../../../../shared/error/src/lib/errors";
 import { Csn, CsnComponents, CsnLike, CsnProtocol } from "./types/csn";
-import { RatError } from "./error";
 
 
 /** Regular expression used to parse a Dsn. */
@@ -49,7 +49,7 @@ export class CSN implements Csn {
 		const match = CSN_REGEX.exec(str);
 
 		if (!match) {
-			throw new RatError(ERROR_MESSAGE);
+			throw new RatCatError(ERROR_MESSAGE);
 		}
 
 		const [ protocol, publicKey, pass = '', host, port = '', lastPath ] = match.slice(1);
@@ -86,20 +86,20 @@ export class CSN implements Csn {
 	private _validate(): void {
 		[ 'protocol', 'publicKey', 'host', 'configurationId' ].forEach(component => {
 			if (!this[component as keyof CsnComponents]) {
-				throw new RatError(`${ ERROR_MESSAGE }: ${ component } missing`);
+				throw new RatCatError(`${ ERROR_MESSAGE }: ${ component } missing`);
 			}
 		});
 
 		if (!this.configurationId.match(/^\d+$/)) {
-			throw new RatError(`${ ERROR_MESSAGE }: Invalid configurationId ${ this.configurationId }`);
+			throw new RatCatError(`${ ERROR_MESSAGE }: Invalid configurationId ${ this.configurationId }`);
 		}
 
 		if (this.protocol !== 'http' && this.protocol !== 'https') {
-			throw new RatError(`${ ERROR_MESSAGE }: Invalid protocol ${ this.protocol }`);
+			throw new RatCatError(`${ ERROR_MESSAGE }: Invalid protocol ${ this.protocol }`);
 		}
 
 		if (this.port && isNaN(parseInt(this.port, 10))) {
-			throw new RatError(`${ ERROR_MESSAGE }: Invalid port ${ this.port }`);
+			throw new RatCatError(`${ ERROR_MESSAGE }: Invalid port ${ this.port }`);
 		}
 	}
 }

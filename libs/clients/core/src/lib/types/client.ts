@@ -1,6 +1,5 @@
-import { Options } from "./options";
-import { Configuration } from "./configuration";
 import { Csn } from "./csn";
+import { Options } from "./options";
 import { Transport } from "./transport";
 
 /**
@@ -17,7 +16,7 @@ export interface Client<O extends Options = Options> {
 	 * @param id The configuration ID
 	 * @returns The configuration
 	 */
-	getConfiguration(id: string): Promise<Configuration>;
+	getConfiguration(id: string): Promise<object>;
 
 	/**
 	 * Captures a message event and sends it to Sentry.

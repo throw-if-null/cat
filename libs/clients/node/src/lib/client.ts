@@ -4,9 +4,9 @@
  * @see NodeOptions for documentation on configuration options.
  * @see SentryClient for usage documentation.
  */
-import { BaseClient, Configuration, SDK_VERSION } from "@ratcat/core";
-import { NodeOptions } from "./types";
+import { BaseClient, SDK_VERSION } from "@ratcat/core";
 import { NodeBackend } from "./backend";
+import { NodeOptions } from "./types";
 
 export class NodeClient extends BaseClient<NodeBackend, NodeOptions> {
 
@@ -26,7 +26,7 @@ export class NodeClient extends BaseClient<NodeBackend, NodeOptions> {
 	/**
 	 * @inheritDoc
 	 */
-	public getConfiguration(configurationId: string): Promise<Configuration> {
+	public getConfiguration(configurationId: string): Promise<object> {
 		return super.getConfiguration(configurationId);
 	}
 
@@ -36,6 +36,5 @@ export class NodeClient extends BaseClient<NodeBackend, NodeOptions> {
 	public updateConfiguration(configurationId: string, data: any): Promise<void> {
 		return super.updateConfiguration(configurationId, data);
 	}
-
 
 }

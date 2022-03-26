@@ -1,7 +1,7 @@
 /** Base configuration options for every SDK. */
-import { Transport, TransportClass, TransportOptions } from "./transport";
-import { LogLevel } from "./logger";
+import { LogLevel } from "@cat/shared/logger";
 import { SDKMetaData } from "./sdk-meta";
+import { Transport, TransportClass, TransportOptions } from "./transport";
 
 export interface Options {
 	/**
@@ -44,7 +44,7 @@ export interface Options {
 
 	/**
 	 * Send SDK Client Reports.
-	 * By default, Client Reports are enabled.
+	 * By default, Client Reports are disabled.
 	 */
 	sendClientReports?: boolean;
 }

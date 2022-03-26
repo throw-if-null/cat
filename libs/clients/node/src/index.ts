@@ -1,1 +1,1 @@
-export * from './lib/clients--node';
+export * from './lib/client';

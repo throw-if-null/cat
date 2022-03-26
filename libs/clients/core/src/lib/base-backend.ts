@@ -18,14 +18,15 @@
  * The client also provides access to options via {@link Client.getOptions}.
  * @hidden
  */
-import { Transport } from "./types/transport";
+import { Logger } from "@cat/shared/logger";
+import { parseConfigEntries } from "../../../../cat/utils/src/lib/parser";
 import { Configuration } from "./types/configuration";
 import { Options } from "./types/options";
-import { Logger } from "./logger";
+import { Transport } from "./types/transport";
 
 export interface Backend {
 
-	getConfiguration(id: string): Promise<Configuration>;
+	getConfiguration(id: string): Promise<object>;
 
 	updateConfiguration(id: string, data: any): Promise<void>;
 
@@ -49,36 +50,34 @@ export type BackendClass<B extends Backend, O extends Options> = new (options: O
  * @hidden
  */
 export abstract class BaseBackend<O extends Options> implements Backend {
-	/** Options passed to the SDK. */
 	protected readonly options: O;
 
 	/** Cached transport used internally. */
 	protected transport: Transport;
 
+	private logger = new Logger('BaseBackend');
 
-	private logger = new Logger('Backend');
-
-	/** Creates a new backend instance. */
 	constructor(options: O) {
 		this.options = options;
 		if (!this.options.csn) {
 			this.logger.error('No CSN provided, backend will not do anything.');
 		}
 		this.transport = this._setupTransport();
+		this.logger.log(this.transport);
 	}
 
 
 	/**
 	 * @inheritDoc
 	 */
-	public getConfiguration(configurationId: string): Promise<Configuration> {
+	public getConfiguration(configurationId: string): Promise<object> {
 		return new Promise((resolve, reject) => {
 			this.transport.getConfiguration(configurationId)
 				.then(
-					configuration => resolve(configuration),
-					reason => {
-						this.logger.error(`Error while fetching configuration: ${ reason }`);
-						reject(reason);
+					configuration => resolve(parseConfigEntries(configuration.entries)),
+					error => {
+						this.logger.error(`Error while fetching configuration: ${ error }`);
+						reject(error);
 					});
 		});
 	}

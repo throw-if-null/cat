@@ -15,11 +15,10 @@
  *   // ...
  * }
  */
-import { Options } from "./types/options";
-import { Client } from "./types/client";
 import { Backend, BackendClass } from "./base-backend";
 import { CSN } from "./csn";
-import { Configuration } from "./types/configuration";
+import { Client } from "./types/client";
+import { Options } from "./types/options";
 import { Transport } from "./types/transport";
 
 
@@ -70,7 +69,7 @@ export abstract class BaseClient<B extends Backend, O extends Options> implement
 		return this.getBackend().getTransport();
 	}
 
-	public getConfiguration(id: string): Promise<Configuration> {
+	public getConfiguration(id: string): Promise<object> {
 		return this.backend.getConfiguration(id);
 	}
 
@@ -81,10 +80,5 @@ export abstract class BaseClient<B extends Backend, O extends Options> implement
 	/** Returns the current backend. */
 	protected getBackend(): B {
 		return this.backend;
-	}
-
-	/** Determines whether this SDK is enabled and a valid CSN is present. */
-	protected isEnabled(): boolean {
-		return this.getOptions().enabled !== false && this.csn !== undefined;
 	}
 }
