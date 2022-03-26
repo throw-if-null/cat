@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { MockProjectService, ProjectService } from "@cat/project";
+import { MonitoringService } from "@cat/utils";
 import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { NxModule } from '@nrwl/angular';
@@ -10,7 +12,6 @@ import { ProjectsEffects } from './projects.effects';
 import { ProjectsFacade } from './projects.facade';
 import { ProjectsEntity } from './projects.models';
 import { PROJECTS_FEATURE_KEY, reducer, State } from './projects.reducer';
-import { MockProjectService, ProjectService } from "@cat/project";
 
 interface TestSchema {
 	projects: State;
@@ -19,6 +20,14 @@ interface TestSchema {
 describe('ProjectsFacade', () => {
 	let facade: ProjectsFacade;
 	let store: Store<TestSchema>;
+	const monitoringServiceSpy = {
+		trackEvent: jest.fn(),
+		startTrack: jest.fn(),
+		endTrack: jest.fn(),
+		trackMetric: jest.fn(),
+		logException: jest.fn()
+	};
+
 	const createProjectsEntity = (id: number, name = ''): ProjectsEntity => ({
 		id,
 		name: name || `name-${ id }`,
@@ -36,7 +45,7 @@ describe('ProjectsFacade', () => {
 				],
 				providers: [
 					ProjectsFacade,
-					{ provide: ProjectService, useClass: MockProjectService }
+					{ provide: ProjectService, useClass: MockProjectService },
 				]
 			})
 			class CustomFeatureModule {
@@ -53,7 +62,12 @@ describe('ProjectsFacade', () => {
 			class RootModule {
 			}
 
-			TestBed.configureTestingModule({ imports: [ RootModule ] });
+			TestBed.configureTestingModule({
+				imports: [ RootModule ],
+				providers: [
+					{ provide: MonitoringService, useValue: monitoringServiceSpy },
+				]
+			});
 
 			store = TestBed.inject(Store);
 			facade = TestBed.inject(ProjectsFacade);

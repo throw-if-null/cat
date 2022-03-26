@@ -1,7 +1,13 @@
-export const environment = {
+import { CatEnvironment } from "@cat/env";
+import { build } from './build';
+
+
+export const environment: CatEnvironment = {
+	build,
 	production: true,
 	auth0: {
 		domain: 'throwifnull.eu.auth0.com',
+		audience: 'https://rattus.azurewebsites.net/',
 		clientId: 'qJdHl8g2FXY4spCxXVM2hZlk3SOBJnY2',
 		errorPath: '/error',
 		scope: 'read:current_user',
@@ -20,6 +26,10 @@ export const environment = {
 				}
 			]
 		}
+	},
+	applicationInsights: {
+		instrumentationKey: '7344c5e9-276b-45e3-a869-7b72dc91a5c1',
+		enabled: true
 	},
 	rat: {
 		mock: false,

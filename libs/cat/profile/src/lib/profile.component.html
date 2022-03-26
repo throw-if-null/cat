@@ -1,19 +1,27 @@
-<cat-card *ngIf="auth.user$ | async as user" title="Account details">
+<cat-card *ngIf="user$ | async as user" title="Account details">
 
     <div class="account-details">
-        <div class="row">
-            <div class="input__label col">
-                <label for="name">Name</label>
+        <div class="row ">
+            <label class="input__label col" for="name">
+                Name
                 <span class="description">Your full name</span>
-            </div>
+            </label>
             <input id="name" class="input col" name="name" placeholder="e.g. John Doe" [value]="user.name">
+        </div>
+
+        <div class="row">
+            <label class="input__label col" for="name">
+                Email
+                <span class="description">Your email address</span>
+            </label>
+            <input [value]="user.email" class="input col" id="email" name="name">
         </div>
     </div>
 
 
 </cat-card>
 
-<cat-card *ngIf="auth.user$ | async as user" title="Preferences">
+<cat-card title="Preferences">
 
     <div class="preferences">
         <div class="row">

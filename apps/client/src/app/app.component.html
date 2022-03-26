@@ -1,7 +1,7 @@
 <section class="header">
     <div class="header__title title">{{ title }}</div>
     <div class="header__items">
-        <div *ngIf="auth.user$ | async as user" class="header__items__user" variation="menu" [tippy]="userMenu">
+        <div *ngIf="user$ | async as user" [tippy]="userMenu" class="header__items__user" variation="menu">
             <img class="header__items__user__icon dropdown-toggle" [src]="user.picture"/>
             <ng-template #userMenu>
                 <div>

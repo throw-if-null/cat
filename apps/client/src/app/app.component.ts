@@ -1,17 +1,19 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ColorThemeService, THEME_ATTRIBUTE } from '@cat/ui';
+import { UserFacade } from "@cat/user";
+import { MonitoringService } from "@cat/utils";
 import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 
 @Component({
 	selector: 'cat-root',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+	styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent implements OnInit, OnDestroy {
 	title = '';
+	user$;
 
 	private unsubscribe$ = new Subject();
 
@@ -19,14 +21,16 @@ export class AppComponent implements OnInit, OnDestroy {
 		private router: Router,
 		private route: ActivatedRoute,
 		private renderer: Renderer2,
-		public auth: AuthService,
-		private themeService: ColorThemeService
+		private userFacade: UserFacade,
+		private themeService: ColorThemeService,
+		private monitoringService: MonitoringService
 	) {
+		this.user$ = this.userFacade.user$;
 
 		this.themeService.theme$
 			.pipe(takeUntil(this.unsubscribe$))
 			.subscribe(theme => {
-				console.log('theme changed to: ' + theme);
+				this.monitoringService.trackEvent('Switched Theme', { theme });
 				this.renderer.setAttribute(document.body, THEME_ATTRIBUTE, theme);
 			});
 	}
@@ -55,6 +59,6 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	logout() {
-		this.auth.logout();
+		this.userFacade.logout();
 	}
 }

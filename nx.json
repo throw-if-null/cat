@@ -17,7 +17,8 @@
 				"cacheableOperations": ["build", "lint", "test", "e2e"],
 				"accessToken": "MGNmYTVjMjQtMDA1OS00NmMxLTg4MzYtNjMyOTkyNzVmNzUyfHJlYWQtd3JpdGU=",
 				"canTrackAnalytics": false,
-				"showUsageWarnings": true
+				"showUsageWarnings": true,
+				"parallel": 1
 			}
 		}
 	},
@@ -30,7 +31,6 @@
 		]
 	},
 	"cli": {
-		"analytics": false,
 		"defaultCollection": "@nrwl/angular"
 	},
 	"generators": {
@@ -52,7 +52,6 @@
 			"e2eTestRunner": "cypress"
 		},
 		"@nrwl/angular:library": {
-			"style": "scss",
 			"linter": "eslint",
 			"unitTestRunner": "jest"
 		},

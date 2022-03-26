@@ -1,0 +1,21 @@
+<svg class="node-connections">
+    <path *ngIf="mouseConnection"
+          [attr.d]="mouseConnection.path"
+          fill="none"
+          stroke-width="2"></path>
+    <path *ngFor="let connection of connections"
+          [attr.d]="connection.path"
+          fill="none"
+          stroke-width="2"></path>
+</svg>
+
+
+<noda-node (mousedown)="nodeMouseDown($event, node.id)" (mouseup)="nodeMouseUp($event, node.id)"
+           *ngFor="let node of nodes"
+           [incoming]="node.hasConnectionIn"
+           [outgoing]="node.hasConnectionOut"
+           [style.left.px]="node.x"
+           [style.top.px]="node.y"
+           class="node">
+    Title
+</noda-node>

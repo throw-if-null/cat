@@ -18,6 +18,7 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v2
         with:
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Initialize CodeQL
@@ -28,17 +29,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.2.0
         with:
-          # Used to specify a package manager for caching in the default directory. Supported values: npm, yarn
+          node-version: '16'
           cache: npm
 
       - name: NPM install
         run: npm ci
 
+      - name: Build Information
+        run: npm run generate:build-info
+
       - name: Lint
         run: npm run lint
 
       - name: Affected Tests
-        run: npm run affected:test
+        run: npm run affected:test -- --base=origin/master --head=HEAD
 
       - name: E2E Test
         continue-on-error: true

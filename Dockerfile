@@ -1,18 +1,24 @@
-FROM node:16.10.0 as build
+# Stage 1
+#FROM node:16.10.0 as build
+#
+#RUN mkdir -p /app
+#
+#WORKDIR /app
+#
+#COPY . /app
+#
+#RUN npm ci --include dev
+#
+#RUN npm run build
 
-WORKDIR /usr/local/app
 
-# Add the source code to app
-COPY ./ /usr/local/app/
-
-RUN npm install
-
-RUN npm run build
-
+# Stage 2
 FROM nginx:latest
 
+# Server config
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 # Copy the client app output to replace the default nginx contents.
-COPY --from=build /usr/local/app/dist/apps/client /usr/share/nginx/html
+COPY ./dist/apps/client /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80

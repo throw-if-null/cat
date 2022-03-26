@@ -13,17 +13,17 @@
 			}
 		},
 		"lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/ui/src/**/*.ts",
-              "libs/ui/src/**/*.html"
-            ]
-          },
-          "outputs": [
-            "{options.outputFile}"
-          ]
-        }
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"libs/ui/src/**/*.ts",
+					"libs/ui/src/**/*.html"
+				]
+			},
+			"outputs": [
+				"{options.outputFile}"
+			]
+		}
 	},
 	"tags": []
 }

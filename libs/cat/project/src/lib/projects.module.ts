@@ -6,6 +6,7 @@ import { ProjectsEffects } from './+state/projects.effects';
 import { ProjectsFacade } from './+state/projects.facade';
 import * as fromProjects from './+state/projects.reducer';
 import { ProjectsRoutingModule } from './projects-routing.module';
+import { UserModule } from "@cat/user";
 
 @NgModule({
 	declarations: [],
@@ -16,7 +17,8 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 			fromProjects.PROJECTS_FEATURE_KEY,
 			fromProjects.reducer
 		),
-		EffectsModule.forFeature([ProjectsEffects])
+		EffectsModule.forFeature([ ProjectsEffects ]),
+		UserModule
 	],
 	providers: [ProjectsFacade]
 })

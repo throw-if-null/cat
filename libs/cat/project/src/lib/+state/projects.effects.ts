@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ProjectService } from '@cat/project';
+import { MonitoringService } from "@cat/utils";
+import { HotToastService } from "@ngneat/hot-toast";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
 import { map, tap } from 'rxjs/operators';
 
 import * as ProjectsActions from './projects.actions';
-import { HotToastService } from "@ngneat/hot-toast";
 
 @Injectable()
 export class ProjectsEffects {
@@ -14,8 +15,12 @@ export class ProjectsEffects {
 			ofType(ProjectsActions.init),
 			fetch({
 				run: action => {
+					this.monitoringService.startTrack('LoadProjects');
 					return this.projectService.getProjects()
-						.pipe(map((projectsRes) => (ProjectsActions.loadProjectsSuccess({ projects: projectsRes.projectStats }))));
+						.pipe(
+							tap(() => this.monitoringService.endTrack('LoadProjects')),
+							map((projectsRes) => (ProjectsActions.loadProjectsSuccess({ projects: projectsRes.projectStats })))
+						);
 				},
 				onError: (action, error) => {
 					console.error('Error', error);
@@ -66,6 +71,9 @@ export class ProjectsEffects {
 		{ dispatch: false }
 	);
 
-	constructor(private readonly actions$: Actions, private toast: HotToastService, private projectService: ProjectService) {
+	constructor(private readonly actions$: Actions,
+				private toast: HotToastService,
+				private projectService: ProjectService,
+				private monitoringService: MonitoringService) {
 	}
 }

@@ -1,20 +1,12 @@
 {
-  "migrations": [
-    {
-      "cli": "nx",
-      "version": "12.8.0-beta.0",
-      "description": "Remove Typescript Preprocessor Plugin",
-      "factory": "./src/migrations/update-12-8-0/remove-typescript-plugin",
-      "package": "@nrwl/cypress",
-      "name": "remove-typescript-plugin"
-    },
-    {
-      "version": "12.6.0-beta.0",
-      "cli": "nx",
-      "description": "Uses `getJestProjects()` to populate projects array in root level `jest.config.js` file.",
-      "factory": "./src/migrations/update-12-6-0/update-base-jest-config",
-      "package": "@nrwl/jest",
-      "name": "update-jest-config-to-use-util"
-    }
-  ]
+	"migrations": [
+		{
+			"cli": "nx",
+			"version": "13.8.4",
+			"description": "Karma coverage is broken since Angular 13 upgarde and the karma config is severely out of date. Bring it up to date fixing the coverage issue.",
+			"factory": "./src/migrations/update-13-8-4/migrate-karma-conf",
+			"package": "@nrwl/angular",
+			"name": "migrate-karma-config"
+		}
+	]
 }

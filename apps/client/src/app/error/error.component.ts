@@ -9,7 +9,7 @@ import { takeUntil } from 'rxjs/operators';
 	styleUrls: ['./error.component.scss']
 })
 export class ErrorComponent implements OnInit {
-	public authError$: Observable<any> = this.auth.error$;
+	public authError$: Observable<Error> = this.auth.error$;
 
 	constructor(private auth: AuthService) {}
 

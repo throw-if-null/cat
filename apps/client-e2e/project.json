@@ -17,16 +17,16 @@
 			}
 		},
 		"lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/client-e2e/**/*.{js,ts}"
-            ]
-          },
-          "outputs": [
-            "{options.outputFile}"
-          ]
-        }
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"apps/client-e2e/**/*.{js,ts}"
+				]
+			},
+			"outputs": [
+				"{options.outputFile}"
+			]
+		}
 	},
 	"tags": [],
 	"implicitDependencies": ["client"]

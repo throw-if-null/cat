@@ -8,13 +8,19 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"importHelpers": true,
-		"target": "es2015",
-		"module": "esnext",
+		"target": "es2020",
+		"module": "es2020",
 		"lib": ["es2017", "dom"],
 		"skipLibCheck": true,
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@cat/cat/config-relations": [
+				"libs/cat/config/config-relations/src/index.ts"
+			],
+			"@cat/env": [
+				"libs/cat/env/src/index.ts"
+			],
 			"@cat/config-create": [
 				"libs/cat/config/config-create/src/index.ts"
 			],
@@ -42,14 +48,29 @@
 			"@cat/project-list": [
 				"libs/cat/project/project-list/src/index.ts"
 			],
+			"@cat/shared/error": [
+				"libs/shared/error/src/index.ts"
+			],
+			"@cat/shared/logger": [
+				"libs/shared/logger/src/index.ts"
+			],
+			"@cat/shared/monitoring": [
+				"libs/shared/monitoring/src/index.ts"
+			],
 			"@cat/ui": [
 				"libs/ui/src/index.ts"
 			],
 			"@cat/ui-utils": [
 				"libs/cat/ui-utils/src/index.ts"
 			],
+			"@cat/user": [
+				"libs/cat/user/src/index.ts"
+			],
 			"@cat/utils": [
 				"libs/cat/utils/src/index.ts"
+			],
+			"@ratcat/noda": [
+				"libs/noda/src/index.ts"
 			],
 			"@ratcat/core": [
 				"libs/clients/core/src/index.ts"

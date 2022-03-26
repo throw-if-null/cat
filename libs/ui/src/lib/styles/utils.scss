@@ -1,15 +1,24 @@
+@import './variables';
+
 .row {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: $spacing-medium;
 
   .col {
+    display: flex;
     flex-grow: 1;
     max-width: 100%;
+    flex-basis: 0;
 
     &.half {
       max-width: 50%;
     }
   }
+}
+
+.align-right {
+  justify-content: flex-end;
 }
 
 

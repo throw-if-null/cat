@@ -1,0 +1,55 @@
+$connector-radius: var(--noda-connector-radius, 15px);
+
+.node {
+	width: var(--noda-node-width, 200px);
+	height: var(--noda-node-height, 75px);
+	background-color: var(--noda-node-background, transparent);
+	border-radius: 5px;
+	border: 1px solid var(--noda-node-border, red);
+	position: relative;
+	display: flex;
+
+	cursor: move;
+	user-select: none;
+
+	&:hover {
+		.node__connector {
+			display: block;
+		}
+	}
+
+	&.incoming {
+		.in {
+			display: block;
+		}
+	}
+
+	&.outgoing {
+		.out {
+      display: block;
+    }
+  }
+
+  &__connector {
+	  position: absolute;
+	  top: 50%;
+	  width: $connector-radius;
+	  height: $connector-radius;
+	  transform: translateY(-50%);
+
+	  display: none;
+	  box-sizing: border-box;
+	  border-radius: 50%;
+	  background: var(--noda-connector-color, transparent);
+	  border: 1px solid var(--noda-connector-border, white);
+
+	  &.in {
+		  left: calc(#{$connector-radius} / -2);
+	  }
+
+	  &.out {
+		  cursor: pointer;
+		  right: calc(#{$connector-radius} / -2);
+	  }
+  }
+}
