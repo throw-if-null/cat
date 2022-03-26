@@ -18,7 +18,6 @@ export class HTTPTransport {
 	}
 
 	public constructor(public options: TransportOptions) {
-		// const http = options.csn.protocol === 'http'
 		this.client = options.csn.protocol === 'http' ? http : https;
 	}
 
@@ -32,7 +31,7 @@ export class HTTPTransport {
 	/**
 	 * @inheritDoc
 	 */
-	public updateConfiguration(configurationId: string, data: any): Promise<void> {
+	public updateConfiguration(configurationId: string, data: any): Promise<any> {
 		return httpRequest(this.client, this.httpOptions, data);
 	}
 }

@@ -18,9 +18,6 @@
 			"@cat/cat/config-relations": [
 				"libs/cat/config/config-relations/src/index.ts"
 			],
-			"@cat/env": [
-				"libs/cat/env/src/index.ts"
-			],
 			"@cat/config-create": [
 				"libs/cat/config/config-create/src/index.ts"
 			],
@@ -32,6 +29,9 @@
 			],
 			"@cat/dashboard": [
 				"libs/cat/dashboard/src/index.ts"
+			],
+			"@cat/env": [
+				"libs/cat/env/src/index.ts"
 			],
 			"@cat/profile": [
 				"libs/cat/profile/src/index.ts"
@@ -69,11 +69,14 @@
 			"@cat/utils": [
 				"libs/cat/utils/src/index.ts"
 			],
-			"@ratcat/noda": [
-				"libs/noda/src/index.ts"
+			"@ratcat/angular": [
+				"libs/clients/angular/src/index.ts"
 			],
 			"@ratcat/core": [
 				"libs/clients/core/src/index.ts"
+			],
+			"@ratcat/noda": [
+				"libs/noda/src/index.ts"
 			],
 			"@ratcat/node": [
 				"libs/clients/node/src/index.ts"
