@@ -5,7 +5,6 @@ import { UserFacade } from "@cat/user";
 import { MonitoringService } from "@cat/utils";
 import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
-import { RatCatService } from "../../../../libs/clients/angular/src/lib/ratcat.service";
 
 @Component({
 	selector: 'cat-root',
@@ -24,9 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		private renderer: Renderer2,
 		private userFacade: UserFacade,
 		private themeService: ColorThemeService,
-		private monitoringService: MonitoringService,
-		private ratcatService: RatCatService
-	) {
+		private monitoringService: MonitoringService) {
 		this.user$ = this.userFacade.user$;
 
 		this.themeService.theme$
