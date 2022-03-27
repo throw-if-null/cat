@@ -23,8 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		private renderer: Renderer2,
 		private userFacade: UserFacade,
 		private themeService: ColorThemeService,
-		private monitoringService: MonitoringService
-	) {
+		private monitoringService: MonitoringService) {
 		this.user$ = this.userFacade.user$;
 
 		this.themeService.theme$

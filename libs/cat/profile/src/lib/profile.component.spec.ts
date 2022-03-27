@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CardComponent } from "@cat/ui";
+import { UserFacade, UserFacadeMock } from "@cat/user";
 
 import { ProfileComponent } from './profile.component';
-import { UserFacade } from "@cat/user";
-import { UserFacadeMock } from "../../../user/src/lib/+state/user.facade.mock";
 
 describe('ProfileComponent', () => {
 	let component: ProfileComponent;
@@ -10,7 +10,7 @@ describe('ProfileComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ ProfileComponent ],
+			declarations: [ ProfileComponent, CardComponent ],
 			providers: [ { provide: UserFacade, useClass: UserFacadeMock } ]
 		}).compileComponents();
 	});

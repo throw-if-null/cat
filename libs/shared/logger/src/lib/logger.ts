@@ -1,3 +1,4 @@
+import { formatTime } from "@cat/shared/utils";
 import { blue, cyanBright, red, yellow } from "./console-color";
 
 export enum LogLevel {
@@ -210,7 +211,7 @@ export class Logger implements ILogger {
 }
 
 const isError = (obj: any): obj is Error =>
-	obj instanceof Error || obj instanceof ErrorEvent || (isObject(obj) && (obj as any).error instanceof ErrorEvent);
+	obj instanceof Error || (isObject(obj) && (obj as any).error);
 
 const isUndefined = (obj: any): obj is undefined => typeof obj === 'undefined';
 
@@ -233,13 +234,3 @@ const isPlainObject = (fn: any): fn is object => {
 		Function.prototype.toString.call(ctor) === Function.prototype.toString.call(Object)
 	);
 };
-
-export function formatTime(timestamp: number, year = false): string {
-	const dt = new Intl.DateTimeFormat('en-GB', {
-		year: year ? 'numeric' : undefined, month: year ? 'numeric' : undefined, day: year ? 'numeric' : undefined,
-		hour: 'numeric', minute: 'numeric', second: 'numeric',
-		hour12: false,
-	});
-
-	return dt.format(new Date(timestamp));
-}

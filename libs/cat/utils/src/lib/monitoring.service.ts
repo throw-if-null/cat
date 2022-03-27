@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router } from "@angular/router";
-import { CatEnvironment } from "@cat/env";
+import { CatEnvironment } from "@cat/domain";
 import { ErrorReporter } from "@cat/shared/error";
 import { Logger } from "@cat/shared/logger";
 import { Tracker } from "@cat/shared/monitoring";
