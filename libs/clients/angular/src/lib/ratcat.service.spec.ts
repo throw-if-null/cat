@@ -1,16 +1,21 @@
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { TestBed } from '@angular/core/testing';
 
-import { RatcatService } from './ratcat.service';
+import { RatCatService } from './ratcat.service';
 
 describe('RatcatService', () => {
-  let service: RatcatService;
+	let service: RatCatService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(RatcatService);
-  });
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			imports: [ HttpClientTestingModule ],
+			providers: [ RatCatService ]
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+		});
+		service = TestBed.inject(RatCatService);
+	});
+
+	it('should be created', () => {
+		expect(service).toBeTruthy();
+	});
 });
