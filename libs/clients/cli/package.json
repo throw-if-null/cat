@@ -4,7 +4,7 @@
 	"bin": {
 		"ratcat": "./src/index.ts"
 	},
-	"dependencies": {
+	"peerDependencies": {
 		"chalk": "4.1.2",
 		"clear": "^0.1.0",
 		"clui": "^0.3.6",

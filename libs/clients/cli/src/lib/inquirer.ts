@@ -1,4 +1,4 @@
-import * as inquirer from "inquirer";
+const inquirer = require("inquirer");
 
 export function askRatCatCredentials() {
 	const questions = [
