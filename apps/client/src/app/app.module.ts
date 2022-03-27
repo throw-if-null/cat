@@ -13,7 +13,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { RatCatModule } from "@ratcat/angular";
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -44,7 +43,6 @@ import { AppComponent } from './app.component';
 		}),
 		UiModule,
 		UserModule,
-		RatCatModule,
 		StoreModule.forRoot(
 			{},
 			{

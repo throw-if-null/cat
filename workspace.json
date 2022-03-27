@@ -6,7 +6,6 @@
 		"cat-config-details": "libs/cat/config/config-details",
 		"cat-config-relations": "libs/cat/config/config-relations",
 		"cat-dashboard": "libs/cat/dashboard",
-		"cat-env": "libs/cat/env",
 		"cat-profile": "libs/cat/profile",
 		"cat-project": "libs/cat/project",
 		"cat-project-details": "libs/cat/project/project-details",
@@ -16,14 +15,16 @@
 		"cat-user": "libs/cat/user",
 		"cat-utils": "libs/cat/utils",
 		"client": "apps/client",
+		"client-angular": "libs/clients/angular",
 		"client-core": "libs/clients/core",
 		"client-e2e": "apps/client-e2e",
 		"client-node": "libs/clients/node",
-		"client-angular": "libs/clients/angular",
+		"domain": "libs/domain",
 		"noda": "libs/noda",
 		"shared-error": "libs/shared/error",
 		"shared-logger": "libs/shared/logger",
 		"shared-monitoring": "libs/shared/monitoring",
+		"shared-utils": "libs/shared/utils",
 		"ui": "libs/ui"
 	}
 }

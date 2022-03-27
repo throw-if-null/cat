@@ -1,4 +1,4 @@
-import { CatEnvironment } from "@cat/env";
+import { CatEnvironment } from "@cat/domain";
 import { build } from './build';
 
 

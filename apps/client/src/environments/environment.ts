@@ -2,7 +2,7 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { CatEnvironment } from "@cat/env";
+import { CatEnvironment } from "@cat/domain";
 import { build } from './build';
 
 export const environment: CatEnvironment = {

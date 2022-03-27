@@ -1,4 +1,4 @@
-import { formatTime } from "../../../../clients/core/src/lib/utils";
+import { formatTime } from "@cat/shared/utils";
 import { blue, cyanBright, red, yellow } from "./console-color";
 
 export enum LogLevel {

@@ -30,8 +30,8 @@
 			"@cat/dashboard": [
 				"libs/cat/dashboard/src/index.ts"
 			],
-			"@cat/env": [
-				"libs/cat/env/src/index.ts"
+			"@cat/domain": [
+				"libs/domain/src/index.ts"
 			],
 			"@cat/profile": [
 				"libs/cat/profile/src/index.ts"
@@ -56,6 +56,9 @@
 			],
 			"@cat/shared/monitoring": [
 				"libs/shared/monitoring/src/index.ts"
+			],
+			"@cat/shared/utils": [
+				"libs/shared/utils/src/index.ts"
 			],
 			"@cat/ui": [
 				"libs/ui/src/index.ts"

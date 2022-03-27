@@ -1,10 +1,10 @@
-/** The Sentry Dsn, identifying a Sentry instance and project. */
-import { RatCatError } from "../../../../shared/error/src/lib/errors";
+import { RatCatError } from "@cat/shared/error";
 import { Csn, CsnComponents, CsnLike, CsnProtocol } from "./types/csn";
 
+/** The RatCat DSN - DATA SOURCE NAME, identifying a RatCat project. */
 
 /** Regular expression used to parse a Dsn. */
-const CSN_REGEX = /^(?:(\w+):)\/\/(?:(\w+)(?::(\w+))?@)([\w.-]+)(?::(\d+))?\/(.+)/;
+const DSN_REGEX = /^(?:(\w+):)\/\/(?:(\w+)(?::(\w+))?@)([\w.-]+)(?::(\d+))?\/(.+)/;
 /** Error message */
 const ERROR_MESSAGE = 'Invalid CSN';
 
@@ -46,7 +46,7 @@ export class CSN implements Csn {
 
 	/** Parses a string into this Dsn. */
 	private _fromString(str: string): void {
-		const match = CSN_REGEX.exec(str);
+		const match = DSN_REGEX.exec(str);
 
 		if (!match) {
 			throw new RatCatError(ERROR_MESSAGE);
