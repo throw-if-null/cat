@@ -75,6 +75,9 @@
 			"@ratcat/angular": [
 				"libs/clients/angular/src/index.ts"
 			],
+			"@ratcat/cli": [
+				"libs/clients/cli/src/index.ts"
+			],
 			"@ratcat/core": [
 				"libs/clients/core/src/index.ts"
 			],

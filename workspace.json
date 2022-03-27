@@ -19,6 +19,7 @@
 		"client-core": "libs/clients/core",
 		"client-e2e": "apps/client-e2e",
 		"client-node": "libs/clients/node",
+		"client-cli": "libs/clients/cli",
 		"domain": "libs/domain",
 		"noda": "libs/noda",
 		"shared-error": "libs/shared/error",
