@@ -2,8 +2,9 @@
 	"name": "@ratcat/cli",
 	"version": "0.0.1",
 	"bin": {
-		"ratcat": "./src/index.ts"
+		"ratcat": "../../../dist/libs/clients/cli/src/index.js"
 	},
+	"type": "module",
 	"peerDependencies": {
 		"chalk": "4.1.2",
 		"clear": "^0.1.0",

@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Configuration, TransportOptions } from "@ratcat/core";
+import { Configuration, TransportOptions } from "@cat/domain/client";
 
 
 export class AngularTransport {

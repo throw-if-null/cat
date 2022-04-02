@@ -1,8 +1,22 @@
 {
-	"root": "libs/shared/monitoring",
+	"root": "libs/shared",
 	"sourceRoot": "libs/shared/monitoring/src",
 	"projectType": "library",
 	"targets": {
+		"build": {
+			"executor": "@nrwl/js:tsc",
+			"outputs": [
+				"{options.outputPath}"
+			],
+			"options": {
+				"outputPath": "dist/libs/shared/monitoring",
+				"main": "libs/shared/monitoring/src/index.ts",
+				"tsConfig": "libs/shared/monitoring/tsconfig.lib.json",
+				"assets": [
+					"libs/shared/monitoring/*.md"
+				]
+			}
+		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
 			"outputs": [

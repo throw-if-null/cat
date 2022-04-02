@@ -8,12 +8,19 @@
  * configstore — easily loads and saves config without you having to think about where and how.
  */
 
-const chalk = require("chalk");
-const clear = require("clear");
-const figlet = require("figlet");
-import { askRatCatCredentials } from "./inquirer";
+import chalk from 'chalk';
+import clui from "clui";
+import Configstore from "configstore";
+import figlet from "figlet";
+import path from "path";
 
-clear();
+import { readJSONFile } from "./files.js";
+import { askRatCatCredentials } from "./inquirer.js";
+import { getConfiguration } from "./transport.js";
+
+const Spinner = clui.Spinner;
+
+// process.stdout.write('\x1b[0f'); // clear
 
 // https://www.sitepoint.com/javascript-command-line-interface-cli-node-js/
 console.log(
@@ -22,10 +29,29 @@ console.log(
 	)
 );
 
+const rootPath = process.cwd();
+
 
 export const run = async () => {
-	const credentials = await askRatCatCredentials();
-	console.log(chalk.green('All preped!' + credentials));
+	const pkg = await readJSONFile(path.resolve(rootPath, 'package.json'));
+	const conf = new Configstore(pkg.name);
+	console.log(pkg);
+
+	let credentials = conf.get('dsn');
+	if (!credentials) {
+		credentials = await askRatCatCredentials();
+		conf.set('dsn', credentials.dsn)
+	}
+
+	console.log(chalk.green('All preped!'));
+	console.log(credentials);
+
+	const status = new Spinner('Fetching configuration, this might take some seconds...');
+	status.start();
+
+	const testConfig = await getConfiguration('1337');
+	status.stop();
+	console.log(testConfig.entries);
 
 };
 

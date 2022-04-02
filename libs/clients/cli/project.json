@@ -11,6 +11,7 @@
 			"options": {
 				"outputPath": "dist/libs/clients/cli",
 				"main": "libs/clients/cli/src/index.ts",
+				"packageJson": "libs/clients/cli/package.json",
 				"tsConfig": "libs/clients/cli/tsconfig.lib.json",
 				"assets": [
 					"libs/clients/cli/*.md"

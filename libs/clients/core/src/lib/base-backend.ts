@@ -18,11 +18,9 @@
  * The client also provides access to options via {@link Client.getOptions}.
  * @hidden
  */
+import { Configuration, Options, Transport } from "@cat/domain/client";
 import { Logger } from "@cat/shared/logger";
-import { parseConfigEntries } from "../../../../cat/utils/src/lib/parser";
-import { Configuration } from "./types/configuration";
-import { Options } from "./types/options";
-import { Transport } from "./types/transport";
+import { parseConfigEntries } from "@cat/shared/utils";
 
 export interface Backend {
 

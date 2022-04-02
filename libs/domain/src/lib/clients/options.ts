@@ -1,5 +1,5 @@
 /** Base configuration options for every SDK. */
-import { LogLevel } from "@cat/shared/logger";
+// import { LogLevel } from "@cat/shared/logger";
 import { SDKMetaData } from "./sdk-meta";
 import { Transport, TransportClass, TransportOptions } from "./transport";
 
@@ -34,7 +34,7 @@ export interface Options {
 	environment?: string;
 
 	/** Console logging verbosity for the SDK Client. */
-	logLevel?: LogLevel;
+	logLevel?: any;
 
 	/**
 	 * Set of metadata about the SDK that can be internally used to enhance envelopes and events,

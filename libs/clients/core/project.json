@@ -3,6 +3,21 @@
 	"sourceRoot": "libs/clients/core/src",
 	"projectType": "library",
 	"targets": {
+		"build": {
+			"executor": "@nrwl/js:tsc",
+			"outputs": [
+				"{options.outputPath}"
+			],
+			"options": {
+				"outputPath": "dist/libs/clients/core",
+				"main": "libs/clients/core/src/index.ts",
+				"packageJson": "libs/clients/core/package.json",
+				"tsConfig": "libs/clients/core/tsconfig.lib.json",
+				"assets": [
+					"libs/clients/core/*.md"
+				]
+			}
+		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
 			"outputs": [

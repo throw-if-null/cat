@@ -1,8 +1,22 @@
 {
-	"root": "libs/shared/utils",
+	"root": "libs/shared",
 	"sourceRoot": "libs/shared/utils/src",
 	"projectType": "library",
 	"targets": {
+		"build": {
+			"executor": "@nrwl/js:tsc",
+			"outputs": [
+				"{options.outputPath}"
+			],
+			"options": {
+				"outputPath": "dist/libs/shared/utils",
+				"main": "libs/shared/utils/src/index.ts",
+				"tsConfig": "libs/shared/utils/tsconfig.lib.json",
+				"assets": [
+					"libs/shared/utils/*.md"
+				]
+			}
+		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
 			"outputs": [

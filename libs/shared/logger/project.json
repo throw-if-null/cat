@@ -1,8 +1,22 @@
 {
-	"root": "libs/shared/logger",
+	"root": "libs/shared",
 	"sourceRoot": "libs/shared/logger/src",
 	"projectType": "library",
 	"targets": {
+		"build": {
+			"executor": "@nrwl/js:tsc",
+			"outputs": [
+				"{options.outputPath}"
+			],
+			"options": {
+				"outputPath": "dist/libs/shared/logger",
+				"main": "libs/shared/logger/src/index.ts",
+				"tsConfig": "libs/shared/logger/tsconfig.lib.json",
+				"assets": [
+					"libs/shared/logger/*.md"
+				]
+			}
+		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
 			"outputs": [

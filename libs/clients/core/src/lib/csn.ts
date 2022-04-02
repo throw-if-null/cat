@@ -1,5 +1,5 @@
+import { Csn, CsnComponents, CsnLike, CsnProtocol } from "@cat/domain/client";
 import { RatCatError } from "@cat/shared/error";
-import { Csn, CsnComponents, CsnLike, CsnProtocol } from "./types/csn";
 
 /** The RatCat DSN - DATA SOURCE NAME, identifying a RatCat project. */
 

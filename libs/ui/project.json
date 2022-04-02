@@ -6,7 +6,9 @@
 	"targets": {
 		"test": {
 			"executor": "@nrwl/jest:jest",
-			"outputs": ["coverage/libs/ui"],
+			"outputs": [
+				"coverage/libs/ui"
+			],
 			"options": {
 				"jestConfig": "libs/ui/jest.config.js",
 				"passWithNoTests": true
