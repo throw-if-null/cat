@@ -1,29 +1,34 @@
 {
-	"projectType": "library",
-	"root": "libs/ui",
-	"sourceRoot": "libs/ui/src",
-	"prefix": "cat",
-	"targets": {
-		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": ["coverage/libs/ui"],
-			"options": {
-				"jestConfig": "libs/ui/jest.config.js",
-				"passWithNoTests": true
-			}
-		},
-		"lint": {
-			"executor": "@nrwl/linter:eslint",
-			"options": {
-				"lintFilePatterns": [
-					"libs/ui/src/**/*.ts",
-					"libs/ui/src/**/*.html"
-				]
-			},
-			"outputs": [
-				"{options.outputFile}"
-			]
-		}
-	},
-	"tags": []
+  "projectType": "library",
+  "root": "libs/ui",
+  "sourceRoot": "libs/ui/src",
+  "prefix": "cat",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ui"
+      ],
+      "options": {
+        "jestConfig": "libs/ui/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ui/src/**/*.ts",
+          "libs/ui/src/**/*.html"
+        ]
+      },
+      "outputs": [
+        "{options.outputFile}"
+      ]
+    }
+  },
+  "tags": [
+    "scope:shared",
+    "type:ui"
+  ]
 }

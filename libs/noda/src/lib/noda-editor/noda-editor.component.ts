@@ -1,14 +1,4 @@
-import {
-	AfterViewInit,
-	Component,
-	ElementRef,
-	EventEmitter,
-	HostListener,
-	Input,
-	OnInit,
-	Output,
-	ViewChild
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 // https://www.npmjs.com/package/leader-line
 // https://rete.js.org/#/

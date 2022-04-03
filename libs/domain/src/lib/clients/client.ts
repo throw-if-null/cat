@@ -6,7 +6,7 @@ import { Transport } from "./transport";
  * User-Facing Sentry SDK Client.
  *
  * This interface contains all methods to interface with the SDK once it has
- * been installed. It allows to fetch configurations from Rat and update entries.
+ * been installed. It allows fetching configurations from Rat and update entries.
  *
  */
 export interface Client<O extends Options = Options> {

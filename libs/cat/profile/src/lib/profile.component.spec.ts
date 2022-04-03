@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from "@angular/forms";
 import { CardComponent } from "@cat/ui";
 import { UserFacade, UserFacadeMock } from "@cat/user";
 
@@ -11,6 +12,7 @@ describe('ProfileComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [ ProfileComponent, CardComponent ],
+			imports: [ ReactiveFormsModule ],
 			providers: [ { provide: UserFacade, useClass: UserFacadeMock } ]
 		}).compileComponents();
 	});

@@ -1,6 +1,7 @@
-import { BaseBackend, CSN, Transport, TransportOptions } from "@ratcat/core";
-import { NodeOptions } from "./types";
+import { Transport, TransportOptions } from "@cat/domain";
+import { BaseBackend, CSN } from "@ratcat/core";
 import { HTTPTransport } from "./transports/http";
+import { NodeOptions } from "./types";
 
 /**
  * The Sentry Node SDK Backend.

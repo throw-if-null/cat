@@ -1,6 +1,5 @@
-import { ConfigurationDetails, ConfigurationType } from '@cat/config-data';
+import { ConfigurationDetails, ConfigurationType, ProjectDetails } from '@cat/domain';
 import { Observable, of } from 'rxjs';
-import { ProjectDetails } from './project.type';
 import { ProjectsResponse } from "./project.service";
 
 export const testProject1 = { id: 1, name: "Testus", typeId: 0, totalConfigurationCount: 0, totalEntryCount: 0 };

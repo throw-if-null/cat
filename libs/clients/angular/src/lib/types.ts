@@ -1,4 +1,4 @@
-import { Options } from "@ratcat/core";
+import { Options } from "@cat/domain";
 
 
 /**

@@ -1,12 +1,12 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ProjectCreateData, ProjectType } from '@cat/project';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProjectCreateData, ProjectType } from '@cat/domain';
 import { DialogRef } from '@ngneat/dialog';
 
 @Component({
 	selector: 'cat-project-create',
 	templateUrl: './project-create.component.html',
-	styleUrls: ['./project-create.component.scss'],
+	styleUrls: [ './project-create.component.scss' ],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectCreateComponent {

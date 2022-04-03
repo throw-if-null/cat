@@ -1,6 +1,7 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { Logger, LogLevel } from "@cat/shared/logger";
+import { LogLevel } from "@cat/domain";
+import { Logger } from "@ratcat/logger";
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';

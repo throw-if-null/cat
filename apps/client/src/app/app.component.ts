@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ColorThemeService, THEME_ATTRIBUTE } from '@cat/ui';
 import { UserFacade } from "@cat/user";
-import { MonitoringService } from "@cat/utils";
 import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 
@@ -22,14 +21,12 @@ export class AppComponent implements OnInit, OnDestroy {
 		private route: ActivatedRoute,
 		private renderer: Renderer2,
 		private userFacade: UserFacade,
-		private themeService: ColorThemeService,
-		private monitoringService: MonitoringService) {
+		private themeService: ColorThemeService) {
 		this.user$ = this.userFacade.user$;
 
 		this.themeService.theme$
 			.pipe(takeUntil(this.unsubscribe$))
 			.subscribe(theme => {
-				this.monitoringService.trackEvent('Switched Theme', { theme });
 				this.renderer.setAttribute(document.body, THEME_ATTRIBUTE, theme);
 			});
 	}

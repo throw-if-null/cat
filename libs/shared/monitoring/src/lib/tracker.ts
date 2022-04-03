@@ -1,20 +1,7 @@
-import { Logger } from "@cat/shared/logger";
+import { TrackerOptions, TrackingMethods } from "@cat/domain";
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
+import { Logger } from "@ratcat/logger";
 
-
-interface TrackingMethods {
-	trackEvent(name: string, properties?: { [key: string]: any }): void;
-
-	trackMetric(name: string, average: number, properties?: { [key: string]: any }): void;
-
-	startTracking(eventName: string): void;
-
-	finishTracking(eventName: string): void;
-}
-
-interface TrackerOptions {
-	enabled: boolean;
-}
 
 export class Tracker implements TrackingMethods {
 

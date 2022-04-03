@@ -1,9 +1,9 @@
 function createTree(array: any[], rootNodes: any, customID: string, childrenProperty: string) {
-	var tree = [];
+	const tree = [];
 
-	for (var rootNode in rootNodes) {
-		var node = rootNodes[rootNode];
-		var childNode = array[node[customID]];
+	for (let rootNode in rootNodes) {
+		const node = rootNodes[rootNode];
+		const childNode = array[node[customID]];
 
 		if (!node && !rootNodes.hasOwnProperty(rootNode)) {
 			continue;

@@ -1,28 +1,31 @@
 {
-	"projectType": "library",
-	"root": "libs/cat/user",
-	"sourceRoot": "libs/cat/user/src",
-	"prefix": "cat",
-	"targets": {
-		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": [
-				"coverage/libs/user"
-			],
-			"options": {
-				"jestConfig": "libs/cat/user/jest.config.js",
-				"passWithNoTests": true
-			}
-		},
-		"lint": {
-			"executor": "@nrwl/linter:eslint",
-			"options": {
-				"lintFilePatterns": [
-					"libs/cat/user/src/**/*.ts",
-					"libs/cat/user/src/**/*.html"
-				]
-			}
-		}
-	},
-	"tags": []
+  "projectType": "library",
+  "root": "libs/cat/user",
+  "sourceRoot": "libs/cat/user/src",
+  "prefix": "cat",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/user"
+      ],
+      "options": {
+        "jestConfig": "libs/cat/user/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/cat/user/src/**/*.ts",
+          "libs/cat/user/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "scope:app",
+    "type:feature"
+  ]
 }
