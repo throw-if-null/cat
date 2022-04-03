@@ -1,43 +1,46 @@
 {
-	"root": "libs/shared",
-	"sourceRoot": "libs/shared/error/src",
-	"projectType": "library",
-	"targets": {
-		"build": {
-			"executor": "@nrwl/js:tsc",
-			"outputs": [
-				"{options.outputPath}"
-			],
-			"options": {
-				"outputPath": "dist/libs/shared/error",
-				"main": "libs/shared/error/src/index.ts",
-				"tsConfig": "libs/shared/error/tsconfig.lib.json",
-				"assets": [
-					"libs/shared/error/*.md"
-				]
-			}
-		},
-		"lint": {
-			"executor": "@nrwl/linter:eslint",
-			"outputs": [
-				"{options.outputFile}"
-			],
-			"options": {
-				"lintFilePatterns": [
-					"libs/shared/error/**/*.ts"
-				]
-			}
-		},
-		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": [
-				"coverage/libs/shared/error"
-			],
-			"options": {
-				"jestConfig": "libs/shared/error/jest.config.js",
-				"passWithNoTests": true
-			}
-		}
-	},
-	"tags": []
+  "root": "libs/shared/error",
+  "sourceRoot": "libs/shared/error/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:swc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/shared/error",
+        "main": "libs/shared/error/src/index.ts",
+        "tsConfig": "libs/shared/error/tsconfig.lib.json",
+        "assets": [
+          "libs/shared/error/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/error/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/shared/error"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/error/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [
+    "scope:shared",
+    "type:util"
+  ]
 }

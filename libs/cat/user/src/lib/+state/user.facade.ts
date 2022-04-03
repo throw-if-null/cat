@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from "@auth0/auth0-angular";
 import { Store } from '@ngrx/store';
+import { Logger } from "@ratcat/logger";
 
 import * as UserActions from './user.actions';
-import { AuthService } from "@auth0/auth0-angular";
-import { Logger } from "@cat/shared/logger";
 
 @Injectable()
 export class UserFacade {

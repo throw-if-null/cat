@@ -105,5 +105,8 @@
 			}
 		}
 	},
-	"tags": []
+	"tags": [
+		"scope:app",
+		"type:app"
+	]
 }

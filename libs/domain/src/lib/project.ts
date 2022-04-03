@@ -1,4 +1,4 @@
-import { ConfigurationOverview } from '@cat/config-data';
+import { ConfigurationOverview } from '@cat/domain';
 
 export enum ProjectType {
 	JSON,

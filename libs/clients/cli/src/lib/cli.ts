@@ -8,6 +8,7 @@
  * configstore — easily loads and saves config without you having to think about where and how.
  */
 
+import { parseConfigEntries } from "@ratcat/utils";
 import chalk from 'chalk';
 import clui from "clui";
 import Configstore from "configstore";
@@ -50,8 +51,9 @@ export const run = async () => {
 	status.start();
 
 	const testConfig = await getConfiguration('1337');
+	const parsedConfig = parseConfigEntries(testConfig.entries);
 	status.stop();
-	console.log(testConfig.entries);
+	console.log(parsedConfig);
 
 };
 

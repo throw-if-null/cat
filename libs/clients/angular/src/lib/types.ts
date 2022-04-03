@@ -1,4 +1,4 @@
-import { Options } from "@cat/domain/client";
+import { Options } from "@cat/domain";
 
 
 /**

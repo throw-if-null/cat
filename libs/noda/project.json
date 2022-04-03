@@ -42,5 +42,8 @@
 			}
 		}
 	},
-	"tags": []
+	"tags": [
+		"scope:noda",
+		"type:app"
+	]
 }

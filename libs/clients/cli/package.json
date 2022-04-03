@@ -13,5 +13,9 @@
 		"figlet": "^1.5.2",
 		"inquirer": "^8.2.2",
 		"minimist": "^1.2.6"
-	}
+	},
+	"dependencies": {
+		"@swc/helpers": "~0.3.3"
+	},
+	"devDependencies": {}
 }

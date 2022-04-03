@@ -1,5 +1,5 @@
-import { Csn, CsnComponents, CsnLike, CsnProtocol } from "@cat/domain/client";
-import { RatCatError } from "@cat/shared/error";
+import { Csn, CsnComponents, CsnLike, CsnProtocol } from "@cat/domain";
+import { RatCatError } from "@ratcat/error";
 
 /** The RatCat DSN - DATA SOURCE NAME, identifying a RatCat project. */
 
@@ -84,9 +84,9 @@ export class CSN implements Csn {
 
 	/** Validates this Csn and throws on error. */
 	private _validate(): void {
-		[ 'protocol', 'publicKey', 'host', 'configurationId' ].forEach(component => {
-			if (!this[component as keyof CsnComponents]) {
-				throw new RatCatError(`${ ERROR_MESSAGE }: ${ component } missing`);
+		([ 'protocol', 'publicKey', 'host', 'configurationId' ] as Array<keyof CsnComponents>).forEach(component => {
+			if (!this[component as keyof CSN]) {
+				throw new RatCatError(`${ ERROR_MESSAGE }: ${ String(component) } missing`);
 			}
 		});
 

@@ -38,7 +38,9 @@
 		"docker:up": "docker-compose up -d",
 		"docker:down": "docker-compose down --remove-orphans",
 		"docker:build": "docker build -t cat .",
-		"docker:cat:run": "docker run -p 4200:80 cat:latest"
+		"docker:cat:run": "docker run -p 4200:80 cat:latest",
+		"build:cli": "nx build client-cli",
+		"run:cli": "node --experimental-fetch dist/libs/clients/cli/src/index.js"
 	},
 	"private": true,
 	"dependencies": {
@@ -53,7 +55,7 @@
 		"@auth0/auth0-angular": "^1.9.0",
 		"@microsoft/applicationinsights-angularplugin-js": "^2.8.0",
 		"@microsoft/applicationinsights-web": "^2.7.4",
-		"@ngneat/dialog": "^1.7.1",
+		"@ngneat/dialog": "^2.1.0",
 		"@ngneat/helipopper": "^5.1.4",
 		"@ngneat/hot-toast": "^4.1.0",
 		"@ngneat/overview": "^3.0.4",

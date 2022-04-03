@@ -1,46 +1,46 @@
 {
-	"root": "libs/clients/cli",
-	"sourceRoot": "libs/clients/cli/src",
-	"projectType": "library",
-	"targets": {
-		"build": {
-			"executor": "@nrwl/js:tsc",
-			"outputs": [
-				"{options.outputPath}"
-			],
-			"options": {
-				"outputPath": "dist/libs/clients/cli",
-				"main": "libs/clients/cli/src/index.ts",
-				"packageJson": "libs/clients/cli/package.json",
-				"tsConfig": "libs/clients/cli/tsconfig.lib.json",
-				"assets": [
-					"libs/clients/cli/*.md"
-				]
-			}
-		},
-		"lint": {
-			"executor": "@nrwl/linter:eslint",
-			"outputs": [
-				"{options.outputFile}"
-			],
-			"options": {
-				"lintFilePatterns": [
-					"libs/clients/cli/**/*.ts"
-				]
-			}
-		},
-		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": [
-				"coverage/libs/clients/cli"
-			],
-			"options": {
-				"jestConfig": "libs/clients/cli/jest.config.js",
-				"passWithNoTests": true
-			}
-		}
-	},
-	"tags": [
-		"cli"
-	]
+  "root": "libs/clients/cli",
+  "sourceRoot": "libs/clients/cli/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:swc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/clients/cli",
+        "main": "libs/clients/cli/src/index.ts",
+        "packageJson": "libs/clients/cli/package.json",
+        "tsConfig": "libs/clients/cli/tsconfig.lib.json",
+        "assets": [
+          "libs/clients/cli/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/clients/cli/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/clients/cli"
+      ],
+      "options": {
+        "jestConfig": "libs/clients/cli/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [
+    "scope:client"
+  ]
 }

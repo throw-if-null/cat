@@ -27,5 +27,8 @@
       ]
     }
   },
-  "tags": []
+  "tags": [
+    "scope:app",
+    "type:feature"
+  ]
 }

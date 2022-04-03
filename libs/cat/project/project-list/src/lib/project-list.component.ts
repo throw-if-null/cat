@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ProjectCreateData, ProjectOverview, ProjectsFacade } from '@cat/project';
+import { ProjectCreateData, ProjectOverview } from "@cat/domain";
+import { ProjectsFacade } from '@cat/project';
 import { ProjectCreateComponent } from '@cat/project-create';
 import { DialogService } from '@ngneat/dialog';
 import { Observable } from 'rxjs';
@@ -9,7 +10,7 @@ import { take } from 'rxjs/operators';
 @Component({
 	selector: 'cat-project-list',
 	templateUrl: './project-list.component.html',
-	styleUrls: ['./project-list.component.scss'],
+	styleUrls: [ './project-list.component.scss' ],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectListComponent {

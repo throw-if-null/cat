@@ -1,6 +1,6 @@
+import { ProjectCreateResponse, ProjectDetails, ProjectOverview } from '@cat/domain';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { ProjectCreateResponse, ProjectDetails, ProjectOverview } from '../project.type';
 import * as ProjectsActions from './projects.actions';
 
 export const PROJECTS_FEATURE_KEY = 'projects';

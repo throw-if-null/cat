@@ -15,7 +15,7 @@
  *   // ...
  * }
  */
-import { Client, Options, Transport } from "@cat/domain/client";
+import { Client, Options, Transport } from "@cat/domain";
 import { Backend, BackendClass } from "./base-backend";
 import { CSN } from "./csn";
 

@@ -1,9 +1,7 @@
-interface ConfigurationEntry {
-	key: string;
-	value: any
-}
+import { ConfigurationEntryData } from "@cat/domain";
 
-export function parseConfigEntries(configuration: ConfigurationEntry[]): object {
+
+export function parseConfigEntries(configuration: ConfigurationEntryData[]): object {
 	return configuration.reduce((parsedObject, entry) => addToObj(parsedObject, entry.key.split('.'), entry.value), {});
 }
 

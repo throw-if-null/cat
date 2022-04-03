@@ -1,45 +1,34 @@
 {
-  "projectType": "library",
-  "root": "libs/cat/utils",
-  "sourceRoot": "libs/cat/utils/src",
-  "prefix": "cat",
-  "targets": {
-	  "build": {
-		  "executor": "@nrwl/js:tsc",
-		  "outputs": [
-			  "{options.outputPath}"
-		  ],
-		  "options": {
-			  "outputPath": "dist/libs/cat/utils",
-			  "main": "libs/cat/utils/src/index.ts",
-			  "tsConfig": "libs/cat/utils/tsconfig.lib.json",
-			  "assets": [
-				  "libs/cat/utils/*.md"
-			  ]
-		  }
-	  },
-	  "test": {
-		  "executor": "@nrwl/jest:jest",
-		  "outputs": [
-			  "coverage/libs/cat/utils"
-		  ],
-		  "options": {
-			  "jestConfig": "libs/cat/utils/jest.config.js",
-			  "passWithNoTests": true
-		  }
-	  },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/cat/utils/src/**/*.ts",
-          "libs/cat/utils/src/**/*.html"
-        ]
-      },
-      "outputs": [
-        "{options.outputFile}"
-      ]
-    }
-  },
-  "tags": []
+	"projectType": "library",
+	"root": "libs/cat/utils",
+	"sourceRoot": "libs/cat/utils/src",
+	"prefix": "cat",
+	"targets": {
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": [
+				"coverage/libs/cat/utils"
+			],
+			"options": {
+				"jestConfig": "libs/cat/utils/jest.config.js",
+				"passWithNoTests": true
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"libs/cat/utils/src/**/*.ts",
+					"libs/cat/utils/src/**/*.html"
+				]
+			},
+			"outputs": [
+				"{options.outputFile}"
+			]
+		}
+	},
+	"tags": [
+		"scope:app",
+		"type:feature"
+	]
 }

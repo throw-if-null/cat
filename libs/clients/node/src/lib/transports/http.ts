@@ -1,7 +1,7 @@
 // https://github.com/getsentry/sentry-javascript/blob/master/packages/node/src/transports/http.ts
 
 /** Node http module transport */
-import { Configuration, TransportOptions } from "@cat/domain/client";
+import { Configuration, TransportOptions } from "@cat/domain";
 import * as http from 'http';
 import * as https from 'https';
 

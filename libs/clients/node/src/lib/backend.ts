@@ -1,4 +1,4 @@
-import { Transport, TransportOptions } from "@cat/domain/client";
+import { Transport, TransportOptions } from "@cat/domain";
 import { BaseBackend, CSN } from "@ratcat/core";
 import { HTTPTransport } from "./transports/http";
 import { NodeOptions } from "./types";

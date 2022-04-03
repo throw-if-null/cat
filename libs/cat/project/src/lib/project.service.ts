@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ConfigurationDetails, ConfigurationEntry } from '@cat/config-data';
-import { Observable } from 'rxjs';
 import {
+	ConfigurationDetails,
+	ConfigurationEntry,
 	ProjectCreateData,
 	ProjectCreateResponse,
 	ProjectDeleteResponse,
 	ProjectDetails,
 	ProjectOverview
-} from './project.type';
+} from '@cat/domain';
+import { Observable } from 'rxjs';
 
 export interface ProjectsResponse {
 	userId: number;

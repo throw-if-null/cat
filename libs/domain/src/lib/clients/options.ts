@@ -1,5 +1,5 @@
 /** Base configuration options for every SDK. */
-// import { LogLevel } from "@cat/shared/logger";
+// import { LogLevel } from "@ratcat/logger";
 import { SDKMetaData } from "./sdk-meta";
 import { Transport, TransportClass, TransportOptions } from "./transport";
 
