@@ -1,29 +1,46 @@
 {
-	"root": "libs/shared/monitoring",
-	"sourceRoot": "libs/shared/monitoring/src",
-	"projectType": "library",
-	"targets": {
-		"lint": {
-			"executor": "@nrwl/linter:eslint",
-			"outputs": [
-				"{options.outputFile}"
-			],
-			"options": {
-				"lintFilePatterns": [
-					"libs/shared/monitoring/**/*.ts"
-				]
-			}
-		},
-		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": [
-				"coverage/libs/shared/monitoring"
-			],
-			"options": {
-				"jestConfig": "libs/shared/monitoring/jest.config.js",
-				"passWithNoTests": true
-			}
-		}
-	},
-	"tags": []
+  "root": "libs/shared/monitoring",
+  "sourceRoot": "libs/shared/monitoring/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:swc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/shared/monitoring",
+        "main": "libs/shared/monitoring/src/index.ts",
+        "tsConfig": "libs/shared/monitoring/tsconfig.lib.json",
+        "assets": [
+          "libs/shared/monitoring/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/monitoring/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/shared/monitoring"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/monitoring/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [
+    "scope:shared",
+    "type:util"
+  ]
 }

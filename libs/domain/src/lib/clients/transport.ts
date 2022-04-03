@@ -1,6 +1,6 @@
 /** Transport used sending data to Rat */
-import { Csn } from "./csn";
 import { Configuration } from "./configuration";
+import { Csn } from "./csn";
 import { SDKMetaData } from "./sdk-meta";
 
 export interface Transport {

@@ -1,12 +1,13 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { CatEnvironment } from "@cat/domain";
-import { ErrorReporter } from "@cat/shared/error";
-import { Logger } from "@cat/shared/logger";
-import { Tracker } from "@cat/shared/monitoring";
 import { AngularPlugin } from "@microsoft/applicationinsights-angularplugin-js";
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
+import { ErrorReporter } from "@ratcat/error";
+import { Logger } from "@ratcat/logger";
+import { Tracker } from "@ratcat/monitoring";
 
+// only use in lazy loaded features
 @Injectable({
 	providedIn: 'root'
 })

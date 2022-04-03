@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ConfigCreateComponent } from '@cat/config-create';
-import { ProjectService, ProjectDetails, ProjectsFacade } from '@cat/project';
+import { ProjectDetails } from "@cat/domain";
+import { ProjectService, ProjectsFacade } from '@cat/project';
 import { DialogService } from '@ngneat/dialog';
 import { Observable, of, Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
@@ -9,7 +10,7 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 @Component({
 	selector: 'cat-project-details',
 	templateUrl: './project-details.component.html',
-	styleUrls: ['./project-details.component.scss']
+	styleUrls: [ './project-details.component.scss' ]
 })
 export class ProjectDetailsComponent implements OnInit, OnDestroy {
 

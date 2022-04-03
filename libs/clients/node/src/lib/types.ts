@@ -1,4 +1,4 @@
-import { Options } from "@ratcat/core";
+import { Options } from "@cat/domain";
 
 
 /**
@@ -9,10 +9,10 @@ export interface NodeOptions extends Options {
 	/** Sets an optional server name (device name) */
 	serverName?: string;
 
-	/** Set a HTTP proxy that should be used for outbound requests. */
+	/** Set HTTP proxy that should be used for outbound requests. */
 	httpProxy?: string;
 
-	/** Set a HTTPS proxy that should be used for outbound requests. */
+	/** Set HTTPS proxy that should be used for outbound requests. */
 	httpsProxy?: string;
 
 	/** HTTPS proxy certificates path */

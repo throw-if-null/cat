@@ -6,4 +6,3 @@ export * from './lib/+state/projects.actions';
 export * from './lib/projects.module';
 export * from './lib/project.service';
 export * from './lib/project.service.mock';
-export * from './lib/project.type';

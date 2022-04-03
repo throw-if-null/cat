@@ -15,11 +15,9 @@
  *   // ...
  * }
  */
+import { Client, Options, Transport } from "@cat/domain";
 import { Backend, BackendClass } from "./base-backend";
 import { CSN } from "./csn";
-import { Client } from "./types/client";
-import { Options } from "./types/options";
-import { Transport } from "./types/transport";
 
 
 export abstract class BaseClient<B extends Backend, O extends Options> implements Client<O> {

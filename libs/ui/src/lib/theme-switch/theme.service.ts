@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Logger } from "@ratcat/logger";
 import { BehaviorSubject } from 'rxjs';
 import { tap } from "rxjs/operators";
-import { Logger } from "@cat/shared/logger";
 
 export enum ColorTheme {
 	LIGHT = 'light',

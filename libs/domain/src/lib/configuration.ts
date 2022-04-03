@@ -12,10 +12,13 @@ export interface ConfigurationOverview {
 	entries: number;
 }
 
-export interface ConfigurationEntry {
-	id: number;
+export interface ConfigurationEntryData {
 	key: string;
-	value: string;
+	value: any
+}
+
+export interface ConfigurationEntry extends ConfigurationEntryData {
+	id: number;
 	expire: number;
 	disabled: boolean;
 }

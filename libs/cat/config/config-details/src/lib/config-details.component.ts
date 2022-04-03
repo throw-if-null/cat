@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { ConfigurationDetails, ConfigurationEntry } from '@cat/config-data';
+import { ConfigurationDetails, ConfigurationEntry } from '@cat/domain';
 import { ProjectService } from '@cat/project';
 import { parseStringValue } from '@cat/utils';
 import { FormControl } from '@ngneat/reactive-forms';
-import { Subject, Observable, combineLatest } from 'rxjs';
-import { switchMap, map, takeUntil, startWith, debounceTime } from 'rxjs/operators';
+import { combineLatest, Observable, Subject } from 'rxjs';
+import { debounceTime, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 // interface EditableConfigurationEntry extends ConfigurationEntry {
 // 	editing?: boolean;

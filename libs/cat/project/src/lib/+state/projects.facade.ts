@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { ProjectCreateData } from '@cat/domain';
 import { select, Store } from '@ngrx/store';
-import { ProjectCreateData } from '../project.type';
 import * as ProjectsActions from './projects.actions';
 import * as ProjectsSelectors from './projects.selectors';
 

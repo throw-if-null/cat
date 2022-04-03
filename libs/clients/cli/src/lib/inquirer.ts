@@ -1,16 +1,16 @@
-const inquirer = require("inquirer");
+import inquirer from "inquirer";
 
 export function askRatCatCredentials() {
 	const questions = [
 		{
-			name: 'username',
+			name: 'dsn',
 			type: 'input',
-			message: 'Enter your RatCat CDN:',
+			message: 'Enter your RatCat DSN:',
 			validate: function (value: string) {
 				if (value.length) {
 					return true;
 				} else {
-					return 'Please enter a valid CDN';
+					return 'Please enter a valid DSN';
 				}
 			}
 		}

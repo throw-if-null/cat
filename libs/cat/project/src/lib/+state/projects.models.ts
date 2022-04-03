@@ -1,4 +1,4 @@
-import { ProjectOverview } from '../project.type';
+import { ProjectOverview } from '@cat/domain';
 
 /**
  * Interface for the 'Projects' data

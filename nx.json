@@ -57,6 +57,9 @@
 		},
 		"@nrwl/angular:component": {
 			"style": "scss"
+		},
+		"@nrwl/js:library": {
+			"buildable": true
 		}
 	},
 	"defaultProject": "client"

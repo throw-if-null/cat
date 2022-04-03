@@ -1,15 +1,6 @@
-import { Logger } from "@cat/shared/logger";
+import { ReporterMethods, ReporterOptions } from "@cat/domain";
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-
-type ErrorSeverity = "critical" | "error" | "warning";
-
-interface ReporterMethods {
-	captureException(error: any, severity?: ErrorSeverity, context?: any): void;
-}
-
-interface ReporterOptions {
-	enabled: boolean;
-}
+import { Logger } from "@ratcat/logger";
 
 export class ErrorReporter implements ReporterMethods {
 

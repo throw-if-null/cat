@@ -1,5 +1,5 @@
+import { ProjectCreateData, ProjectCreateResponse, ProjectDetails, ProjectOverview } from '@cat/domain';
 import { createAction, props } from '@ngrx/store';
-import { ProjectCreateData, ProjectCreateResponse, ProjectDetails, ProjectOverview } from '../project.type';
 
 export const init = createAction('[Projects Page] Init');
 
