@@ -6,4 +6,5 @@ module.exports = {
 		'<rootDir>/apps/client',
 		'<rootDir>/libs/ui',
 	],
+	coverageReporters: ['lcov', 'text-summary'],
 };

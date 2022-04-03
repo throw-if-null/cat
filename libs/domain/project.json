@@ -27,16 +27,6 @@
           "libs/domain/**/*.ts"
         ]
       }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/domain"
-      ],
-      "options": {
-        "jestConfig": "libs/domain/jest.config.js",
-        "passWithNoTests": true
-      }
     }
   },
   "tags": [
