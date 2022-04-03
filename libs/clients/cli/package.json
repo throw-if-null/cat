@@ -5,9 +5,6 @@
 		"ratcat": "../../../dist/libs/clients/cli/src/index.js"
 	},
 	"type": "module",
-	"scripts": {
-		"postbuild": "tscpaths --verbose -p ./tsconfig.lib.json -s ./src -o ../../../dist/libs/clients/cli"
-	},
 	"peerDependencies": {
 		"chalk": "4.1.2",
 		"clear": "^0.1.0",

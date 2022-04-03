@@ -9,11 +9,12 @@ import { takeUntil } from 'rxjs/operators';
 	styleUrls: [ './error.component.scss' ]
 })
 export class ErrorComponent implements OnInit, OnDestroy {
-	public authError$: Observable<Error> = this.auth.error$;
+	public authError$: Observable<Error>;
 
 	private unsubscribe$ = new Subject();
 
 	constructor(private auth: AuthService) {
+		this.authError$ = this.auth.error$;
 	}
 
 	ngOnInit() {
