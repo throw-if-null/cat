@@ -9,6 +9,7 @@
  */
 
 import { parseConfigEntries } from "@ratcat/utils";
+
 import chalk from 'chalk';
 import clui from "clui";
 import Configstore from "configstore";
