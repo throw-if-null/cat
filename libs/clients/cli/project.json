@@ -35,7 +35,7 @@
         "coverage/libs/clients/cli"
       ],
       "options": {
-        "jestConfig": "libs/clients/cli/jest.config.js",
+        "jestConfig": "libs/clients/cli/jest.config.ts",
         "passWithNoTests": true
       }
     }
