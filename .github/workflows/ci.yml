@@ -2,6 +2,8 @@ name: CI
 
 on:
   push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
@@ -43,8 +45,11 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Affected Tests
-        run: npm run affected:test -- --base=origin/master --head=HEAD
+#      - name: Affected Tests
+#        run: npm run affected:test -- --base=origin/master --head=HEAD
+
+      - name: All Tests
+        run: npm run test:all
 
       - name: E2E Test
         continue-on-error: true
@@ -53,7 +58,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Code Coverage - Client
+      - name: Code Coverage
         uses: codecov/codecov-action@v1.5.2
         with:
           files: ./coverage/*/lcov.info
