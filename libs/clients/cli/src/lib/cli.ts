@@ -8,7 +8,7 @@
  * configstore — easily loads and saves config without you having to think about where and how.
  */
 
-// import { parseConfigEntries } from "@ratcat/utils";
+import { parseConfigEntries } from "@ratcat/core";
 
 import chalk from 'chalk';
 import clui from "clui";
@@ -53,6 +53,7 @@ export const run = async () => {
 
 	const testConfig = await getConfiguration('1337');
 	const envFile = createEnvFile(testConfig.entries);
+	const parsedFile = parseConfigEntries(testConfig.entries);
 	status.stop();
 	writeFile('.env', envFile);
 };
