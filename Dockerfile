@@ -18,7 +18,7 @@ FROM nginx:latest
 # Server config
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 # Copy the client app output to replace the default nginx contents.
-COPY ./dist/apps/client /usr/share/nginx/html
+COPY ./dist/apps/cat /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80

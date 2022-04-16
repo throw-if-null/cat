@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "cat": "apps/cat",
+    "cat-e2e": "apps/cat-e2e",
     "cat-config-create": "libs/cat/config/config-create",
     "cat-config-details": "libs/cat/config/config-details",
     "cat-config-relations": "libs/cat/config/config-relations",
@@ -13,11 +15,9 @@
     "cat-ui-utils": "libs/cat/ui-utils",
     "cat-user": "libs/cat/user",
     "cat-utils": "libs/cat/utils",
-    "client": "apps/client",
     "client-angular": "libs/clients/angular",
     "client-cli": "libs/clients/cli",
     "client-core": "libs/clients/core",
-    "client-e2e": "apps/client-e2e",
     "client-node": "libs/clients/node",
     "domain": "libs/domain",
     "noda": "libs/noda",
