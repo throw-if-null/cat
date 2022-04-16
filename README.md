@@ -3,6 +3,7 @@
 # Cat
 
 [![CI](https://github.com/throw-if-null/rat.app/actions/workflows/ci.yml/badge.svg)](https://github.com/throw-if-null/rat.app/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/throw-if-null/cat/branch/master/graph/badge.svg?token=LT5US083TZ)](https://codecov.io/gh/throw-if-null/cat)
 
 Hosted at [Azure](https://catus.azurewebsites.net/)
 
