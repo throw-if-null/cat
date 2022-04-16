@@ -20,7 +20,7 @@
  */
 import { Configuration, Options, Transport } from "@cat/domain";
 import { Logger } from "@ratcat/logger";
-import { parseConfigEntries } from "@ratcat/utils";
+import { parseConfigEntries } from "./utils";
 
 export interface Backend {
 

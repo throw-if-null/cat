@@ -11,7 +11,7 @@
     "build": "ng build",
     "build:stats": "ng build --stats-json",
     "test": "ng test",
-    "test:all": "nx run-many --target=test --all --code-coverage",
+    "test:all": "nx run-many --target=test --all --codeCoverage --coverageReporters=lcov",
     "coverage": "ng test --coverage",
     "bundle-report": "webpack-bundle-analyzer dist/apps/client/stats.json",
     "lint": "nx workspace-lint && ng lint",

@@ -5,6 +5,5 @@ module.exports = {
 		...getJestProjects(),
 		'<rootDir>/apps/client',
 		'<rootDir>/libs/ui',
-	],
-	coverageReporters: ['lcov', 'text-summary'],
+	]
 };
