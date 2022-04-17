@@ -4,11 +4,13 @@ import { Store } from '@ngrx/store';
 import { Logger } from "@ratcat/logger";
 
 import * as UserActions from './user.actions';
+import * as UserSelectors from './user.selectors';
 
 @Injectable()
 export class UserFacade {
 
-	user$ = this.auth.user$;
+	user$ = this.store.select(UserSelectors.getUser);
+	error$ = this.store.select(UserSelectors.getUserError);
 
 	private logger = new Logger('UserFacade');
 

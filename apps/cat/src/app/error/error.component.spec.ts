@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthService } from '@auth0/auth0-angular';
-import { of } from "rxjs";
+import { Subject } from "rxjs";
 
 import { ErrorComponent } from './error.component';
 
@@ -11,7 +11,7 @@ describe('ErrorComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [ ErrorComponent ],
-			providers: [ { provide: AuthService, useValue: { error$: of({}) } } ]
+			providers: [ { provide: AuthService, useValue: { error$: new Subject() } } ]
 		}).compileComponents();
 	});
 
