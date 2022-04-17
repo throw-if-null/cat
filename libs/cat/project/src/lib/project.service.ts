@@ -38,10 +38,10 @@ export class ProjectService {
 		return this.http.post<ProjectCreateResponse>(`${ this.apiURL }/projects/`, data);
 	}
 
-	deleteProject(projectId: number): Promise<ProjectDeleteResponse> {
+	deleteProject(projectId: number): Observable<ProjectDeleteResponse> {
 		console.log('Deleting project: ', projectId);
 
-		return this.http.delete<ProjectDeleteResponse>(`${ this.apiURL }/projects/${ projectId }`).toPromise();
+		return this.http.delete<ProjectDeleteResponse>(`${ this.apiURL }/projects/${ projectId }`);
 	}
 
 	/**

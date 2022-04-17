@@ -3,7 +3,6 @@ import { initialState, projectsAdapter, ProjectsPartialState } from './projects.
 import * as ProjectsSelectors from './projects.selectors';
 
 describe('Projects Selectors', () => {
-	const ERROR_MSG = 'No Error Available';
 	const getProjectsId = (it: ProjectsEntity) => it.id;
 	const createProjectsEntity = (id: number, name = ''): ProjectsEntity => ({
 		id,
@@ -26,7 +25,6 @@ describe('Projects Selectors', () => {
 				{
 					...initialState,
 					selectedId: 2,
-					error: ERROR_MSG,
 					loaded: true
 				}
 			)
@@ -52,7 +50,13 @@ describe('Projects Selectors', () => {
 		it('getProjectsError() should return the current "error" state', () => {
 			const result = ProjectsSelectors.getProjectsError(state);
 
-			expect(result).toBe(ERROR_MSG);
+			expect(result).toBe(undefined);
+		});
+
+		it('getProjectDetails() should return the details of a project', () => {
+			const result = ProjectsSelectors.getProjectDetails(state);
+
+			expect(result).toBe(undefined);
 		});
 	});
 });

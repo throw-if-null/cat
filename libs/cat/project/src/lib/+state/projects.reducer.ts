@@ -8,7 +8,7 @@ export const PROJECTS_FEATURE_KEY = 'projects';
 export interface State extends EntityState<ProjectOverview> {
 	selectedId?: number; // which Projects record has been selected
 	loaded: boolean; // has the Projects list been loaded
-	error?: string | null; // last known error (if any)
+	error?: string; // last known error (if any)
 	projectDetails?: ProjectDetails;
 	loadedProject?: boolean;
 }
@@ -27,7 +27,7 @@ export const initialState: State = projectsAdapter.getInitialState({
 
 const projectsReducer = createReducer(
 	initialState,
-	on(ProjectsActions.init, state => ({ ...state, loaded: false, error: null })),
+	on(ProjectsActions.init, state => ({ ...state, loaded: false, error: undefined })),
 	on(ProjectsActions.loadProjectsSuccess, (state, { projects }) =>
 		projectsAdapter.setAll(projects, { ...state, loaded: true })
 	),
@@ -40,9 +40,17 @@ const projectsReducer = createReducer(
 		projectDetails: project,
 		loadedProject: true
 	})),
+	on(ProjectsActions.loadProjectFailure, (state, { error }) => ({
+		...state,
+		error
+	})),
 	on(ProjectsActions.createProjectSuccess, (state, { project }) =>
 		projectsAdapter.addOne(createProjectFromResponse(project), state)
-	)
+	),
+	on(ProjectsActions.createProjectFailure, (state, { error }) => ({
+		...state,
+		error
+	}))
 );
 
 export function reducer(state: State | undefined, action: Action) {
