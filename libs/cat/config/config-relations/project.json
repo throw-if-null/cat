@@ -1,31 +1,26 @@
 {
-  "projectType": "library",
-  "root": "libs/cat/config/config-relations",
-  "sourceRoot": "libs/cat/config/config-relations/src",
-  "prefix": "cat",
-  "targets": {
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/cat/config/config-relations"
-      ],
-      "options": {
-        "jestConfig": "libs/cat/config/config-relations/jest.config.js",
-        "passWithNoTests": true
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/cat/config/config-relations/src/**/*.ts",
-          "libs/cat/config/config-relations/src/**/*.html"
-        ]
-      }
-    }
-  },
-  "tags": [
-    "scope:app",
-    "type:feature"
-  ]
+	"projectType": "library",
+	"root": "libs/cat/config/config-relations",
+	"sourceRoot": "libs/cat/config/config-relations/src",
+	"prefix": "cat",
+	"targets": {
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/cat/config/config-relations"],
+			"options": {
+				"jestConfig": "libs/cat/config/config-relations/jest.config.js",
+				"passWithNoTests": true
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"libs/cat/config/config-relations/src/**/*.ts",
+					"libs/cat/config/config-relations/src/**/*.html"
+				]
+			}
+		}
+	},
+	"tags": ["scope:app", "type:feature"]
 }

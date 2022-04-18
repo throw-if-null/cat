@@ -1,0 +1,26 @@
+{
+	"projectType": "library",
+	"root": "libs/cat/config",
+	"sourceRoot": "libs/cat/config/src",
+	"prefix": "load",
+	"targets": {
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/cat/config"],
+			"options": {
+				"jestConfig": "libs/cat/config/jest.config.js",
+				"passWithNoTests": true
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"libs/cat/config/src/**/*.ts",
+					"libs/cat/config/src/**/*.html"
+				]
+			}
+		}
+	},
+	"tags": []
+}

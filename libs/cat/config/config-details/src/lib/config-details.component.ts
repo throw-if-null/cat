@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { ConfigurationDetails, ConfigurationEntry } from '@cat/domain';
-import { ProjectService } from '@cat/project';
+import { Component, OnDestroy } from '@angular/core';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { ConfigurationFacade } from "@cat/config";
+import { ConfigurationEntry } from '@cat/domain';
 import { parseStringValue } from '@cat/utils';
 import { FormControl } from '@ngneat/reactive-forms';
-import { combineLatest, Observable, Subject } from 'rxjs';
-import { debounceTime, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 // interface EditableConfigurationEntry extends ConfigurationEntry {
 // 	editing?: boolean;
@@ -18,26 +18,31 @@ import { debounceTime, map, startWith, switchMap, takeUntil } from 'rxjs/operato
 @Component({
 	selector: 'cat-config-details',
 	templateUrl: './config-details.component.html',
-	styleUrls: ['./config-details.component.scss']
+	styleUrls: [ './config-details.component.scss' ]
 })
-export class ConfigDetailsComponent implements OnInit, OnDestroy {
+export class ConfigDetailsComponent implements OnDestroy {
 
-	config$: Observable<ConfigurationDetails> | undefined;
+	entries$: Observable<ConfigurationEntry[]>;
 	editEntry$ = new Subject<ConfigurationEntry>();
 
 	searchControl = new FormControl<string>('');
 
 	private unsubscribe$ = new Subject();
 
-	constructor(private route: ActivatedRoute, private projectService: ProjectService) {
+	constructor(private activatedRouteSnapshot: ActivatedRouteSnapshot, private configurationFacade: ConfigurationFacade) {
+		this.entries$ = this.configurationFacade.allConfigurationEntries$;
 
 		this.editEntry$
 			.pipe(takeUntil(this.unsubscribe$))
-			.subscribe((entry: ConfigurationEntry) => {
+			.subscribe((entry) => {
 				console.log(entry);
-				const projectId = +this.route.snapshot.params.projectId;
-				const configId = +this.route.snapshot.params.configId;
-				this.projectService.updateConfigurationEntry(projectId, configId, entry).then(console.log);
+				const { projectId, configId } = this.activatedRouteSnapshot.params;
+
+				if (!projectId || !configId) {
+					throw new Error('Can not update config before init');
+				}
+				this.configurationFacade.updateConfigurationEntry(entry, projectId, configId);
+
 			});
 
 		this.searchControl.value$
@@ -48,36 +53,6 @@ export class ConfigDetailsComponent implements OnInit, OnDestroy {
 
 	}
 
-	ngOnInit() {
-
-		// merge the original config fetch and edited entries together
-		this.config$ = combineLatest([
-			this.route.paramMap.pipe(
-				switchMap((params: ParamMap) => {
-					const projectId = params.get('projectId');
-					const configId = params.get('configId');
-					if (!projectId || !configId) {
-						throw new Error('Missing config id parameter!');
-					}
-
-					return this.projectService.getConfigurationById(+projectId, +configId);
-				})),
-			this.editEntry$.pipe(startWith(null))
-		]).pipe(
-			map(([config, editEntry]) => {
-				if (!editEntry) {
-					return config;
-				}
-				console.log({ config });
-				console.log({ editEntry });
-				const originalEntryIndex = config.entries.findIndex(entry => entry.key === editEntry.key);
-				if (originalEntryIndex !== -1) {
-					config.entries[originalEntryIndex] = editEntry;
-				}
-				return config;
-			})
-		);
-	}
 
 	ngOnDestroy() {
 		this.unsubscribe$.next();
@@ -90,9 +65,10 @@ export class ConfigDetailsComponent implements OnInit, OnDestroy {
 		if (changed) {
 			console.log(`Entry[${ entry.id }] edited ${ property } - new[${ parsedValue }] old[${ entry[property] }]`);
 
-			entry[property] = parsedValue;
+			const clone = { ...entry };
+			clone[property] = parsedValue;
 
-			this.editEntry$.next(entry);
+			this.editEntry$.next(clone);
 		}
 	}
 }

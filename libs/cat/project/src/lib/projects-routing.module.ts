@@ -8,7 +8,7 @@ const routes: Routes = [
 	},
 	{
 		path: ':projectId/config/:configId',
-		loadChildren: () => import('@cat/config-details').then(m => m.ConfigDetailsModule)
+		loadChildren: () => import('@cat/config').then(m => m.ConfigModule)
 	},
 	{
 		path: '',

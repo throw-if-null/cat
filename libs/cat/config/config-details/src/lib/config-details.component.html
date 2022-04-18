@@ -1,8 +1,8 @@
 <div class="config-details-container" *subscribe="searchControl.value$; let searchText;">
 
-    <ng-container *ngIf="config$ | async as config; else loadingConfig">
+    <ng-container *ngIf="entries$ | async as entries; else loadingConfig">
 
-        <ng-container *ngIf="config.entries.length > 0; else noConfig">
+        <ng-container *ngIf="entries.length > 0; else noConfig">
             <h1>Config Entries</h1>
             <div class="list-controls">
                 <input autofocus class="input" placeholder="Type to search..." [formControl]="searchControl">
@@ -18,7 +18,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let entry of config.entries | catFilter: searchText :  ['key', 'value']">
+                <tr *ngFor="let entry of entries | catFilter: searchText :  ['key', 'value']">
                     <td></td>
                     <td class="editable">
                         <cat-editable (edit)="entryEdited($event, entry , 'key')">
