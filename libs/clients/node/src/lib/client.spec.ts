@@ -1,10 +1,15 @@
 import { NodeClient } from './client';
 
-const client = new NodeClient({
-	csn: "https://examplePublicKey@o0.ingest.sentry.io/0",
-});
 
 describe('NodeClient()', () => {
+
+	let client: NodeClient;
+	beforeEach(() => {
+		client = new NodeClient({
+			csn: "https://examplePublicKey@o0.ingest.sentry.io/0",
+		});
+	});
+
 	it('should have options', () => {
 		expect(client.getOptions()).toEqual({
 			"csn": "https://examplePublicKey@o0.ingest.sentry.io/0",
@@ -27,4 +32,14 @@ describe('NodeClient()', () => {
 			},
 		});
 	});
+
+	describe('invalid configured', () => {
+		it('should have Noop transport', async () => {
+			// @ts-ignore
+			client = new NodeClient({});
+
+			await expect(() => client.getConfiguration('1')).rejects.toBe('NoopTransport: getConfiguration has been skipped because no Csn is configured.');
+		});
+	});
+
 });

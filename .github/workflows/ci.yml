@@ -45,11 +45,11 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Affected Tests
-        run: npm run affected:test -- --base=origin/master --head=HEAD
+#      - name: Affected Tests
+#        run: npm run affected:test -- --base=origin/master --head=HEAD
 
-#      - name: All Tests
-#        run: npm run test:all
+      - name: All Tests
+        run: npm run test:all
 
       - name: E2E Test
         continue-on-error: true

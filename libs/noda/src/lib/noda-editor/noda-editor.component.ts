@@ -1,4 +1,15 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+	Component,
+	ElementRef,
+	EventEmitter,
+	HostListener,
+	Input, OnChanges,
+	OnInit,
+	Output,
+	SimpleChanges,
+	ViewChild
+} from '@angular/core';
+import { NodaConnectionChange, NodaMouseConnection, NodaNode, NodaNodeConnection, NodaNodeData } from "../node";
 
 // https://www.npmjs.com/package/leader-line
 // https://rete.js.org/#/
@@ -6,38 +17,22 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Outpu
 
 type SVGHTMLElement = HTMLElement & SVGElement;
 
-export interface NodaNodeData {
-	id: number;
-	name: string;
-	parent?: number;
-}
-
-export interface NodaConnection {
-	nodeIds: number[];
-}
-
-export interface NodaConnectionChange {
-	connections: NodaConnection[];
-	nodes: Node[];
-}
-
-
 @Component({
 	selector: 'noda-editor',
 	templateUrl: './noda-editor.component.html',
 	styleUrls: [ './noda-editor.component.scss' ]
 })
-export class NodaEditorComponent implements OnInit {
+export class NodaEditorComponent implements OnInit, OnChanges {
 
 	@Input() source: NodaNodeData[] = [];
 	@Output() connectionChange = new EventEmitter<NodaConnectionChange>();
 
 	@ViewChild('svg') containerSVG!: SVGHTMLElement;
-	nodes: Node[] = [];
+	nodes: NodaNode[] = [];
 	connections: NodaNodeConnection[] = [];
 	mouseConnection: NodaMouseConnection | undefined;
 
-	private selectedNode: Node | undefined;
+	private selectedNode: NodaNode | undefined;
 	private shiftX = 0;
 	private shiftY = 0;
 
@@ -69,25 +64,30 @@ export class NodaEditorComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.sortNodes();
-		this.initNodes();
+		this.initializeNodes();
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes.hasOwnProperty('source')) {
+			this.initializeNodes();
+		}
 	}
 
 	nodeMouseDown($event: MouseEvent, nodeId: number) {
 		const target = $event.target as HTMLElement;
-			const { left, top } = this.elRef.nativeElement.getBoundingClientRect();
-			this.shiftX = $event.clientX + left - target.getBoundingClientRect().left;
-			this.shiftY = $event.clientY + top - target.getBoundingClientRect().top;
+		const { left, top } = this.elRef.nativeElement.getBoundingClientRect();
+		this.shiftX = $event.clientX + left - target.getBoundingClientRect().left;
+		this.shiftY = $event.clientY + top - target.getBoundingClientRect().top;
 
-			const selectedNode = this.getNodeById(nodeId);
+		const selectedNode = this.getNodeById(nodeId);
 
-			// move node or mouse connection
-			if (target.classList.contains('node')) {
-				console.log('selected node');
-				this.selectedNode = selectedNode;
-			} else if (target.classList.contains('node__connector') && target.classList.contains('out')) {
-				console.log('selected connector');
-				this.mouseConnection = new NodaMouseConnection(selectedNode);
+		// move node or mouse connection
+		if (target.classList.contains('node')) {
+			console.log('selected node');
+			this.selectedNode = selectedNode;
+		} else if (target.classList.contains('node__connector') && target.classList.contains('out')) {
+			console.log('selected connector');
+			this.mouseConnection = new NodaMouseConnection(selectedNode);
 		}
 	}
 
@@ -99,6 +99,18 @@ export class NodaEditorComponent implements OnInit {
 			this.connections.push(new NodaNodeConnection(this.mouseConnection.getNode(), targetNode));
 			this.connectionChange.emit({ connections: this.connections, nodes: this.nodes });
 		}
+	}
+
+	private initializeNodes() {
+		this.resetData();
+		this.sortNodes();
+		this.initNodes();
+	}
+
+	private resetData() {
+		this.connections = [];
+		this.nodes = [];
+		this.selectedNode = undefined;
 	}
 
 	private sortNodes() {
@@ -115,7 +127,7 @@ export class NodaEditorComponent implements OnInit {
 
 		// init all nodes
 		for (const node of this.source) {
-			const tmpNode = new Node(node.id);
+			const tmpNode = new NodaNode(node.id);
 			tmpNode.setPosition(padding + (padding + nodeWidth) * column++, padding + row * (padding + nodeHeight));
 
 			if (nodeWidth * column > editorWidth) {
@@ -139,93 +151,11 @@ export class NodaEditorComponent implements OnInit {
 		}
 	}
 
-	private getNodeById(nodeId: number): Node {
+	private getNodeById(nodeId: number): NodaNode {
 		const node = this.nodes.find(node => node.id === nodeId);
 		if (!node) {
 			throw new Error('Could not find node ' + nodeId);
 		}
 		return node;
 	}
-}
-
-class Node {
-	id: number;
-	x = 0;
-	y = 0;
-	hasConnectionIn = false;
-	hasConnectionOut = false;
-
-	height = 75;
-	width = 200;
-
-	constructor(id: number) {
-		this.id = id;
-	}
-
-	setPosition(x: number, y: number) {
-		this.x = x;
-		this.y = y;
-	}
-
-	getInPoint() {
-		return { x: this.x, y: this.y + this.height / 2 };
-	}
-
-	getOutPoint() {
-		return { x: this.x + this.width, y: this.y + this.height / 2 };
-	}
-}
-
-class NodaMouseConnection {
-	path: any;
-	startPoint: DataPoint;
-
-	constructor(private parent: Node) {
-		this.startPoint = this.parent.getOutPoint();
-	}
-
-	getNodeId(): number {
-		return this.parent.id;
-	}
-
-	getNode(): Node {
-		return this.parent;
-	}
-
-	setPath(endPoint: DataPoint): void {
-		this.path = createPathString(this.startPoint, endPoint);
-	}
-}
-
-class NodaNodeConnection {
-
-	path: any;
-	nodeIds: number[] = [];
-
-	constructor(private parent: Node, private child: Node) {
-		this.nodeIds = [ parent.id, child.id ];
-		parent.hasConnectionOut = true;
-		child.hasConnectionIn = true;
-		this.setPath();
-	}
-
-	setPath() {
-		const startPoint = this.parent.getOutPoint();
-		const endPoint = this.child.getInPoint();
-		this.path = createPathString(startPoint, endPoint);
-	}
-}
-
-function createPathString(a: DataPoint, b: DataPoint): string {
-	const diff = {
-		x: b.x - a.x,
-		y: b.y - a.y
-	};
-
-	return `M ${ a.x } ${ a.y } C ${ a.x + diff.x / 3 * 2 } ${ a.y } ${ a.x + diff.x / 3 } ${ b.y } ${ b.x } ${ b.y }`;
-}
-
-interface DataPoint {
-	x: number;
-	y: number;
 }

@@ -31,7 +31,7 @@ export abstract class BaseClient<B extends Backend, O extends Options> implement
 	/** Options passed to the SDK. */
 	protected readonly options: O;
 
-	/** The client Dsn, if specified in options. Without this Dsn, the SDK will be disabled. */
+	/** The client CSN, if specified in options. Without this Dsn, the SDK will be disabled. */
 	protected readonly csn?: CSN;
 
 	/**
@@ -43,7 +43,9 @@ export abstract class BaseClient<B extends Backend, O extends Options> implement
 	protected constructor(backendClass: BackendClass<B, O>, options: O) {
 		this.backend = new backendClass(options);
 		this.options = options;
-		this.csn = new CSN(options.csn);
+		if (options.csn) {
+			this.csn = new CSN(options.csn)
+		}
 	}
 
 	/**

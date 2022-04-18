@@ -61,7 +61,8 @@ export abstract class BaseBackend<O extends Options> implements Backend {
 			this.logger.error('No CSN provided, backend will not do anything.');
 		}
 		this.transport = this._setupTransport();
-		this.logger.log(this.transport);
+		this.logger.debug('Transport');
+		this.logger.debug(this.transport);
 	}
 
 
