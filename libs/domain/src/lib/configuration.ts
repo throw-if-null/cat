@@ -5,11 +5,18 @@ export enum ConfigurationType {
 	ENV = 'env',
 }
 
-export interface ConfigurationOverview {
+interface ConfigurationBase {
 	id: number;
+	typeId: ConfigurationType;
 	name: string;
-	type: ConfigurationType;
+}
+
+export interface ConfigurationOverview extends ConfigurationBase {
 	entries: number;
+}
+
+export interface ConfigurationDetails extends ConfigurationBase {
+	entries: ConfigurationEntry[];
 }
 
 export interface ConfigurationEntryData {
@@ -21,11 +28,4 @@ export interface ConfigurationEntry extends ConfigurationEntryData {
 	id: number;
 	expire: number;
 	disabled: boolean;
-}
-
-export interface ConfigurationDetails {
-	id: number;
-	name: string;
-	type: string;
-	entries: ConfigurationEntry[];
 }

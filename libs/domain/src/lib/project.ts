@@ -7,18 +7,18 @@ export enum ProjectType {
 	React,
 }
 
-export interface ProjectOverview {
+interface ProjectBase {
 	id: number;
+	typeId: ProjectType;
 	name: string;
-	typeId: number;
+}
+
+export interface ProjectOverview extends ProjectBase {
 	totalConfigurationCount: number;
 	totalEntryCount: number;
 }
 
-export interface ProjectDetails {
-	id: number;
-	name: string;
-	typeId: number;
+export interface ProjectDetails extends ProjectBase {
 	entries: number;
 	configurations: ConfigurationOverview[];
 }
@@ -30,12 +30,12 @@ export interface ProjectCreateData {
 
 export interface ProjectCreateResponse {
 	id: number;
-	name: string;
 	typeId: number;
+	name: string;
 }
 
 export interface ProjectDeleteResponse {
 	id: number;
-	name: string;
 	typeId: number;
+	name: string;
 }
