@@ -1,8 +1,8 @@
 export enum ConfigurationType {
-	JSON = 'json',
-	Angular = 'angular',
-	DotNET = 'dotnet',
-	ENV = 'env',
+	JSON,
+	Angular,
+	DotNET,
+	ENV,
 }
 
 interface ConfigurationBase {
@@ -26,6 +26,6 @@ export interface ConfigurationEntryData {
 
 export interface ConfigurationEntry extends ConfigurationEntryData {
 	id: number;
-	expire: number;
-	disabled: boolean;
+	expire?: number;
+	disabled?: boolean;
 }

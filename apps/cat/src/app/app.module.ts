@@ -10,7 +10,7 @@ import { DialogModule } from '@ngneat/dialog';
 import { popperVariation, TippyModule, tooltipVariation } from '@ngneat/helipopper';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { DefaultRouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -55,11 +55,16 @@ import { AppComponent } from './app.component';
 		),
 		EffectsModule.forRoot([]),
 		!environment.production ? StoreDevtoolsModule.instrument() : [],
-		StoreRouterConnectingModule.forRoot()
+		StoreRouterConnectingModule.forRoot({
+			serializer: DefaultRouterStateSerializer,
+		}),
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
-		{ provide: ErrorHandler, useClass: ApplicationinsightsAngularpluginErrorService },
+		{
+			provide: ErrorHandler,
+			useClass: environment.production ? ApplicationinsightsAngularpluginErrorService : ErrorHandler
+		},
 		{
 			provide: 'RAT_API_URL',
 			useValue: environment.rat.mock ? 'https://d6d03ebf-d5bc-46cf-ab03-69205269a55e.mock.pstmn.io' : environment.rat.apiUri

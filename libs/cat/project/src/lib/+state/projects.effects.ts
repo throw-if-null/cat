@@ -19,7 +19,7 @@ export class ProjectsEffects {
 					return this.projectService.getProjects()
 						.pipe(
 							tap(() => this.monitoringService.endTrack('LoadProjects')),
-							map((projectsRes) => (ProjectsActions.loadProjectsSuccess({ projects: projectsRes.projectStats })))
+							map((projectsRes) => (ProjectsActions.loadProjectsSuccess({ projects: projectsRes })))
 						);
 				},
 				onError: (action, error) => {

@@ -1,7 +1,4 @@
 import {
-	ConfigurationDetails,
-	ConfigurationEntry,
-	ConfigurationType,
 	ProjectCreateData,
 	ProjectCreateResponse,
 	ProjectDeleteResponse,
@@ -20,10 +17,7 @@ export const testProjectOverview1: ProjectOverview = {
 };
 export const testProject1: ProjectDetails = { id: 1, name: 'test project', typeId: 0, entries: 1, configurations: [] };
 
-const projectsResponse: ProjectsResponse = {
-	projectStats: [ testProjectOverview1 ],
-	userId: 1
-}
+const projectsResponse: ProjectsResponse = [ testProjectOverview1 ];
 
 export class MockProjectService {
 
@@ -41,13 +35,5 @@ export class MockProjectService {
 
 	deleteProject(projectId: number): Observable<ProjectDeleteResponse> {
 		return of({ id: projectId, name: testProject1.name, typeId: testProject1.typeId });
-	}
-
-	getConfigurationById(projectId: number, configId: number): Observable<ConfigurationDetails> {
-		return of({ id: configId, name: 'test project', type: ConfigurationType.Angular, entries: [] });
-	}
-
-	updateConfigurationEntry(projectId: number, configId: number, entry: ConfigurationEntry): Promise<any> {
-		return of({}).toPromise();
 	}
 }

@@ -1,49 +1,39 @@
 {
-  "projectType": "library",
-  "root": "libs/noda",
-  "sourceRoot": "libs/noda/src",
-  "prefix": "cat",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/angular:package",
-      "outputs": [
-        "dist/libs/noda"
-      ],
-      "options": {
-        "project": "libs/noda/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/noda/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "libs/noda/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/noda"
-      ],
-      "options": {
-        "jestConfig": "libs/noda/jest.config.js",
-        "passWithNoTests": true
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/noda/src/**/*.ts",
-          "libs/noda/src/**/*.html"
-        ]
-      }
-    }
-  },
-  "tags": [
-    "scope:noda",
-    "type:app"
-  ]
+	"projectType": "library",
+	"root": "libs/noda",
+	"sourceRoot": "libs/noda/src",
+	"prefix": "cat",
+	"targets": {
+		"build": {
+			"executor": "@nrwl/angular:package",
+			"outputs": ["dist/libs/noda"],
+			"options": {
+				"project": "libs/noda/ng-package.json"
+			},
+			"configurations": {
+				"production": {
+					"tsConfig": "libs/noda/tsconfig.lib.prod.json"
+				},
+				"development": {
+					"tsConfig": "libs/noda/tsconfig.lib.json"
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/noda"],
+			"options": {
+				"jestConfig": "libs/noda/jest.config.js",
+				"passWithNoTests": true
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": ["libs/noda/src/**/*.ts", "libs/noda/src/**/*.html"]
+			}
+		}
+	},
+	"tags": ["scope:noda", "type:app"]
 }
