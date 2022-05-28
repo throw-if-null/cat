@@ -1,6 +1,13 @@
-import { ProjectCreateResponse, ProjectDetails, ProjectOverview } from '@cat/domain';
+import {
+	ConfigurationCreateResponse,
+	ConfigurationOverview,
+	ProjectCreateResponse,
+	ProjectDetails,
+	ProjectOverview
+} from '@cat/domain';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
+import * as ConfigurationsActions from "../../../../config/src/lib/+state/configurations.actions";
 import * as ProjectsActions from './projects.actions';
 
 export const PROJECTS_FEATURE_KEY = 'projects';
@@ -48,7 +55,14 @@ const projectsReducer = createReducer(
 	on(ProjectsActions.createProjectFailure, (state, { error }) => ({
 		...state,
 		error
-	}))
+	})),
+	on(ConfigurationsActions.createConfigurationSuccess, (state, { response }) => ({
+		...state,
+		projectDetails: state.projectDetails ? {
+			...state.projectDetails,
+			configurations: [ ...state.projectDetails.configurations, createProjectDetailsConfiguration(response) ]
+		} : undefined
+	})),
 );
 
 export function reducer(state: State | undefined, action: Action) {
@@ -58,4 +72,8 @@ export function reducer(state: State | undefined, action: Action) {
 
 function createProjectFromResponse(project: ProjectCreateResponse): ProjectOverview {
 	return { ...project, totalConfigurationCount: 0, totalEntryCount: 0 };
+}
+
+function createProjectDetailsConfiguration(response: ConfigurationCreateResponse): ConfigurationOverview {
+	return { ...response, entriesCount: 0 };
 }

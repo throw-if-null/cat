@@ -4,7 +4,8 @@ import {
 	ConfigurationCreateData,
 	ConfigurationCreateResponse,
 	ConfigurationDetails,
-	ConfigurationEntry
+	ConfigurationEntry,
+	ConfigurationEntryCreateData
 } from "@cat/domain";
 import { Observable } from 'rxjs';
 
@@ -27,15 +28,26 @@ export class ConfigurationDataService {
 		return this.http.delete(`${ this.apiURL }/projects/${ projectId }`);
 	}
 
-	getConfigurationById(projectId: number, configId: number): Observable<ConfigurationDetails> {
+	getConfigurationById(configId: number): Observable<ConfigurationDetails> {
 		console.log('getConfigurationById');
-		return this.http.get<ConfigurationDetails>(`${ this.apiURL }/projects/${ projectId }/configuration/${ configId }`);
+		return this.http.get<ConfigurationDetails>(`${ this.apiURL }/configuration/${ configId }`);
 	}
 
-	updateConfigurationEntry(projectId: number, configId: number, entry: ConfigurationEntry): Observable<any> {
+	createConfigurationEntry(configId: number, entry: ConfigurationEntryCreateData): Observable<any> {
+		console.log('createConfigurationEntry ', entry.key);
+
+		return this.http.post<any>(`${ this.apiURL }/configurations/${ configId }/entry`, entry);
+	}
+
+	updateConfigurationEntry(configId: number, entry: ConfigurationEntry): Observable<any> {
 		console.log('updateConfigurationEntry ', entry.id);
 
-		return this.http.patch<any>(`${ this.apiURL }/projects/${ projectId }/configurations/${ configId }/entry/${ entry.id }`, entry);
+		return this.http.patch<any>(`${ this.apiURL }/configuration${ configId }/entry/${ entry.id }`, entry);
 	}
 
+	deleteConfigurationEntry(entryId: number, configId: number): Observable<Object> {
+		console.log('Deleting configuration entry: ', entryId);
+
+		return this.http.delete(`${ this.apiURL }/configurations/${ configId }`);
+	}
 }

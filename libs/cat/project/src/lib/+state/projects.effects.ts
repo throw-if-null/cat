@@ -6,7 +6,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
 import { map, tap } from 'rxjs/operators';
 import * as ConfigurationsActions from "../../../../config/src/lib/+state/configurations.actions";
-import { ConfigurationDataService } from "../../../../config/src/lib/config.service";
+import { ConfigurationDataService } from "@cat/config";
 
 import * as ProjectsActions from './projects.actions';
 
@@ -40,8 +40,7 @@ export class ProjectsEffects {
 					return this.projectService.getProjectById(action.projectId)
 						.pipe(
 							map((project) => {
-								project.entries = 0;
-								project.configurations = [];
+								project.entries = project.configurations.reduce((sum, proj) => sum + proj.entriesCount, 0);
 								return project;
 							}),
 							map((project) => (ProjectsActions.loadProjectSuccess({ project })))
@@ -86,7 +85,7 @@ export class ProjectsEffects {
 			fetch({
 				run: ({ projectId, data }) => {
 					return this.configService.createConfiguration(projectId, data)
-						.pipe(map((response) => (ConfigurationsActions.createConfigurationSuccess(response))));
+						.pipe(map((response) => (ConfigurationsActions.createConfigurationSuccess({ response }))));
 				},
 				onError: (action, error) => {
 					console.error('Error', error);
@@ -99,7 +98,7 @@ export class ProjectsEffects {
 	createConfigurationSuccess$ = createEffect(
 		() => this.actions$.pipe(
 			ofType(ConfigurationsActions.createConfigurationSuccess),
-			tap(({ name }) => this.toast.success(`Yeah! Configuration - ${ name } - created`))
+			tap(({ response }) => this.toast.success(`Yeah! Configuration - ${ response.name } - created`))
 		),
 		{ dispatch: false }
 	);
