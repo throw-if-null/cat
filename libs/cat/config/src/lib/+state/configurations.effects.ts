@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot } from "@angular/router";
 import { ConfigDetailsComponent } from "@cat/config-details";
+import { HotToastService } from "@ngneat/hot-toast";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { navigation, optimisticUpdate } from '@nrwl/angular';
 import { map, mapTo } from "rxjs/operators";
 import { ConfigurationDataService } from "../config.service";
 
 import * as ConfigurationsActions from './configurations.actions';
-import { ConfigurationFacade } from "./configurations.facade";
 
 @Injectable()
 export class ConfigurationsEffects {
@@ -54,7 +54,7 @@ export class ConfigurationsEffects {
 
 	constructor(
 		private readonly actions$: Actions,
-		private readonly configFacade: ConfigurationFacade,
+		private readonly toast: HotToastService,
 		private readonly configService: ConfigurationDataService
 	) {
 	}

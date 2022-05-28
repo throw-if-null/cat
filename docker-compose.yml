@@ -40,7 +40,7 @@ services:
   rat-api:
     <<: *base-service-template
     container_name: rat-api
-    image: throwifnull/rat:latest
+    image: ghcr.io/throw-if-null/rat:latest
     #build:
     #  context: .
     #  dockerfile: Rat.Api/Dockerfile

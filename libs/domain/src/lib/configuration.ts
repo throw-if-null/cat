@@ -19,6 +19,17 @@ export interface ConfigurationDetails extends ConfigurationBase {
 	entries: ConfigurationEntry[];
 }
 
+export interface ConfigurationCreateData {
+	name: string;
+	typeId: number;
+}
+
+export interface ConfigurationCreateResponse {
+	id: number;
+	typeId: number;
+	name: string;
+}
+
 export interface ConfigurationEntryData {
 	key: string;
 	value: any
@@ -26,6 +37,6 @@ export interface ConfigurationEntryData {
 
 export interface ConfigurationEntry extends ConfigurationEntryData {
 	id: number;
-	expire?: number;
+	secondsToLive?: number;
 	disabled?: boolean;
 }

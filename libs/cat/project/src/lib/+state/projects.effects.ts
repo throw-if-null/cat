@@ -5,6 +5,8 @@ import { HotToastService } from "@ngneat/hot-toast";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
 import { map, tap } from 'rxjs/operators';
+import * as ConfigurationsActions from "../../../../config/src/lib/+state/configurations.actions";
+import { ConfigurationDataService } from "../../../../config/src/lib/config.service";
 
 import * as ProjectsActions from './projects.actions';
 
@@ -14,12 +16,12 @@ export class ProjectsEffects {
 		this.actions$.pipe(
 			ofType(ProjectsActions.init),
 			fetch({
-				run: action => {
+				run: () => {
 					this.monitoringService.startTrack('LoadProjects');
 					return this.projectService.getProjects()
 						.pipe(
 							tap(() => this.monitoringService.endTrack('LoadProjects')),
-							map((projectsRes) => (ProjectsActions.loadProjectsSuccess({ projects: projectsRes })))
+							map((projectsRes) => (ProjectsActions.loadProjectsSuccess({ projects: projectsRes.projectStats })))
 						);
 				},
 				onError: (action, error) => {
@@ -36,7 +38,14 @@ export class ProjectsEffects {
 			fetch({
 				run: action => {
 					return this.projectService.getProjectById(action.projectId)
-						.pipe(map((project) => (ProjectsActions.loadProjectSuccess({ project }))));
+						.pipe(
+							map((project) => {
+								project.entries = 0;
+								project.configurations = [];
+								return project;
+							}),
+							map((project) => (ProjectsActions.loadProjectSuccess({ project })))
+						);
 				},
 				onError: (action, error) => {
 					console.error('Error', error);
@@ -71,9 +80,43 @@ export class ProjectsEffects {
 		{ dispatch: false }
 	);
 
-	constructor(private readonly actions$: Actions,
-				private toast: HotToastService,
-				private projectService: ProjectService,
-				private monitoringService: MonitoringService) {
+	createConfiguration$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(ConfigurationsActions.createConfiguration),
+			fetch({
+				run: ({ projectId, data }) => {
+					return this.configService.createConfiguration(projectId, data)
+						.pipe(map((response) => (ConfigurationsActions.createConfigurationSuccess(response))));
+				},
+				onError: (action, error) => {
+					console.error('Error', error);
+					return ConfigurationsActions.createConfigurationFailure({ error });
+				}
+			})
+		)
+	);
+
+	createConfigurationSuccess$ = createEffect(
+		() => this.actions$.pipe(
+			ofType(ConfigurationsActions.createConfigurationSuccess),
+			tap(({ name }) => this.toast.success(`Yeah! Configuration - ${ name } - created`))
+		),
+		{ dispatch: false }
+	);
+
+	createConfigurationFailure$ = createEffect(
+		() => this.actions$.pipe(
+			ofType(ConfigurationsActions.createConfigurationFailure),
+			tap(() => this.toast.error('Could not create the configuration'))
+		),
+		{ dispatch: false }
+	);
+
+	constructor(
+		private readonly actions$: Actions,
+		private readonly toast: HotToastService,
+		private readonly projectService: ProjectService,
+		private readonly configService: ConfigurationDataService,
+		private readonly monitoringService: MonitoringService) {
 	}
 }

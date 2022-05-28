@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ConfigurationType } from '@cat/domain';
+import { ConfigurationType, ProjectCreateData } from '@cat/domain';
+import { DialogRef } from "@ngneat/dialog";
 
 
 @Component({
@@ -16,7 +17,14 @@ export class ConfigCreateComponent {
 		type: new FormControl(0, Validators.required)
 	});
 
+	constructor(public ref: DialogRef<ProjectCreateData>) {
+	}
+
 	onSubmit() {
-		console.warn(this.configurationForm.value);
+		const data = {
+			name: this.configurationForm.value.name,
+			typeId: this.configurationForm.value.type
+		};
+		this.ref.close(data);
 	}
 }

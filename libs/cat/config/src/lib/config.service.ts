@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ConfigurationDetails, ConfigurationEntry } from "@cat/domain";
+import {
+	ConfigurationCreateData,
+	ConfigurationCreateResponse,
+	ConfigurationDetails,
+	ConfigurationEntry
+} from "@cat/domain";
 import { Observable } from 'rxjs';
 
 
@@ -8,6 +13,18 @@ import { Observable } from 'rxjs';
 export class ConfigurationDataService {
 
 	constructor(private http: HttpClient, @Inject('RAT_API_URL') private apiURL: string) {
+	}
+
+	createConfiguration(projectId: number, data: ConfigurationCreateData): Observable<ConfigurationCreateResponse> {
+		console.log('createConfiguration', data.name);
+
+		return this.http.post<ConfigurationCreateResponse>(`${ this.apiURL }/projects/${ projectId }/configurations`, data);
+	}
+
+	deleteConfiguration(projectId: number, configId: number): Observable<Object> {
+		console.log('Deleting configuration: ', configId);
+
+		return this.http.delete(`${ this.apiURL }/projects/${ projectId }`);
 	}
 
 	getConfigurationById(projectId: number, configId: number): Observable<ConfigurationDetails> {

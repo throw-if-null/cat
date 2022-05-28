@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ConfigurationFacade } from "@cat/config";
 import { ConfigCreateComponent } from '@cat/config-create';
-import { ProjectDetails } from "@cat/domain";
+import { ConfigurationCreateData, ProjectDetails } from "@cat/domain";
 import { ProjectService, ProjectsFacade } from '@cat/project';
 import { DialogService } from '@ngneat/dialog';
+import { Logger } from "@ratcat/logger";
 import { Observable, of, Subject } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
 
 @Component({
 	selector: 'cat-project-details',
@@ -17,8 +19,9 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
 	project$: Observable<ProjectDetails | undefined>;
 
 	private unsubscribe$ = new Subject();
+	private logger = new Logger('ProjectDetailsComponent');
 
-	constructor(private route: ActivatedRoute, private projectFacade: ProjectsFacade, private projectService: ProjectService, private dialog: DialogService) {
+	constructor(private route: ActivatedRoute, private dialog: DialogService, private projectFacade: ProjectsFacade, private projectService: ProjectService, private configurationFacade: ConfigurationFacade) {
 		this.project$ = this.projectFacade.projectDetails$;
 	}
 
@@ -45,6 +48,28 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
 	}
 
 	openCreateConfigDialog() {
-		this.dialog.open(ConfigCreateComponent, { closeButton: false, size: 'lg' });
+		const dialogRef = this.dialog.open<any, ConfigurationCreateData>(ConfigCreateComponent, {
+			closeButton: false,
+			size: 'lg'
+		});
+
+		dialogRef.afterClosed$
+			.pipe(
+				take(1),
+				withLatestFrom(this.projectFacade.projectDetails$)
+			)
+			.subscribe(([ data, projectDetails ]) => {
+
+				// if aborts the dialog, we have no data
+				if (!data) {
+					return;
+				}
+				if (!projectDetails) {
+					this.logger.warn('User trying to create a configuration without a project loaded');
+					return;
+				}
+				this.configurationFacade.createConfiguration(projectDetails.id, data)
+			});
+
 	}
 }

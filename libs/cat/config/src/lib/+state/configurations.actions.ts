@@ -1,7 +1,20 @@
-import { ConfigurationEntry } from "@cat/domain";
+import { ConfigurationCreateData, ConfigurationCreateResponse, ConfigurationEntry } from "@cat/domain";
 import { createAction, props } from '@ngrx/store';
 
 export const init = createAction('[Configuration Details Page] Init');
+
+
+export const createConfiguration = createAction('[Configurations/API] Create Configuration', props<{ projectId: number, data: ConfigurationCreateData }>());
+
+export const createConfigurationSuccess = createAction(
+	'[Configurations/API] Create Configuration Success',
+	props<ConfigurationCreateResponse>()
+);
+
+export const createConfigurationFailure = createAction(
+	'[Configurations/API] Create Configuration Failure',
+	props<{ error: any }>()
+);
 
 export const loadConfigurationEntriesSuccess = createAction(
 	'[Configurations/API] Load Configuration Entries Success',

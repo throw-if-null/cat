@@ -19,6 +19,6 @@ import { ProjectDetailsComponent } from './project-details.component';
 		UiModule,
 		UiUtilsModule
 	],
-	exports: [ProjectDetailsComponent]
+	exports: [ ProjectDetailsComponent ],
 })
 export class ProjectDetailsModule {}

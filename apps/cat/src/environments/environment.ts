@@ -35,7 +35,7 @@ export const environment: CatEnvironment = {
 		enabled: false
 	},
 	rat: {
-		mock: true,
+		mock: false,
 		apiUri: '/api'
 	}
 };
