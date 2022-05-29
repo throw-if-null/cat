@@ -25,7 +25,9 @@ export class ProjectsEffects {
 						);
 				},
 				onError: (action, error) => {
-					console.error('Error', error);
+					console.error(error);
+					this.monitoringService.logException(error);
+
 					return ProjectsActions.loadProjectsFailure({ error });
 				}
 			})
@@ -47,7 +49,9 @@ export class ProjectsEffects {
 						);
 				},
 				onError: (action, error) => {
-					console.error('Error', error);
+					console.error(error);
+					this.monitoringService.logException(error);
+
 					return ProjectsActions.loadProjectFailure({ error });
 				}
 			})
@@ -64,6 +68,7 @@ export class ProjectsEffects {
 				},
 				onError: (action, error) => {
 					console.error('Error', error);
+					this.monitoringService.logException(error);
 					this.toast.error('Could not create the project');
 					return ProjectsActions.createProjectFailure({ error });
 				}

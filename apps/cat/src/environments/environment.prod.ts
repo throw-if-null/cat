@@ -18,7 +18,7 @@ export const environment: CatEnvironment = {
 					uri: 'https://rattus.azurewebsites.net/api*',
 					tokenOptions: {
 						// The attached token should target this audience
-						audience: 'https://rattus.azurewebsites.net/api',
+						audience: 'https://rattus.azurewebsites.net/',
 
 						// The attached token should have these scopes
 						scope: 'read:current_user'
