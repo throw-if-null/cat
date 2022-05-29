@@ -1,5 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { ConfigurationDataService, MockConfigurationDataService } from "@cat/config";
 import { ProjectCreateData } from "@cat/domain";
 import { MockProjectService, ProjectService, testProject1, testProjectOverview1 } from '@cat/project';
 import { MonitoringService } from "@cat/utils";
@@ -34,6 +35,7 @@ describe('ProjectsEffects', () => {
 				provideMockActions(() => actions),
 				provideMockStore(),
 				{ provide: ProjectService, useClass: MockProjectService },
+				{ provide: ConfigurationDataService, useClass: MockConfigurationDataService },
 				{ provide: MonitoringService, useValue: monitoringServiceSpy },
 			],
 		});

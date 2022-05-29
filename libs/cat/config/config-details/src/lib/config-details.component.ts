@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ConfigurationFacade } from "@cat/config";
 import { ConfigurationEntry } from '@cat/domain';
 import { parseStringValue } from '@cat/utils';
@@ -29,19 +29,19 @@ export class ConfigDetailsComponent implements OnDestroy {
 
 	private unsubscribe$ = new Subject();
 
-	constructor(private activatedRouteSnapshot: ActivatedRouteSnapshot, private configurationFacade: ConfigurationFacade) {
+	constructor(private route: ActivatedRoute, private configurationFacade: ConfigurationFacade) {
 		this.entries$ = this.configurationFacade.allConfigurationEntries$;
 
 		this.editEntry$
 			.pipe(takeUntil(this.unsubscribe$))
 			.subscribe((entry) => {
 				console.log(entry);
-				const { projectId, configId } = this.activatedRouteSnapshot.params;
+				const { configId } = this.route.snapshot.params;
 
-				if (!projectId || !configId) {
+				if (!configId) {
 					throw new Error('Can not update config before init');
 				}
-				this.configurationFacade.updateConfigurationEntry(entry, projectId, configId);
+				this.configurationFacade.updateConfigurationEntry(entry, configId);
 
 			});
 
@@ -52,7 +52,6 @@ export class ConfigDetailsComponent implements OnDestroy {
 			});
 
 	}
-
 
 	ngOnDestroy() {
 		this.unsubscribe$.next();
@@ -70,5 +69,22 @@ export class ConfigDetailsComponent implements OnDestroy {
 
 			this.editEntry$.next(clone);
 		}
+	}
+
+	addEmptyEntry() {
+		const { configId } = this.route.snapshot.params;
+
+		this.configurationFacade.createConfigurationEntry({
+			key: 'a',
+			value: 'a',
+			disabled: false,
+			secondsToLive: 0
+		}, configId);
+	}
+
+	deleteEntry(entryId: number) {
+		const { configId } = this.route.snapshot.params;
+
+		this.configurationFacade.deleteConfigurationEntry(entryId, configId);
 	}
 }

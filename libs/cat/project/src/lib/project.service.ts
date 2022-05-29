@@ -9,7 +9,10 @@ import {
 } from '@cat/domain';
 import { Observable } from 'rxjs';
 
-export type ProjectsResponse = Array<ProjectOverview>;
+export interface ProjectsResponse {
+	projectStats: Array<ProjectOverview>;
+	userId: number;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ConfigurationEntry } from "@cat/domain";
+import { ConfigurationCreateData, ConfigurationEntry, ConfigurationEntryCreateData } from "@cat/domain";
 import { select, Store } from '@ngrx/store';
-
-import * as ConfigurationsActions from './configurations.actions';
+import * as ConfigurationsActions from "./configurations.actions";
 import * as ConfigurationsSelectors from "./configurations.selectors";
 
 @Injectable()
@@ -36,7 +35,19 @@ export class ConfigurationFacade {
 		this.store.dispatch(ConfigurationsActions.init());
 	}
 
-	updateConfigurationEntry(entry: ConfigurationEntry, projectId: number, configurationId: number) {
-		this.store.dispatch(ConfigurationsActions.updateConfigurationEntry({ entry, projectId, configurationId }));
+	createConfiguration(projectId: number, data: ConfigurationCreateData) {
+		this.store.dispatch(ConfigurationsActions.createConfiguration({ projectId, data }));
+	}
+
+	createConfigurationEntry(entry: ConfigurationEntryCreateData, configurationId: number) {
+		this.store.dispatch(ConfigurationsActions.createConfigurationEntry({ entry, configurationId }));
+	}
+
+	updateConfigurationEntry(entry: ConfigurationEntry, configurationId: number) {
+		this.store.dispatch(ConfigurationsActions.updateConfigurationEntry({ entry, configurationId }));
+	}
+
+	deleteConfigurationEntry(entryId: number, configurationId: number) {
+		this.store.dispatch(ConfigurationsActions.deleteConfigurationEntry({ entryId, configurationId }));
 	}
 }

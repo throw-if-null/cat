@@ -12,11 +12,22 @@ interface ConfigurationBase {
 }
 
 export interface ConfigurationOverview extends ConfigurationBase {
-	entries: number;
+	entriesCount: number;
 }
 
 export interface ConfigurationDetails extends ConfigurationBase {
 	entries: ConfigurationEntry[];
+}
+
+export interface ConfigurationCreateData {
+	name: string;
+	typeId: number;
+}
+
+export interface ConfigurationCreateResponse {
+	id: number;
+	typeId: number;
+	name: string;
 }
 
 export interface ConfigurationEntryData {
@@ -26,6 +37,8 @@ export interface ConfigurationEntryData {
 
 export interface ConfigurationEntry extends ConfigurationEntryData {
 	id: number;
-	expire?: number;
-	disabled?: boolean;
+	secondsToLive: number;
+	disabled: boolean;
 }
+
+export type ConfigurationEntryCreateData = Omit<ConfigurationEntry, "id">;

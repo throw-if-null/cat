@@ -17,7 +17,7 @@ export const testProjectOverview1: ProjectOverview = {
 };
 export const testProject1: ProjectDetails = { id: 1, name: 'test project', typeId: 0, entries: 1, configurations: [] };
 
-const projectsResponse: ProjectsResponse = [ testProjectOverview1 ];
+const projectsResponse: ProjectsResponse = { projectStats: [ testProjectOverview1 ], userId: 1 };
 
 export class MockProjectService {
 

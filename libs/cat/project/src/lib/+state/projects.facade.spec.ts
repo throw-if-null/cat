@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { ConfigurationDataService, MockConfigurationDataService } from "@cat/config";
 import { MockProjectService, ProjectService } from "@cat/project";
 import { MonitoringService } from "@cat/utils";
 import { EffectsModule } from '@ngrx/effects';
@@ -30,7 +31,7 @@ describe('ProjectsFacade', () => {
 
 	const createProjectsEntity = (id: number, name = ''): ProjectsEntity => ({
 		id,
-		name: name || `name-${ id }`,
+		name: name || `project-${ id }`,
 		typeId: 0,
 		totalEntryCount: 0,
 		totalConfigurationCount: 0
@@ -46,6 +47,7 @@ describe('ProjectsFacade', () => {
 				providers: [
 					ProjectsFacade,
 					{ provide: ProjectService, useClass: MockProjectService },
+					{ provide: ConfigurationDataService, useClass: MockConfigurationDataService },
 				]
 			})
 			class CustomFeatureModule {

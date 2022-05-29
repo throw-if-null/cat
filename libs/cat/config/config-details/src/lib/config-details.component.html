@@ -2,76 +2,78 @@
 
     <ng-container *ngIf="entries$ | async as entries; else loadingConfig">
 
-        <ng-container *ngIf="entries.length > 0; else noConfig">
-            <h1>Config Entries</h1>
-            <div class="list-controls">
-                <input autofocus class="input" placeholder="Type to search..." [formControl]="searchControl">
-            </div>
+        <h1>Config Entries</h1>
+        <div class="list-controls">
+            <input [formControl]="searchControl" autofocus class="input" placeholder="Type to search...">
+        </div>
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th style="width: 30%;">KEY</th>
-                    <th style="width: 30%;">VALUE</th>
-                    <th>Edit</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let entry of entries | catFilter: searchText :  ['key', 'value']">
-                    <td></td>
-                    <td class="editable">
-                        <cat-editable (edit)="entryEdited($event, entry , 'key')">
-                            <ng-template viewMode>
-                                <div class="edit-value"
-                                     catHighlight
-                                     [searchedWord]="searchText"
-                                     [content]="entry.key"
-                                     [classToApply]="'search-highlight'"
-                                     [setTitle]="true">
-                                    {{entry.key}}
-                                </div>
-                            </ng-template>
-                            <ng-template editMode>
-                                <input #editInput
-                                       class="edit-input input small edgy"
-                                       [value]="entry.key"
-                                       (change)="entry.key"/>
-                            </ng-template>
-                        </cat-editable>
-                    </td>
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th style="width: 30%;">KEY</th>
+                <th style="width: 30%;">VALUE</th>
+                <th>Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let entry of entries | catFilter: searchText :  ['key', 'value']">
+                <td></td>
+                <td class="editable">
+                    <cat-editable (edit)="entryEdited($event, entry , 'key')">
+                        <ng-template viewMode>
+                            <div [classToApply]="'search-highlight'"
+                                 [content]="entry.key"
+                                 [searchedWord]="searchText"
+                                 [setTitle]="true"
+                                 catHighlight
+                                 class="edit-value">
+                                {{entry.key}}
+                            </div>
+                        </ng-template>
+                        <ng-template editMode>
+                            <input #editInput
+                                   (change)="entry.key"
+                                   [value]="entry.key"
+                                   class="edit-input input small edgy"/>
+                        </ng-template>
+                    </cat-editable>
+                </td>
 
-                    <td class="editable">
-                        <cat-editable (edit)="entryEdited($event, entry, 'value')">
-                            <ng-template viewMode>
-                                <div class="edit-value"
-                                     catHighlight
-                                     [setTitle]="true"
-                                     [searchedWord]="searchText"
-                                     [content]="entry.value"
-                                     [classToApply]="'search-highlight'"
-                                     [valueType]="entry.value">{{entry.value}}</div>
-                            </ng-template>
-                            <ng-template editMode>
-                                <input #editInput
-                                       class="edit-input input small edgy"
-                                       [value]="entry.value"
-                                       (change)="entry.value"/>
-                            </ng-template>
-                        </cat-editable>
-                    </td>
-                    <td>
+                <td class="editable">
+                    <cat-editable (edit)="entryEdited($event, entry, 'value')">
+                        <ng-template viewMode>
+                            <div [classToApply]="'search-highlight'"
+                                 [content]="entry.value"
+                                 [searchedWord]="searchText"
+                                 [setTitle]="true"
+                                 [valueType]="entry.value"
+                                 catHighlight
+                                 class="edit-value">{{entry.value}}</div>
+                        </ng-template>
+                        <ng-template editMode>
+                            <input #editInput
+                                   (change)="entry.value"
+                                   [value]="entry.value"
+                                   class="edit-input input small edgy"/>
+                        </ng-template>
+                    </cat-editable>
+                </td>
+                <td>
+                    <button (click)="deleteEntry(entry.id)">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </ng-container>
-        <ng-template #noConfig>
-            <div class="no-configs centered">
-                <h1>Seems you do not have any entries yet...</h1>
-            </div>
-        </ng-template>
+        <div *ngIf="entries.length === 0" class="no-entries">
+            <p class="description">
+                Seems you do not have any entries yet...</p>
+            <button (click)="addEmptyEntry()" class="button primary">
+                Add Entry
+            </button>
+        </div>
+
     </ng-container>
 
     <ng-template #loadingConfig>
