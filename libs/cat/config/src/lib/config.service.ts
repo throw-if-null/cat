@@ -36,18 +36,18 @@ export class ConfigurationDataService {
 	createConfigurationEntry(configId: number, entry: ConfigurationEntryCreateData): Observable<any> {
 		console.log('createConfigurationEntry ', entry.key);
 
-		return this.http.post<any>(`${ this.apiURL }/configurations/${ configId }/entry`, entry);
+		return this.http.post<any>(`${ this.apiURL }/configurations/${ configId }/entries`, entry);
 	}
 
 	updateConfigurationEntry(configId: number, entry: ConfigurationEntry): Observable<any> {
 		console.log('updateConfigurationEntry ', entry.id);
 
-		return this.http.patch<any>(`${ this.apiURL }/configuration${ configId }/entry/${ entry.id }`, entry);
+		return this.http.patch<any>(`${ this.apiURL }/configurations/${ configId }/entries/${ entry.id }`, entry);
 	}
 
 	deleteConfigurationEntry(entryId: number, configId: number): Observable<Object> {
 		console.log('Deleting configuration entry: ', entryId);
 
-		return this.http.delete(`${ this.apiURL }/configurations/${ configId }`);
+		return this.http.delete(`${ this.apiURL }/configurations/${ configId }/entries/${ entryId }`);
 	}
 }

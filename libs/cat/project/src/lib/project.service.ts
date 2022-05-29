@@ -33,7 +33,13 @@ export class ProjectService {
 	createProject(data: ProjectCreateData): Observable<ProjectCreateResponse> {
 		console.log('createProject ', data.name);
 
-		return this.http.post<ProjectCreateResponse>(`${ this.apiURL }/projects/`, data);
+		return this.http.post<ProjectCreateResponse>(`${ this.apiURL }/projects`, data);
+	}
+
+	updateProject(data: ProjectCreateData): Observable<any> {
+		console.log('updateProject ', data.name);
+
+		return this.http.patch<any>(`${ this.apiURL }/projects`, data);
 	}
 
 	deleteProject(projectId: number): Observable<ProjectDeleteResponse> {
