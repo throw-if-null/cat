@@ -1,31 +1,26 @@
 {
-  "projectType": "library",
-  "root": "libs/cat/project/project-create",
-  "sourceRoot": "libs/cat/project/project-create/src",
-  "prefix": "cat",
-  "targets": {
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/cat/project/project-create"
-      ],
-      "options": {
-        "jestConfig": "libs/cat/project/project-create/jest.config.js",
-        "passWithNoTests": true
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/cat/project/project-create/src/**/*.ts",
-          "libs/cat/project/project-create/src/**/*.html"
-        ]
-      },
-      "outputs": [
-        "{options.outputFile}"
-      ]
-    }
-  },
-  "tags": []
+	"projectType": "library",
+	"sourceRoot": "libs/cat/project/project-create/src",
+	"prefix": "cat",
+	"targets": {
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/cat/project/project-create"],
+			"options": {
+				"jestConfig": "libs/cat/project/project-create/jest.config.ts",
+				"passWithNoTests": true
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"libs/cat/project/project-create/src/**/*.ts",
+					"libs/cat/project/project-create/src/**/*.html"
+				]
+			},
+			"outputs": ["{options.outputFile}"]
+		}
+	},
+	"tags": []
 }

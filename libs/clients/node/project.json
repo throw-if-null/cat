@@ -1,5 +1,4 @@
 {
-	"root": "libs/clients/node",
 	"sourceRoot": "libs/clients/node/src",
 	"projectType": "library",
 	"targets": {
@@ -25,7 +24,7 @@
 			"executor": "@nrwl/jest:jest",
 			"outputs": ["coverage/libs/clients/node"],
 			"options": {
-				"jestConfig": "libs/clients/node/jest.config.js",
+				"jestConfig": "libs/clients/node/jest.config.ts",
 				"passWithNoTests": true
 			}
 		}

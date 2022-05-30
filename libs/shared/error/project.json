@@ -1,5 +1,4 @@
 {
-	"root": "libs/shared/error",
 	"sourceRoot": "libs/shared/error/src",
 	"projectType": "library",
 	"targets": {
@@ -24,7 +23,7 @@
 			"executor": "@nrwl/jest:jest",
 			"outputs": ["coverage/libs/shared/error"],
 			"options": {
-				"jestConfig": "libs/shared/error/jest.config.js",
+				"jestConfig": "libs/shared/error/jest.config.ts",
 				"passWithNoTests": true
 			}
 		}

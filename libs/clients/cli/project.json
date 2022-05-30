@@ -1,5 +1,4 @@
 {
-	"root": "libs/clients/cli",
 	"sourceRoot": "libs/clients/cli/src",
 	"projectType": "library",
 	"targets": {

@@ -1,18 +1,19 @@
-module.exports = {
-	displayName: 'cat-user',
-	preset: '.../../../jest.preset.js',
-	setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+/* eslint-disable */
+export default {
+	displayName: 'clients-angular',
+	preset: '../../../jest.preset.js',
+	setupFilesAfterEnv: [ '<rootDir>/src/test-setup.ts' ],
 	globals: {
 		'ts-jest': {
 			tsconfig: '<rootDir>/tsconfig.spec.json',
 			stringifyContentPathRegex: '\\.(html|svg)$',
 		},
 	},
-	coverageDirectory: '../../../coverage/libs/user',
+	coverageDirectory: '../../../coverage/libs/clients/angular',
 	transform: {
 		'^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
 	},
-	transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+	transformIgnorePatterns: [ 'node_modules/(?!.*\\.mjs$)' ],
 	snapshotSerializers: [
 		'jest-preset-angular/build/serializers/no-ng-attributes',
 		'jest-preset-angular/build/serializers/ng-snapshot',

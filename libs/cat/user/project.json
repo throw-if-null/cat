@@ -1,6 +1,5 @@
 {
 	"projectType": "library",
-	"root": "libs/cat/user",
 	"sourceRoot": "libs/cat/user/src",
 	"prefix": "cat",
 	"targets": {
@@ -8,7 +7,7 @@
 			"executor": "@nrwl/jest:jest",
 			"outputs": ["coverage/libs/user"],
 			"options": {
-				"jestConfig": "libs/cat/user/jest.config.js",
+				"jestConfig": "libs/cat/user/jest.config.ts",
 				"passWithNoTests": true
 			}
 		},

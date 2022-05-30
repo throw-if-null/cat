@@ -1,6 +1,5 @@
 {
 	"projectType": "application",
-	"root": "apps/cat",
 	"sourceRoot": "apps/cat/src",
 	"prefix": "cat",
 	"targets": {
@@ -84,7 +83,7 @@
 			"executor": "@nrwl/jest:jest",
 			"outputs": ["coverage/apps/cat"],
 			"options": {
-				"jestConfig": "apps/cat/jest.config.js",
+				"jestConfig": "apps/cat/jest.config.ts",
 				"passWithNoTests": true
 			}
 		}
