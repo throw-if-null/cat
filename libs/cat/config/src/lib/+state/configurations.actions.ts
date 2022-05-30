@@ -1,6 +1,6 @@
 import {
 	ConfigurationCreateData,
-	ConfigurationCreateResponse,
+	ConfigurationCreateResponse, ConfigurationDetails,
 	ConfigurationEntry,
 	ConfigurationEntryCreateData
 } from "@cat/domain";
@@ -21,13 +21,13 @@ export const createConfigurationFailure = createAction(
 	props<{ error: any }>()
 );
 
-export const loadConfigurationEntriesSuccess = createAction(
-	'[Configurations/API] Load Configuration Entries Success',
-	props<{ entries: ConfigurationEntry[] }>()
+export const loadConfigurationSuccess = createAction(
+	'[Configurations/API] Load Configuration Success',
+	props<{ configuration: ConfigurationDetails, projectId: number }>()
 );
 
-export const loadConfigurationEntriesFailure = createAction(
-	'[Configurations/API] Load Configuration Entries Failure',
+export const loadConfigurationFailure = createAction(
+	'[Configurations/API] Load Configuration Failure',
 	props<{ error: any }>()
 );
 
@@ -71,7 +71,7 @@ export const deleteConfigurationEntry = createAction('[Configuration Details Pag
 
 export const deleteConfigurationEntrySuccess = createAction(
 	'[Configurations/API] Delete Configuration Entry Success',
-	props<{ response?: any }>()
+	props<{ entryId: number }>()
 );
 
 export const deleteConfigurationEntryFailure = createAction(

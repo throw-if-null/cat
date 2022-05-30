@@ -18,8 +18,15 @@ describe('Configurations Reducer', () => {
 				createConfigurationEntriesEntity(1, 'KEY-AAA'),
 				createConfigurationEntriesEntity(2, 'KEY-zzz'),
 			];
-			const action = ConfigurationsActions.loadConfigurationEntriesSuccess({
-				entries,
+			const configuration = {
+				id: 1,
+				typeId: 1,
+				name: 'test',
+				entries
+			}
+			const action = ConfigurationsActions.loadConfigurationSuccess({
+				configuration,
+				projectId: 1
 			});
 
 			const result: State = reducer(initialState, action);

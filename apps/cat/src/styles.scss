@@ -14,39 +14,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap');
 
 body {
-  background-color: var(--primary-background-color);
-  color: var(--text-color);
-  font-family: Poppins, sans-serif;
+	background-color: var(--primary-background-color);
+	color: var(--text-color);
+	font-family: Poppins, sans-serif;
 
-  transition: color 0.3s ease-out, background-color 1s ease, border 1s ease;
+	transition: color 0.3s ease-out, background-color 1s ease, border 1s ease;
 }
 
 .title {
-  font-family: 'Spartan', sans-serif;
-  font-weight: bold;
+	font-family: 'Spartan', sans-serif;
+	font-weight: bold;
 }
 
 .description {
-  color: var(--text-color-light);
-  font-size: 14px;
-  margin-bottom: $spacing-primary;
+	color: var(--text-color-light);
+	font-size: 14px;
+	margin-bottom: $spacing-primary;
 }
 
 .icon {
-  width: 20px;
-  height: 20px;
+	width: 15px;
+	height: 15px;
 }
 
 .link {
-  color: $orange;
-  cursor: pointer;
+	color: $orange;
+	cursor: pointer;
 }
 
 .search-highlight {
-  font-weight: bold;
-  color: $orange !important;
+	font-weight: bold;
+	color: $orange !important;
 }
 
 .clickable {
-  cursor: pointer;
+	cursor: pointer;
+}
+
+.borderless {
+	border: none;
+	box-shadow: none;
 }

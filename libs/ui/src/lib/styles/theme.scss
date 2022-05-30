@@ -2,71 +2,79 @@
 
 :root {
 
-  --primary-color: #{$orange};
-  --primary-color-darker: #{$blood-orange};
-  --primary-color-invert: #dadada;
-  --primary-background-color: #{$deep-blue};
-  --text-color: #{$white};
-  --text-color-lighter: #{lighten($white, 10%)};
-  --text-color-light: #{lighten($black, 50%)};
-  --text-color-invert: #{$black};
-  --text-color-invert-lighter: #{lighten($black, 50%)};
-  --border-color: #c6becf;
+	--primary-color: #{$orange};
+	--primary-color-darker: #{$blood-orange};
+	--primary-color-invert: #dadada;
+	--primary-background-color: #{$deep-blue};
+	--text-color: #{$white};
+	--text-color-lighter: #{lighten($white, 10%)};
+	--text-color-light: #{lighten($black, 55%)};
+	--text-color-invert: #{$black};
+	--text-color-invert-lighter: #{lighten($black, 50%)};
+	--border-color: #c6becf;
 
-  --button-background-color-invert: #{desaturate(lighten($color-primary, 20%), 50%)};
-  --button-color-invert: #{$white};
+	--button-background-color-invert: #{desaturate(lighten($color-primary, 20%), 50%)};
+	--button-color-invert: #{$white};
 
-  --card-background-color: transparent;
+	--card-background-color: transparent;
 
-  --table-border-color: #{transparentize($white, 0.65)};
+	--input-color: var(--text-color);
+	--input-border-color: var(--border-color);
+	--input-placeholder: var(--text-color-light);
 
-  --select-background-color: var(--primary-background-color);
-  --select-background-color-invert: var(--primary-color-invert);
+	--table-border-color: #{transparentize($white, 0.65)};
 
-  --navbar-background: linear-gradient(0deg, #{$blood-orange} 0, #{$orange} 100%);
+	--select-background-color: var(--primary-background-color);
+	--select-background-color-invert: var(--primary-color-invert);
+
+	--navbar-background: linear-gradient(0deg, #{$blood-orange} 0, #{$orange} 100%);
 
 
-  --type-boolean-color: $color-bool;
-  --type-numeric-color: $color-numeric;
-  --type-url-color: $color-url;
+	--type-boolean-color: $color-bool;
+	--type-numeric-color: $color-numeric;
+	--type-url-color: $color-url;
 
-  // NODA Editor
-  --noda-node-border: var(--border-color);
-  --noda-node-background: #{darken($white, 90%)};
-  --noda-connection-color: #cfcfcf;
-  --noda-connector-color: #{$blue};
+	// NODA Editor
+	--noda-node-border: var(--border-color);
+	--noda-node-background: #{darken($white, 90%)};
+	--noda-connection-color: #cfcfcf;
+	--noda-connector-color: #{$blue};
 }
 
 [data-theme="light"] {
-  --primary-color: #{$orange};
-  --primary-color-darker: #{$blood-orange};
+	--primary-color: #{$orange};
+	--primary-color-darker: #{$blood-orange};
 
-  --primary-color-invert: #{$deep-blue};
-  --primary-background-color: #{#faf9fb};
-  --text-color: #{$black};
-  --text-color-lighter: #{lighten($black, 10%)};
-  --text-color-light: #{lighten($black, 50%)};
-  --text-color-invert: #{$white};
-  --text-color-invert-lighter: #{darken($white, 50%)};
-  --border-color: #7c7670;
+	--primary-color-invert: #{$deep-blue};
+	--primary-background-color: #{#faf9fb};
+	--text-color: #{$black};
+	--text-color-lighter: #{lighten($black, 10%)};
+	--text-color-light: #{lighten($black, 50%)};
+	--text-color-invert: #{$white};
+	--text-color-invert-lighter: #{darken($white, 50%)};
+	--border-color: #7c7670;
 
-  --button-background-color-invert: #{desaturate(lighten($color-primary, 20%), 50%)};
-  --button-color-invert: #{$white};
+	--button-background-color-invert: #{desaturate(lighten($color-primary, 20%), 50%)};
+	--button-color-invert: #{$white};
 
-  --card-background-color: #{$white};
+	--input-color: var(--text-color);
+	--input-border-color: var(--border-color);
+	--input-placeholder: var(--text-color-light);
 
-  --table-border-color: #{transparentize($black, 0.65)};
+	--card-background-color: #{$white};
 
-  --select-background-color: var(--primary-background-color);
-  --select-background-color-invert: var(--primary-color-invert);
+	--table-border-color: #{transparentize($black, 0.65)};
 
-  --navbar-background: linear-gradient(0deg, #{$blood-orange} 0, #{$orange} 100%);
+	--select-background-color: var(--primary-background-color);
+	--select-background-color-invert: var(--primary-color-invert);
 
-  // NODA
-  --noda-node-background: #{lighten($black, 90%)};
-  --noda-node-border: var(--border-color);
-  --noda-connection-color: #cfcfcf;
-  --noda-connector-color: #{$blue};
+	--navbar-background: linear-gradient(0deg, #{$blood-orange} 0, #{$orange} 100%);
+
+	// NODA
+	--noda-node-background: #{lighten($black, 90%)};
+	--noda-node-border: var(--border-color);
+	--noda-connection-color: #cfcfcf;
+	--noda-connector-color: #{$blue};
 }
 
 

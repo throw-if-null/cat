@@ -11,18 +11,10 @@ export class ConfigurationFacade {
 	 * Combine pieces of state using createSelector,
 	 * and expose them as observables through the facade.
 	 */
-	loaded$ = this.store.pipe(
-		select(ConfigurationsSelectors.getConfigurationsLoaded)
-	);
-	configurationOverview$ = this.store.pipe(
-		select(ConfigurationsSelectors.getConfigurationsState)
-	);
-	allConfigurationEntries$ = this.store.pipe(
-		select(ConfigurationsSelectors.getAllConfigurationEntries)
-	);
-	selectedConfigurationEntry$ = this.store.pipe(
-		select(ConfigurationsSelectors.getSelected)
-	);
+	loaded$ = this.store.pipe(select(ConfigurationsSelectors.getConfigurationsLoaded));
+	configuration$ = this.store.pipe(select(ConfigurationsSelectors.getConfigurationsState));
+	allConfigurationEntries$ = this.store.pipe(select(ConfigurationsSelectors.getAllConfigurationEntries));
+	selectedConfigurationEntry$ = this.store.pipe(select(ConfigurationsSelectors.getSelected));
 
 	constructor(private readonly store: Store) {
 	}

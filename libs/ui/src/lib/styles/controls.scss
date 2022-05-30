@@ -1,108 +1,121 @@
 @import 'variables';
 
 @mixin input-base {
-  display: flex;
-  align-items: center;
-  padding: 5px 10px;
+	display: flex;
+	align-items: center;
+	padding: 5px 10px;
 
-  background-color: transparent;
-  outline: none;
-  border-radius: $border-radius;
-  border: 1px solid var(--border-color);
+	background-color: transparent;
+	outline: none;
+	border-radius: $border-radius;
+	border: 1px solid var(--input-border-color);
 
-  box-shadow: rgb(37 11 54 / 4%) 0 2px 0 inset;
-  transition: all 0.1s linear 0s;
+	box-shadow: rgb(37 11 54 / 4%) 0 2px 0 inset;
+	transition: all 0.1s linear 0s;
 
-  font-family: inherit;
-  font-size: 14px;
-  color: var(--text-color);
+	font-family: inherit;
+	font-size: 14px;
+	color: var(--input-color);
 }
 
 .input {
-  @include input-base;
+	@include input-base;
 
-  &.invert {
-    background-color: transparent;
-    color: var(--text-color-invert);
-  }
+	&.invert {
+		background-color: transparent;
+		color: var(--text-color-invert);
+	}
 
-  &.light {
-    background-color: $white;
-    color: $black;
-  }
+	&.light {
+		background-color: $white;
+		color: $black;
+	}
 
-  &.small {
-    font-size: 12px;
-    padding: $spacing-small;
-  }
+	&.small {
+		font-size: 12px;
+		padding: $spacing-small;
+	}
 
-  &.edgy {
-    border-radius: 0;
-  }
+	&.edgy {
+		border-radius: 0;
+	}
+
+	&::placeholder {
+		color: var(--input-placeholder);
+		opacity: 1;
+	}
 }
 
 select {
 
-  &.invert {
-    option {
-      color: var(--text-color-invert);
-      background: var(--select-background-color-invert);
-    }
-  }
+	&.invert {
+		option {
+			color: var(--text-color-invert);
+			background: var(--select-background-color-invert);
+		}
+	}
 
-  &.light {
-    option {
-      background-color: $white;
-      color: $black;
-    }
-  }
+	&.light {
+		option {
+			background-color: $white;
+			color: $black;
+		}
+	}
 
-  option {
-    color: var(--text-color);
-    background: var(--select-background-color);
-  }
+	option {
+		color: var(--text-color);
+		background: var(--select-background-color);
+	}
 }
 
 .button {
 
-  @include input-base;
+	@include input-base;
 
-  padding: 9px 12px;
+	padding: 9px 12px;
+	border: 1px solid var(--border-color);
+	background-color: transparent;
+	color: var(--text-color-lighter);
+	cursor: pointer;
 
-  cursor: pointer;
+	&:hover, &:focus {
+		color: var(--text-color);
+		border-color: var(--text-color);
+	}
 
-  border: 1px solid var(--border-color);
-  background-color: transparent;
-  color: var(--text-color-lighter);
+	&.invert {
+		border: 1px solid var(--border-color);
+		background-color: var(--button-background-color-invert);
+		color: var(--button-color-invert);
+	}
 
-  &:hover {
-    color: var(--text-color);
-    border-color: var(--text-color);
-  }
+	&.primary {
+		border: 1px solid var(--primary-color-darker);
+		background-color: var(--primary-color);
+		color: $white;
 
-  &.invert {
-    border: 1px solid var(--border-color);
-    background-color: var(--button-background-color-invert);
-    color: var(--button-color-invert);
-  }
+		&:hover {
+			background-color: var(--primary-color-darker);
+		}
+	}
 
-  &.primary {
-    border: 1px solid var(--primary-color-darker);
-    background-color: var(--primary-color);
-    color: $white;
+	&.small {
+		font-size: 12px;
+		padding: 5px 10px;
+	}
 
-    &:hover {
-      background-color: var(--primary-color-darker);
-    }
-  }
+	&[disabled] {
+		opacity: 0.33;
+	}
 
-  &.small {
-    font-size: 12px;
-    padding: 5px 10px;
-  }
+	.icon {
+		margin: 0 $spacing-small;
 
-  &[disabled] {
-    opacity: 0.33;
-  }
+		* {
+			stroke: var(--text-color);
+			fill: var(--text-color);
+			transition: all 0.1s linear 0s;
+		}
+	}
 }
 

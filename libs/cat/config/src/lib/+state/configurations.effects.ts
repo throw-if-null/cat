@@ -12,22 +12,25 @@ import * as ConfigurationsActions from './configurations.actions';
 @Injectable()
 export class ConfigurationsEffects {
 
-	loadEntries$ = createEffect(() =>
+	loadConfiguration$ = createEffect(() =>
 		this.actions$.pipe(
 			// listens for the routerNavigation action from @ngrx/router-store
 			navigation(ConfigDetailsComponent, {
 				run: (activatedRouteSnapshot: ActivatedRouteSnapshot) => {
-					const { configId } = activatedRouteSnapshot.params;
+					const { configId, projectId } = activatedRouteSnapshot.params;
 
 					return this.configService.getConfigurationById(configId)
-						.pipe(map(ConfigurationsActions.loadConfigurationEntriesSuccess))
+						.pipe(map(configuration => ConfigurationsActions.loadConfigurationSuccess({
+							configuration,
+							projectId
+						})))
 				},
 				onError: (
 					activatedRouteSnapshot: ActivatedRouteSnapshot,
 					error: any
 				) => {
 					console.error('Error', error);
-					return ConfigurationsActions.loadConfigurationEntriesFailure({ error });
+					return ConfigurationsActions.loadConfigurationFailure({ error });
 				},
 			})
 		)
@@ -40,7 +43,7 @@ export class ConfigurationsEffects {
 				run: ({ configurationId, entry }) => {
 					return this.configService.createConfigurationEntry(configurationId, entry)
 						.pipe(
-							map((response) => (ConfigurationsActions.createConfigurationEntrySuccess({ entry: response })))
+							map((response) => (ConfigurationsActions.createConfigurationEntrySuccess({ entry: { ...entry, ...response } })))
 						);
 				},
 				onError: (action, error) => {
@@ -76,7 +79,7 @@ export class ConfigurationsEffects {
 				run: (action: ReturnType<typeof ConfigurationsActions.deleteConfigurationEntry>) => {
 					const { configurationId, entryId } = action;
 					return this.configService.deleteConfigurationEntry(entryId, configurationId)
-						.pipe(mapTo(ConfigurationsActions.deleteConfigurationEntrySuccess({})))
+						.pipe(mapTo(ConfigurationsActions.deleteConfigurationEntrySuccess({ entryId })))
 				},
 				undoAction: (
 					action: ReturnType<typeof ConfigurationsActions.deleteConfigurationEntry>,

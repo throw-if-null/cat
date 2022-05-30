@@ -1,17 +1,17 @@
 import { ConfigurationEntry } from "@cat/domain";
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-
-import * as ConfigurationsActions from './configurations.actions';
+import * as ConfigurationsActions from "./configurations.actions";
 
 export const CONFIGURATIONS_FEATURE_KEY = 'configurations';
 
 export interface State extends EntityState<ConfigurationEntry> {
-	selectedId?: number; // which Configurations record has been selected
-	loaded: boolean; // has the Configurations list been loaded
+	selectedId?: number; // which Configurations entry record has been selected
+	loaded: boolean;
 	error?: string; // last known error (if any)
-	projectId?: number; // which project this config belongs to
-	configurationId?: number; // which configuration this entry belongs to
+	projectId?: number;
+	configurationId?: number;
+	configurationName?: string;
 }
 
 export interface ConfigurationsPartialState {
@@ -33,20 +33,32 @@ const configurationsReducer = createReducer(
 		loaded: false,
 		error: undefined,
 	})),
-	on(ConfigurationsActions.loadConfigurationEntriesSuccess,
-		(state, { entries }) => configurationsAdapter.setAll(entries, { ...state, loaded: true })
+	on(ConfigurationsActions.loadConfigurationSuccess,
+		(state, { configuration, projectId }) => configurationsAdapter.setAll(configuration.entries, {
+			...state,
+			configurationId: configuration.id,
+			configurationName: configuration.name,
+			loaded: true,
+			projectId
+		})
 	),
-	on(ConfigurationsActions.loadConfigurationEntriesFailure, (state, { error }) => ({
+	on(ConfigurationsActions.loadConfigurationFailure, (state, { error }) => ({
 		...state,
 		error,
 	})),
+	on(ConfigurationsActions.createConfigurationEntrySuccess,
+		(state, { entry }) => configurationsAdapter.addOne(entry, state)
+	),
 	on(ConfigurationsActions.updateConfigurationEntrySuccess,
 		(state, { entry }) => configurationsAdapter.updateOne({ id: entry.id, changes: entry }, state)
 	),
 	on(ConfigurationsActions.undoUpdateConfigurationEntry, (state, { data }) => ({
 		...state,
 		error: data,
-	}))
+	})),
+	on(ConfigurationsActions.deleteConfigurationEntrySuccess,
+		(state, { entryId }) => configurationsAdapter.removeOne(entryId, state)
+	),
 );
 
 export function reducer(state: State | undefined, action: Action) {
