@@ -14,7 +14,8 @@ export class ProjectsFacade {
 	allProjects$ = this.store.pipe(select(ProjectsSelectors.getAllProjects));
 	projectDetails$ = this.store.pipe(select(ProjectsSelectors.getProjectDetails));
 
-	constructor(private readonly store: Store) {}
+	constructor(private readonly store: Store) {
+	}
 
 
 	init() {
@@ -27,6 +28,10 @@ export class ProjectsFacade {
 
 	createProject(data: ProjectCreateData) {
 		this.store.dispatch(ProjectsActions.createProject({ project: data }));
+	}
+
+	deleteProject(projectId: number) {
+		this.store.dispatch(ProjectsActions.deleteProject({ projectId }));
 	}
 
 }

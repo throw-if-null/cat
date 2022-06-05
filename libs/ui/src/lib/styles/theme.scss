@@ -16,6 +16,9 @@
 	--button-background-color-invert: #{desaturate(lighten($color-primary, 20%), 50%)};
 	--button-color-invert: #{$white};
 
+	--link-color: var(--primary-color);
+	--link-color-hover: #{desaturate(darken($orange, 10%), 20%)};
+
 	--card-background-color: transparent;
 
 	--input-color: var(--text-color);
@@ -80,30 +83,33 @@
 
 [data-theme="my-eyes"] {
 
-  --primary-color: #{$lime};
-  --primary-color-darker: #{$green};
+	--primary-color: #{$lime};
+	--primary-color-darker: #{$green};
 
-  --primary-color-invert: #dadada;
-  --primary-background-color: #140c1d;
-  --text-color: #{$lime};
-  --text-color-lighter: #{darken($green, 5%)};
-  --text-color-light: #{darken($white, 35%)};
-  --text-color-invert: #{$black};
-  --text-color-invert-lighter: #{lighten($black, 50%)};
-  --border-color: #{$lime};
+	--primary-color-invert: #dadada;
+	--primary-background-color: #140c1d;
+	--text-color: #{$lime};
+	--text-color-lighter: #{darken($green, 5%)};
+	--text-color-light: #{darken($white, 35%)};
+	--text-color-invert: #{$black};
+	--text-color-invert-lighter: #{lighten($black, 50%)};
+	--border-color: #{$lime};
 
-  --button-background-color-invert: #{$lime};
-  --button-color-invert: #{$white};
+	--button-background-color-invert: #{$lime};
+	--button-color-invert: #{$white};
 
-  --card-background-color: transparent;
+	--link-color: var(--primary-color);
+	--link-color-hover: #{desaturate(darken($lime, 10%), 20%)};
 
-  --table-border-color: #{transparentize($white, 0.65)};
+	--card-background-color: transparent;
 
-  --select-background-color: var(--primary-background-color);
-  --select-background-color-invert: var(--primary-color-invert);
+	--table-border-color: #{transparentize($white, 0.65)};
+
+	--select-background-color: var(--primary-background-color);
+	--select-background-color-invert: var(--primary-color-invert);
 
 
-  --navbar-background: transparent;
-  --navbar-border: 1px solid #{$lime};
-  --navbar-border-left: none;
+	--navbar-background: transparent;
+	--navbar-border: 1px solid #{$lime};
+	--navbar-border-left: none;
 }

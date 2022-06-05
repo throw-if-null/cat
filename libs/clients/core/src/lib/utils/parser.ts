@@ -16,3 +16,17 @@ function addToObj(parsedObject: any, path: string[], newData: any): any {
 	}
 }
 
+export function flattenConfigEntries(obj = {}, res = [], extraKey = ''): ConfigurationEntryData[] {
+	for (let key in obj) {
+		// @ts-ignore
+		const val = obj[key] as any;
+		if (typeof val !== 'object') {
+			// @ts-ignore
+			res.push({ key: extraKey + key, value: val });
+		} else {
+			flattenConfigEntries(val, res, `${ extraKey }${ key }.`);
+		}
+	}
+
+	return res;
+}

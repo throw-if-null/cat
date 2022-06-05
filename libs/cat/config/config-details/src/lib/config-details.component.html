@@ -2,10 +2,16 @@
 
     <ng-container *ngIf="entries$ | async as entries; else loadingConfig">
 
-        <h1><span (click)="goBack()" class="clickable">< Back</span> - {{configName}}</h1>
+        <h1 (click)="goBack()" class="back-link">< Back to {{projectName}}</h1>
         <div class="list-controls">
             <input [formControl]="searchControl" autofocus class="list-controls__search input edgy"
                    placeholder="Type to search...">
+
+            <cat-button [tippy]="configurationMenu" variation="menu">Settings</cat-button>
+
+            <ng-template #configurationMenu>
+                <div (click)="openImportConfigDialog()" class="clickable">Import</div>
+            </ng-template>
         </div>
 
         <form (ngSubmit)="addConfigurationEntry()" [formGroup]="entryForm">
@@ -83,15 +89,9 @@
                     <th><input class="input borderless" formControlName="value" placeholder="Value..." type="text"/>
                     </th>
                     <th>
-                        <button class="button borderless" type="submit">
-                            <svg class="icon" viewBox="0 0 42 42" x="0px"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 y="0px">
-                                <polygon points="42,20 22,20 22,0 20,0 20,20 0,20 0,22 20,22 20,42 22,42 22,22 42,22 "
-                                         style="stroke-width:1"/>
-                            </svg>
+                        <cat-button [add]="true" [borderless]="true" [color]="true" type="submit">
                             Add Entry
-                        </button>
+                        </cat-button>
                     </th>
                 </tr>
                 </tfoot>

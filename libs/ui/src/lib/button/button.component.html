@@ -1,0 +1,29 @@
+<button [class.borderless]="borderless"
+        [class.color]="color"
+
+        [class.tiny]="multi"
+        [type]='type'
+        class="button small">
+
+    <ng-container *ngIf="multi">
+        <svg class='icon' fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+             stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="1"></circle>
+            <circle cx="19" cy="12" r="1"></circle>
+            <circle cx="5" cy="12" r="1"></circle>
+        </svg>
+    </ng-container>
+
+    <ng-container *ngIf="add">
+
+        <svg class="icon" viewBox="0 0 42 42" x="0px"
+             xmlns="http://www.w3.org/2000/svg"
+             y="0px">
+            <polygon points="42,20 22,20 22,0 20,0 20,20 0,20 0,22 20,22 20,42 22,42 22,22 42,22 "
+                     style="stroke-width:1"/>
+        </svg>
+    </ng-container>
+
+    <ng-content></ng-content>
+
+</button>

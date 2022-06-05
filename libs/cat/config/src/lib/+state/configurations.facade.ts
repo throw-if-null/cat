@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ConfigurationCreateData, ConfigurationEntry, ConfigurationEntryCreateData } from "@cat/domain";
+import {
+	ConfigurationCreateData,
+	ConfigurationEntry,
+	ConfigurationEntryCreateData,
+	ConfigurationUpdateData
+} from "@cat/domain";
 import { select, Store } from '@ngrx/store';
+import { filter } from "rxjs/operators";
 import * as ConfigurationsActions from "./configurations.actions";
 import * as ConfigurationsSelectors from "./configurations.selectors";
 
@@ -16,6 +22,8 @@ export class ConfigurationFacade {
 	allConfigurationEntries$ = this.store.pipe(select(ConfigurationsSelectors.getAllConfigurationEntries));
 	selectedConfigurationEntry$ = this.store.pipe(select(ConfigurationsSelectors.getSelected));
 
+	entryCreateSuccess$ = this.store.pipe(select(ConfigurationsSelectors.getConfigurationEntryCreated)).pipe(filter(created => !!created));
+
 	constructor(private readonly store: Store) {
 	}
 
@@ -30,6 +38,18 @@ export class ConfigurationFacade {
 	createConfiguration(projectId: number, data: ConfigurationCreateData) {
 		this.store.dispatch(ConfigurationsActions.createConfiguration({ projectId, data }));
 	}
+
+	deleteConfiguration(projectId: number, configurationId: number) {
+		this.store.dispatch(ConfigurationsActions.deleteConfiguration({ projectId, configurationId }));
+	}
+
+	updateConfiguration(projectId: number, data: ConfigurationUpdateData) {
+		this.store.dispatch(ConfigurationsActions.updateConfiguration({ projectId, data }));
+	}
+
+	/**
+	 * CONFIGURATION ENTRIES
+	 */
 
 	createConfigurationEntry(entry: ConfigurationEntryCreateData, configurationId: number) {
 		this.store.dispatch(ConfigurationsActions.createConfigurationEntry({ entry, configurationId }));

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ConfigurationFacade } from "@cat/config";
 import { ConfigCreateComponent } from '@cat/config-create';
-import { ConfigurationCreateData, ProjectDetails } from "@cat/domain";
+import { ConfigurationCreateData, ProjectDetails, ProjectOverview } from "@cat/domain";
 import { ProjectService, ProjectsFacade } from '@cat/project';
 import { DialogService } from '@ngneat/dialog';
 import { Logger } from "@ratcat/logger";
@@ -71,5 +71,13 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
 				this.configurationFacade.createConfiguration(projectDetails.id, data)
 			});
 
+	}
+
+	deleteProject(project: ProjectOverview) {
+		this.projectFacade.deleteProject(project.id)
+	}
+
+	removeConfiguration(projectId: number, configId: number) {
+		this.configurationFacade.deleteConfiguration(projectId, configId);
 	}
 }

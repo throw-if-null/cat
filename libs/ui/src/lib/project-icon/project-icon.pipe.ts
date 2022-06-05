@@ -12,13 +12,13 @@ export class ProjectTypeIconPipe implements PipeTransform {
 
 	getProjectTypeName(type: number): ProjectIcon {
 		switch (type) {
-			case 0:
-				return ProjectIcon.Json;
 			case 1:
-				return ProjectIcon.Angular;
+				return ProjectIcon.Json;
 			case 2:
-				return ProjectIcon.DotNET;
+				return ProjectIcon.Angular;
 			case 3:
+				return ProjectIcon.DotNET;
+			case 4:
 				return ProjectIcon.React;
 			default:
 				return ProjectIcon.Unknown;

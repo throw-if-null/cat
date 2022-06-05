@@ -1,0 +1,12 @@
+.color {
+	&.button:hover,
+	&.button:focus {
+		color: var(--primary-color);
+
+		// for svg icons
+		.icon * {
+			stroke: var(--primary-color);
+			fill: var(--primary-color);
+		}
+	}
+}

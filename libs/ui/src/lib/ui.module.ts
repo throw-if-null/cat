@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { EditModeDirective } from './editable/edit-mode.directive';
 import { EditableComponent } from './editable/editable.component';
@@ -11,7 +12,7 @@ import { ProjectTypeIconPipe } from './project-icon/project-icon.pipe';
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
 
 @NgModule({
-	imports: [CommonModule],
+	imports: [ CommonModule ],
 	declarations: [
 		ProjectIconComponent,
 		EditableComponent,
@@ -21,18 +22,21 @@ import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
 		LoaderComponent,
 		CardComponent,
 		ThemeSwitchComponent,
-		ProjectTypeIconPipe
+		ProjectTypeIconPipe,
+		ButtonComponent,
 	],
 	exports: [
 		ProjectIconComponent,
 		EditableComponent,
+		ButtonComponent,
 		EditModeDirective,
 		ViewModeDirective,
 		HighlightDirective,
 		LoaderComponent,
 		CardComponent,
 		ThemeSwitchComponent,
-		ProjectTypeIconPipe
-	]
+		ProjectTypeIconPipe,
+	],
 })
-export class UiModule {}
+export class UiModule {
+}

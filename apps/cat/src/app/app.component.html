@@ -2,7 +2,7 @@
     <div class="header__title title">{{ title }}</div>
     <div class="header__items">
         <div *ngIf="user$ | async as user" [tippy]="userMenu" class="header__items__user" variation="menu">
-            <img class="header__items__user__icon dropdown-toggle" [src]="user.picture"/>
+            <img [src]="user.picture" alt="user menu" class="header__items__user__icon dropdown-toggle"/>
             <ng-template #userMenu>
                 <div>
                     <div>{{ user.name }}</div>

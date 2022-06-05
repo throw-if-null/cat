@@ -28,12 +28,15 @@ export class ProjectListComponent {
 		const dialogRef = this.dialog.open(ProjectCreateComponent, { closeButton: false, size: 'lg' });
 
 		dialogRef.afterClosed$
-				 .pipe(take(1))
-				 .subscribe((data?: ProjectCreateData) => {
-					 if (data) {
-						 this.projectFacade.createProject(data);
-					 }
-				 });
+			.pipe(take(1))
+			.subscribe((data?: ProjectCreateData) => {
+				if (data) {
+					this.projectFacade.createProject(data);
+				}
+			});
 	}
 
+	deleteProject(projectId: number) {
+		this.projectFacade.deleteProject(projectId);
+	}
 }

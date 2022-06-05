@@ -7,10 +7,26 @@
 <ng-container *subscribe="projects$; let projects;">
     <div *ngIf="projects?.length ?? 0 > 0; else noProjects" class="projects-list">
         <div *ngFor="let project of projects" class="project">
-            <div class="project__header" [routerLink]="[project.id]">
-                <div class="project__name">{{ project.name }}</div>
+            <div class="project__header">
+                <div class="centered">
+                    <div [routerLink]="[project.id]" class="project__name link">
+                        <cat-project-icon [type]="project.typeId | projectTypeToIcon"></cat-project-icon>
+
+                        {{ project.name }}
+                    </div>
+
+                    <cat-button [multi]="true" [tippy]="projectEntryMenu" variation="menu"></cat-button>
+                    <ng-template #projectEntryMenu>
+                        <div>
+                            <div>Settings</div>
+                            <div>Duplicate</div>
+                            <hr/>
+                            <div (click)="deleteProject(project.id)" class="clickable">Delete</div>
+                        </div>
+                    </ng-template>
+                </div>
+
                 <div class="project__header__sub">
-                    <cat-project-icon [type]="project.typeId | projectTypeToIcon"></cat-project-icon>
                     <div class="project__entries">{{project.totalConfigurationCount}} configs
                         | {{project.totalEntryCount}} entries
                     </div>

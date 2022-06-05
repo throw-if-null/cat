@@ -1,8 +1,10 @@
 import {
 	ConfigurationCreateData,
-	ConfigurationCreateResponse, ConfigurationDetails,
+	ConfigurationCreateResponse,
+	ConfigurationDetails,
 	ConfigurationEntry,
-	ConfigurationEntryCreateData
+	ConfigurationEntryCreateData,
+	ConfigurationUpdateResponse
 } from "@cat/domain";
 import { createAction, props } from '@ngrx/store';
 
@@ -30,6 +32,31 @@ export const loadConfigurationFailure = createAction(
 	'[Configurations/API] Load Configuration Failure',
 	props<{ error: any }>()
 );
+
+export const updateConfiguration = createAction('[Configurations/API] Update Configuration', props<{ projectId: number, data: ConfigurationCreateData }>());
+
+export const updateConfigurationSuccess = createAction(
+	'[Configurations/API] Update Configuration Success',
+	props<{ response: ConfigurationUpdateResponse }>()
+);
+
+export const updateConfigurationFailure = createAction(
+	'[Configurations/API] Update Configuration Failure',
+	props<{ error: any }>()
+);
+
+export const deleteConfiguration = createAction('[Configurations/API] Delete Configuration', props<{ projectId: number, configurationId: number }>());
+
+export const deleteConfigurationSuccess = createAction(
+	'[Configurations/API] Delete Configuration Success',
+	props<{ configurationId: number }>()
+);
+
+export const deleteConfigurationFailure = createAction(
+	'[Configurations/API] Delete Configuration Failure',
+	props<{ error: any }>()
+);
+
 
 export const createConfigurationEntry = createAction('[Configuration Details Page] Create Configuration Entry',
 	props<{ entry: ConfigurationEntryCreateData, configurationId: number }>()

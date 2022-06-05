@@ -8,7 +8,7 @@
 
 .project__actions {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 }
 
 .project__header {
@@ -36,11 +36,31 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-gap: $spacing-primary;
+	grid-auto-rows: 100px;
 
 	&__entry {
 		padding: $spacing-primary;
 		border: 1px solid var(--border-color);
-		cursor: pointer;
+
+		&-header {
+			display: flex;
+			height: 100%;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.config__header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.config__header__sub {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			font-size: $font-size-small;
+		}
 	}
 }
 

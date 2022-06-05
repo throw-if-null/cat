@@ -1,4 +1,6 @@
 <div class="project__actions">
+    <h1 class="back-link" routerLink='/projects'>< Back to Projects</h1>
+
     <button class="button small" (click)="openCreateConfigDialog()">
         Create Config
     </button>
@@ -27,10 +29,22 @@
     <div class="project__configs" *ngIf="project.configurations.length > 0; else noConfigs">
 
         <div class="project__configs__entry" *ngFor="let config of project.configurations">
-            <div class="project__configs__entry-header" [routerLink]="['config', config.id]">
-                <div class="config__name">{{ config.name }}</div>
+            <div class="project__configs__entry-header">
+                <div class="config__header">
+                    <div [routerLink]="['config', config.id]" class="config__name link">{{ config.name }}</div>
+                    <cat-button [multi]="true" [tippy]="projectEntryMenu" variation="menu"></cat-button>
+                    <ng-template #projectEntryMenu>
+                        <div>
+                            <div>Settings</div>
+                            <div>Duplicate</div>
+                            <hr/>
+                            <div (click)="removeConfiguration(project.id, config.id)" class="clickable">Delete</div>
+                        </div>
+                    </ng-template>
+                </div>
+
                 <div class="config__header__sub">
-                    <!--                    <cat-project-icon [type]="config.type | projectTypeToIcon"></cat-project-icon>-->
+                    <cat-project-icon [type]="config.typeId | projectTypeToIcon"></cat-project-icon>
                     <div class="config__entries">{{config.entriesCount}} entries</div>
                 </div>
             </div>

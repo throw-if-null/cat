@@ -104,6 +104,10 @@ select {
 		padding: 5px 10px;
 	}
 
+	&.tiny {
+		padding: 2px 5px;
+	}
+
 	&[disabled] {
 		opacity: 0.33;
 	}

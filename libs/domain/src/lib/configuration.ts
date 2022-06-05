@@ -1,5 +1,5 @@
 export enum ConfigurationType {
-	JSON,
+	JSON = 1,
 	Angular,
 	DotNET,
 	ENV,
@@ -24,7 +24,23 @@ export interface ConfigurationCreateData {
 	typeId: number;
 }
 
+export interface ConfigurationUpdateData extends ConfigurationBase {
+}
+
+
 export interface ConfigurationCreateResponse {
+	id: number;
+	typeId: number;
+	name: string;
+}
+
+export interface ConfigurationUpdateResponse {
+	id: number;
+	typeId: number;
+	name: string;
+}
+
+export interface ConfigurationDeleteResponse {
 	id: number;
 	typeId: number;
 	name: string;

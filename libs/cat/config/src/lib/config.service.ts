@@ -22,10 +22,10 @@ export class ConfigurationDataService {
 		return this.http.post<ConfigurationCreateResponse>(`${ this.apiURL }/projects/${ projectId }/configurations`, data);
 	}
 
-	deleteConfiguration(projectId: number, configId: number): Observable<Object> {
+	deleteConfiguration(projectId: number, configId: number): Observable<any> {
 		console.log('Deleting configuration: ', configId);
 
-		return this.http.delete(`${ this.apiURL }/projects/${ projectId }`);
+		return this.http.delete(`${ this.apiURL }/projects/${ projectId }/configurations/${ configId }`);
 	}
 
 	getConfigurationById(configId: number): Observable<ConfigurationDetails> {

@@ -63,6 +63,13 @@ const projectsReducer = createReducer(
 			configurations: [ ...state.projectDetails.configurations, createProjectDetailsConfiguration(response) ]
 		} : undefined
 	})),
+	on(ConfigurationsActions.deleteConfigurationSuccess, (state, { configurationId }) => ({
+		...state,
+		projectDetails: state.projectDetails ? {
+			...state.projectDetails,
+			configurations: [ ...state.projectDetails.configurations.filter(config => config.id !== configurationId) ]
+		} : undefined
+	})),
 );
 
 export function reducer(state: State | undefined, action: Action) {

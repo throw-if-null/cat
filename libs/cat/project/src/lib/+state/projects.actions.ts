@@ -1,4 +1,10 @@
-import { ProjectCreateData, ProjectCreateResponse, ProjectDetails, ProjectOverview } from '@cat/domain';
+import {
+	ProjectCreateData,
+	ProjectCreateResponse,
+	ProjectDeleteResponse,
+	ProjectDetails,
+	ProjectOverview
+} from '@cat/domain';
 import { createAction, props } from '@ngrx/store';
 
 export const init = createAction('[Projects Page] Init');
@@ -36,5 +42,18 @@ export const loadProjectSuccess = createAction(
 
 export const loadProjectFailure = createAction(
 	'[Projects/API] Load Project Failure',
+	props<{ error: any }>()
+);
+
+
+export const deleteProject = createAction('[Projects/API] Delete Project', props<{ projectId: number }>());
+
+export const deleteProjectSuccess = createAction(
+	'[Projects/API] Delete Project Success',
+	props<{ response: ProjectDeleteResponse }>()
+);
+
+export const deleteProjectFailure = createAction(
+	'[Projects/API] Delete Project Failure',
 	props<{ error: any }>()
 );

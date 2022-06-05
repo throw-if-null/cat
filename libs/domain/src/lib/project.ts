@@ -1,7 +1,7 @@
 import { ConfigurationOverview } from '@cat/domain';
 
 export enum ProjectType {
-	JSON,
+	JSON = 1,
 	Angular,
 	DotNET,
 	React,

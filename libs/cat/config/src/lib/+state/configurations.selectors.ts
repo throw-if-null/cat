@@ -42,3 +42,8 @@ export const getSelected = createSelector(
 	getSelectedId,
 	(entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
 );
+
+export const getConfigurationEntryCreated = createSelector(
+	getConfigurationsState,
+	(state: State) => state.entryCreated
+);

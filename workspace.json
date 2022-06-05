@@ -5,6 +5,7 @@
 		"cat-config": "libs/cat/config",
 		"cat-config-create": "libs/cat/config/config-create",
 		"cat-config-details": "libs/cat/config/config-details",
+		"cat-config-import": "libs/cat/config/config-import",
 		"cat-config-relations": "libs/cat/config/config-relations",
 		"cat-dashboard": "libs/cat/dashboard",
 		"cat-e2e": "apps/cat-e2e",

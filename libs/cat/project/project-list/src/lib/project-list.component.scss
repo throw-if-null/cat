@@ -18,19 +18,28 @@
   border: 1px solid var(--border-color);
 
   &__header {
-    display: flex;
-    flex-direction: column;
+	  display: flex;
+	  flex-direction: column;
 
-    cursor: pointer;
+	  cursor: pointer;
 
-    &__sub {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+	  .project__name {
+		  display: flex;
+		  align-items: center;
 
-      margin: math.div($spacing-primary, 2) 0;
-      font-size: 12px;
-    }
+		  cat-project-icon {
+			  margin-right: $spacing-primary;
+		  }
+	  }
+
+	  &__sub {
+		  display: flex;
+		  justify-content: space-between;
+		  align-items: center;
+
+		  margin: math.div($spacing-primary, 2) 0;
+		  font-size: 12px;
+	  }
   }
 
   &__graph {

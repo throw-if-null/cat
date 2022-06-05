@@ -38,16 +38,25 @@ body {
 }
 
 .link {
-	color: $orange;
+	color: var(--link-color);
 	cursor: pointer;
+
+	&:hover {
+		color: var(--link-color-hover)
+	}
 }
 
 .search-highlight {
 	font-weight: bold;
-	color: $orange !important;
+	color: var(--primary-color) !important;
 }
 
 .clickable {
+	cursor: pointer;
+}
+
+.back-link {
+	font-size: $font-size-small;
 	cursor: pointer;
 }
 

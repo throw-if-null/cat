@@ -36,6 +36,7 @@ export class ConfigurationsEffects {
 		)
 	);
 
+
 	createConfigurationEntry$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(ConfigurationsActions.createConfigurationEntry),

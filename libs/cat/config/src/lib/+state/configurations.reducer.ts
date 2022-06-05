@@ -12,6 +12,7 @@ export interface State extends EntityState<ConfigurationEntry> {
 	projectId?: number;
 	configurationId?: number;
 	configurationName?: string;
+	entryCreated: boolean;
 }
 
 export interface ConfigurationsPartialState {
@@ -24,6 +25,7 @@ export const configurationsAdapter: EntityAdapter<ConfigurationEntry> =
 export const initialState: State = configurationsAdapter.getInitialState({
 	// set initial required properties
 	loaded: false,
+	entryCreated: false
 });
 
 const configurationsReducer = createReducer(
@@ -46,8 +48,12 @@ const configurationsReducer = createReducer(
 		...state,
 		error,
 	})),
+	on(ConfigurationsActions.createConfigurationEntry, (state) => ({
+		...state,
+		entryCreated: false,
+	})),
 	on(ConfigurationsActions.createConfigurationEntrySuccess,
-		(state, { entry }) => configurationsAdapter.addOne(entry, state)
+		(state, { entry }) => configurationsAdapter.addOne(entry, { ...state, entryCreated: true })
 	),
 	on(ConfigurationsActions.updateConfigurationEntrySuccess,
 		(state, { entry }) => configurationsAdapter.updateOne({ id: entry.id, changes: entry }, state)

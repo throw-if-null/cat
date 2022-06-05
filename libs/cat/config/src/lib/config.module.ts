@@ -5,7 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import * as fromConfigurations from './+state/configurations.reducer';
 import { ConfigurationsEffects } from './+state/configurations.effects';
 import { ConfigurationFacade } from './+state/configurations.facade';
-import { ConfigRoutingModule } from "./config-routing.module";
+import { ConfigRoutingModule } from './config-routing.module';
 
 @NgModule({
 	imports: [
@@ -18,6 +18,7 @@ import { ConfigRoutingModule } from "./config-routing.module";
 		EffectsModule.forFeature([ ConfigurationsEffects ]),
 	],
 	providers: [ ConfigurationFacade ],
+	declarations: [],
 })
 export class ConfigModule {
 }

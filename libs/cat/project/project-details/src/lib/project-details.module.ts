@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ConfigCreateModule } from '@cat/config-create';
 import { UiModule } from '@cat/ui';
 import { UiUtilsModule } from '@cat/ui-utils';
+import { TippyModule } from "@ngneat/helipopper";
 import { SubscribeModule } from '@ngneat/subscribe';
 import { ProjectDetailsComponent } from './project-details.component';
 
@@ -17,7 +18,8 @@ import { ProjectDetailsComponent } from './project-details.component';
 		SubscribeModule,
 		ConfigCreateModule,
 		UiModule,
-		UiUtilsModule
+		UiUtilsModule,
+		TippyModule
 	],
 	exports: [ ProjectDetailsComponent ],
 })

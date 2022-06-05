@@ -1,12 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigurationFacade } from "@cat/config";
+import { ConfigImportComponent } from "@cat/config-import";
 import { ConfigurationEntry } from '@cat/domain';
+import { ProjectsFacade } from "@cat/project";
 import { parseStringValue } from '@cat/utils';
+import { DialogService } from "@ngneat/dialog";
 import { FormControl } from '@ngneat/reactive-forms';
+import { flattenConfigEntries } from "@ratcat/core";
+import { Logger } from "@ratcat/logger";
 import { Observable, Subject } from 'rxjs';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { take, takeUntil, withLatestFrom } from 'rxjs/operators';
 
 // interface EditableConfigurationEntry extends ConfigurationEntry {
 // 	editing?: boolean;
@@ -20,11 +25,10 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 	selector: 'cat-config-details',
 	templateUrl: './config-details.component.html',
 	styleUrls: [ './config-details.component.scss' ],
-	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfigDetailsComponent implements OnDestroy {
 
-	configName?: string;
+	projectName?: string;
 	configId?: number;
 
 
@@ -38,15 +42,22 @@ export class ConfigDetailsComponent implements OnDestroy {
 		value: new FormControl("", Validators.required)
 	});
 
+	private logger = new Logger('ConfigDetailsComponent');
 	private unsubscribe$ = new Subject();
 
-	constructor(private router: Router, private route: ActivatedRoute, private configurationFacade: ConfigurationFacade) {
+	constructor(private router: Router, private route: ActivatedRoute, private dialog: DialogService, private projectFacade: ProjectsFacade, private configurationFacade: ConfigurationFacade) {
 		this.entries$ = this.configurationFacade.allConfigurationEntries$;
 		this.configurationFacade.configuration$
 			.pipe(takeUntil(this.unsubscribe$))
 			.subscribe(configuration => {
-				this.configName = configuration.configurationName;
 				this.configId = configuration.configurationId;
+			});
+
+		this.projectFacade.projectDetails$
+			.pipe(
+				takeUntil(this.unsubscribe$))
+			.subscribe(project => {
+				this.projectName = project?.name;
 			});
 
 		this.editEntry$
@@ -57,10 +68,16 @@ export class ConfigDetailsComponent implements OnDestroy {
 				this.configurationFacade.updateConfigurationEntry(entry, this.configId!);
 			});
 
-		this.searchControl.value$
-			.pipe(debounceTime(500))
-			.subscribe(query => {
-				console.log(query);
+		// this.searchControl.value$
+		// 	.pipe(debounceTime(500))
+		// 	.subscribe(query => {
+		// 		console.log(query);
+		// 	});
+
+		this.configurationFacade.entryCreateSuccess$
+			.pipe(takeUntil(this.unsubscribe$))
+			.subscribe(() => {
+				this.entryForm.reset();
 			});
 
 	}
@@ -113,4 +130,30 @@ export class ConfigDetailsComponent implements OnDestroy {
 
 		this.router.navigate([ '/projects', projectId ]);
 	}
+
+	openImportConfigDialog() {
+		const dialogRef = this.dialog.open<any, any>(ConfigImportComponent, {
+			size: 'lg'
+		});
+
+		dialogRef.afterClosed$
+			.pipe(
+				take(1),
+				withLatestFrom(this.projectFacade.projectDetails$)
+			)
+			.subscribe(([ data, projectDetails ]) => {
+
+				// if aborts the dialog, we have no data
+				if (!data) {
+					return;
+				}
+				if (!projectDetails) {
+					this.logger.warn('User trying to create a configuration without a project loaded');
+					return;
+				}
+				console.log(flattenConfigEntries(data));
+			});
+
+	}
+
 }
