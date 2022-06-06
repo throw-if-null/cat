@@ -51,12 +51,18 @@ export class ConfigDetailsComponent implements OnDestroy {
 			.pipe(takeUntil(this.unsubscribe$))
 			.subscribe(configuration => {
 				this.configId = configuration.configurationId;
+
+				// re-fetch project details. If not loaded yet
+				if (configuration.projectId) {
+					this.projectFacade.loadProject(configuration.projectId);
+				}
 			});
 
 		this.projectFacade.projectDetails$
 			.pipe(
 				takeUntil(this.unsubscribe$))
 			.subscribe(project => {
+
 				this.projectName = project?.name;
 			});
 

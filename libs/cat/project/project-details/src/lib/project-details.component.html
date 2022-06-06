@@ -20,6 +20,15 @@
                 <option>Secrets</option>
             </select>
         </div>
+
+        <div class="project__settings">
+            <cat-button [tippy]="projectMenu" placement="bottom" variation="menu">Settings</cat-button>
+
+            <ng-template #projectMenu>
+                <div (click)="triggerOpenRelations()" class="clickable">Relations</div>
+            </ng-template>
+        </div>
+
     </div>
 
     <div class="project__details">

@@ -13,8 +13,8 @@
 
 .project__header {
 	display: grid;
-	grid-template-columns: 1fr 2fr;
-	padding: $spacing-primary;
+	grid-template-columns: 1fr 2fr 1fr;
+	padding: $spacing-primary 0;
 
 	box-shadow: $orange 0 5px 3px -5px;
 
@@ -25,6 +25,16 @@
 		cat-project-icon {
 			margin-right: $spacing-primary;
 		}
+	}
+
+	.project__relations-list {
+		display: flex;
+		justify-content: center;
+	}
+
+	.project__settings {
+		display: flex;
+		justify-content: flex-end;
 	}
 }
 

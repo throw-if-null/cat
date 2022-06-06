@@ -8,6 +8,8 @@ $connector-radius: var(--noda-connector-radius, 15px);
 	border: 1px solid var(--noda-node-border, red);
 	position: relative;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 
 	cursor: move;
 	user-select: none;

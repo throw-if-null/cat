@@ -127,7 +127,7 @@ export class NodaEditorComponent implements OnInit, OnChanges {
 
 		// init all nodes
 		for (const node of this.source) {
-			const tmpNode = new NodaNode(node.id);
+			const tmpNode = new NodaNode(node.id, node.name);
 			tmpNode.setPosition(padding + (padding + nodeWidth) * column++, padding + row * (padding + nodeHeight));
 
 			if (nodeWidth * column > editorWidth) {

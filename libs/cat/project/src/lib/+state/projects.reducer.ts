@@ -16,7 +16,7 @@ export interface State extends EntityState<ProjectOverview> {
 	selectedId?: number; // which Projects record has been selected
 	loaded: boolean; // has the Projects list been loaded
 	error?: string; // last known error (if any)
-	projectDetails?: ProjectDetails;
+	projectDetails?: ProjectDetails; // a single project watched in the the details page
 }
 
 export interface ProjectsPartialState {

@@ -28,7 +28,7 @@ export class NodaNode {
 	height = 75;
 	width = 200;
 
-	constructor(id: number) {
+	constructor(id: number, public name = 'Node' + id) {
 		this.id = id;
 	}
 

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot } from "@angular/router";
 import { ConfigurationDataService } from "@cat/config";
-import { ProjectService } from '@cat/project';
+import { ProjectService, ProjectsFacade } from '@cat/project';
+import { ProjectDetailsComponent } from "@cat/project-details";
 import { MonitoringService } from "@cat/utils";
 import { HotToastService } from "@ngneat/hot-toast";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
-import { map, tap } from 'rxjs/operators';
-import * as ConfigurationsActions from "../../../../config/src/lib/+state/configurations.actions";
+import { fetch, navigation } from '@nrwl/angular';
+import { of } from "rxjs";
+import { catchError, filter, map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
 
+import * as ConfigurationsActions from "../../../../config/src/lib/+state/configurations.actions";
 import * as ProjectsActions from './projects.actions';
 
 @Injectable()
@@ -34,29 +37,54 @@ export class ProjectsEffects {
 		)
 	);
 
-	loadProject$ = createEffect(() =>
+	loadProjectOnNavigation$ = createEffect(() =>
 		this.actions$.pipe(
-			ofType(ProjectsActions.loadProject),
-			fetch({
-				run: action => {
-					return this.projectService.getProjectById(action.projectId)
-						.pipe(
-							map((project) => {
-								project.entries = project.configurations.reduce((sum, proj) => sum + proj.entriesCount, 0);
-								return project;
-							}),
-							map((project) => (ProjectsActions.loadProjectSuccess({ project })))
-						);
+			// listens for the routerNavigation action from @ngrx/router-store
+			navigation(ProjectDetailsComponent, {
+				run: (activatedRouteSnapshot: ActivatedRouteSnapshot) => {
+					const { projectId } = activatedRouteSnapshot.params;
+					return this.getProjectMapped(projectId);
 				},
-				onError: (action, error) => {
-					console.error(error);
+				onError: (
+					activatedRouteSnapshot: ActivatedRouteSnapshot,
+					error: any
+				) => {
+					console.error('Error', error);
 					this.monitoringService.logException(error);
 
 					return ProjectsActions.loadProjectFailure({ error });
-				}
+				},
 			})
 		)
 	);
+
+	// fetch project details. If not loaded yet
+	loadProject$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(ProjectsActions.loadProject),
+			withLatestFrom(this.projectFacade.projectDetails$),
+			filter(([ _, project ]) => !project),
+			mergeMap(([ action ]) => {
+				return this.getProjectMapped(action.projectId)
+					.pipe(
+						catchError((error) => {
+							console.error(error);
+							this.monitoringService.logException(error);
+
+							return of(ProjectsActions.loadProjectFailure({ error }));
+						})
+					);
+
+			})
+		)
+	);
+
+// onError: (action, error) => {
+// 	console.error(error);
+// 	this.monitoringService.logException(error);
+//
+// 	return ProjectsActions.loadProjectFailure({ error });
+// }
 
 	createProject$ = createEffect(() =>
 		this.actions$.pipe(
@@ -172,10 +200,22 @@ export class ProjectsEffects {
 
 
 	constructor(
+		private readonly projectFacade: ProjectsFacade,
 		private readonly actions$: Actions,
 		private readonly toast: HotToastService,
 		private readonly projectService: ProjectService,
 		private readonly configService: ConfigurationDataService,
 		private readonly monitoringService: MonitoringService) {
+	}
+
+	private getProjectMapped(projectId: number) {
+		return this.projectService.getProjectById(projectId)
+			.pipe(
+				map((project) => {
+					project.entries = project.configurations.reduce((sum, proj) => sum + proj.entriesCount, 0);
+					return project;
+				}),
+				map((project) => (ProjectsActions.loadProjectSuccess({ project })))
+			);
 	}
 }
