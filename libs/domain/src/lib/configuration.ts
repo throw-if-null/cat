@@ -58,3 +58,7 @@ export interface ConfigurationEntry extends ConfigurationEntryData {
 }
 
 export type ConfigurationEntryCreateData = Omit<ConfigurationEntry, "id">;
+
+export interface ConfigurationEntriesCreateResponse {
+	ids: number[];
+}

@@ -54,6 +54,25 @@ export class ConfigurationsEffects {
 			})
 		));
 
+	createConfigurationEntries$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(ConfigurationsActions.createConfigurationEntries),
+			fetch({
+				run: ({ configurationId, entries }) => {
+					return this.configService.createConfigurationEntries(configurationId, entries)
+						.pipe(
+							map(({ ids }) => (ConfigurationsActions.createConfigurationEntriesSuccess({
+								entries: entries.map((entry, index) => ({ ...entry, id: ids[index] })) // add IDs to entries
+							})))
+						);
+				},
+				onError: (action, error) => {
+					console.error('Error', error);
+					return ConfigurationsActions.createConfigurationEntryFailure({ error });
+				}
+			})
+		));
+
 	updateConfigurationEntry$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(ConfigurationsActions.updateConfigurationEntry),

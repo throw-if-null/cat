@@ -55,6 +55,10 @@ export class ConfigurationFacade {
 		this.store.dispatch(ConfigurationsActions.createConfigurationEntry({ entry, configurationId }));
 	}
 
+	createConfigurationEntries(entries: ConfigurationEntryCreateData[], configurationId: number) {
+		this.store.dispatch(ConfigurationsActions.createConfigurationEntries({ entries, configurationId }));
+	}
+
 	updateConfigurationEntry(entry: ConfigurationEntry, configurationId: number) {
 		this.store.dispatch(ConfigurationsActions.updateConfigurationEntry({ entry, configurationId }));
 	}

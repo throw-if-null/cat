@@ -4,6 +4,7 @@ import {
 	ConfigurationCreateData,
 	ConfigurationCreateResponse,
 	ConfigurationDetails,
+	ConfigurationEntriesCreateResponse,
 	ConfigurationEntry,
 	ConfigurationEntryCreateData
 } from "@cat/domain";
@@ -37,6 +38,12 @@ export class ConfigurationDataService {
 		console.log('createConfigurationEntry ', entry.key);
 
 		return this.http.post<any>(`${ this.apiURL }/configurations/${ configId }/entries`, entry);
+	}
+
+	createConfigurationEntries(configId: number, entries: ConfigurationEntryCreateData[]): Observable<ConfigurationEntriesCreateResponse> {
+		console.log('createConfigurationEntries ', entries);
+
+		return this.http.post<any>(`${ this.apiURL }/configurations/${ configId }/entries/batch`, { entries });
 	}
 
 	updateConfigurationEntry(configId: number, entry: ConfigurationEntry): Observable<any> {

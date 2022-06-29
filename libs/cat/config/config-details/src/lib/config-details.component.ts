@@ -3,7 +3,7 @@ import { FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigurationFacade } from "@cat/config";
 import { ConfigImportComponent } from "@cat/config-import";
-import { ConfigurationEntry } from '@cat/domain';
+import { ConfigurationEntry, ConfigurationEntryCreateData, ConfigurationEntryData } from '@cat/domain';
 import { ProjectsFacade } from "@cat/project";
 import { parseStringValue } from '@cat/utils';
 import { DialogService } from "@ngneat/dialog";
@@ -157,9 +157,17 @@ export class ConfigDetailsComponent implements OnDestroy {
 					this.logger.warn('User trying to create a configuration without a project loaded');
 					return;
 				}
-				console.log(flattenConfigEntries(data));
+				console.log();
+
+				const entries = prepareConfigurationEntry(flattenConfigEntries(data));
+
+				this.configurationFacade.createConfigurationEntries(entries, this.configId!);
 			});
 
 	}
 
+}
+
+function prepareConfigurationEntry(configEntries: ConfigurationEntryData[]): ConfigurationEntryCreateData[] {
+	return configEntries.map(entry => ({ ...entry, disabled: false, secondsToLive: 0 }));
 }

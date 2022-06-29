@@ -25,7 +25,7 @@ export const configurationsAdapter: EntityAdapter<ConfigurationEntry> =
 export const initialState: State = configurationsAdapter.getInitialState({
 	// set initial required properties
 	loaded: false,
-	entryCreated: false
+	entryCreated: false // this is weird, just to reset form in component
 });
 
 const configurationsReducer = createReducer(
@@ -54,6 +54,9 @@ const configurationsReducer = createReducer(
 	})),
 	on(ConfigurationsActions.createConfigurationEntrySuccess,
 		(state, { entry }) => configurationsAdapter.addOne(entry, { ...state, entryCreated: true })
+	),
+	on(ConfigurationsActions.createConfigurationEntriesSuccess,
+		(state, { entries }) => configurationsAdapter.addMany(entries, { ...state })
 	),
 	on(ConfigurationsActions.updateConfigurationEntrySuccess,
 		(state, { entry }) => configurationsAdapter.updateOne({ id: entry.id, changes: entry }, state)

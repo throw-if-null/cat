@@ -23,10 +23,11 @@ export class ConfigImportComponent implements OnInit {
 		let parsedConfig;
 		try {
 			parsedConfig = JSON.parse(data);
+			this.ref.close(parsedConfig);
+
 		} catch (e) {
 			console.error('Error while parsing provided configuration', e);
 		}
 
-		this.ref.close(parsedConfig);
 	}
 }

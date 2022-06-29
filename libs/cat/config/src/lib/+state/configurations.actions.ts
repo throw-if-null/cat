@@ -62,9 +62,18 @@ export const createConfigurationEntry = createAction('[Configuration Details Pag
 	props<{ entry: ConfigurationEntryCreateData, configurationId: number }>()
 );
 
+export const createConfigurationEntries = createAction('[Configuration Details Page] Create Configuration Entries',
+	props<{ entries: ConfigurationEntryCreateData[], configurationId: number }>()
+);
+
 export const createConfigurationEntrySuccess = createAction(
 	'[Configurations/API] Create Configuration Entry Success',
 	props<{ entry: ConfigurationEntry }>()
+);
+
+export const createConfigurationEntriesSuccess = createAction(
+	'[Configurations/API] Create Configuration Entries Success',
+	props<{ entries: ConfigurationEntry[] }>()
 );
 
 export const createConfigurationEntryFailure = createAction(
