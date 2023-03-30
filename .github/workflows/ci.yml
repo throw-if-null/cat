@@ -82,7 +82,7 @@ jobs:
 
       - name: Build Docker image
         id: docker-build-publish
-        uses: elgohr/Publish-Docker-Github-Action@3.04
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: throwifnull/${{ env.DOCKER_REPOSITORY }}
           username: ${{ secrets.DOCKER_USERNAME }}
